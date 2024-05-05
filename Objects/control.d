@@ -112,7 +112,9 @@
 .\objects\control.o: .\Math\matrix.h
 .\objects\control.o: .\Math\srcdkf.h
 .\objects\control.o: .\Utility\cpu_utils.h
+.\objects\control.o: .\BSP\vofa.h
 .\objects\control.o: Applications\lcd.h
 .\objects\control.o: Applications\Odrive.h
 .\objects\control.o: .\Driver\driver_laser.h
 .\objects\control.o: .\BSP\usartx.h
+.\objects\control.o: .\BSP\JY60.h

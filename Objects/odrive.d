@@ -115,3 +115,4 @@
 .\objects\odrive.o: .\Math\aq_math.h
 .\objects\odrive.o: .\Math\matrix.h
 .\objects\odrive.o: .\Math\srcdkf.h
+.\objects\odrive.o: .\BSP\vofa.h

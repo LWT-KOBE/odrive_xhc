@@ -39,6 +39,7 @@
 .\objects\usartx.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\usartx.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 .\objects\usartx.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\usartx.o: BSP\JY60.h
 .\objects\usartx.o: .\Applications\Odrive.h
 .\objects\usartx.o: .\Utility\Util.h
 .\objects\usartx.o: .\Applications\FreeRTOS_board.h

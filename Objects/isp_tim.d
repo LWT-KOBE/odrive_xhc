@@ -115,6 +115,7 @@
 .\objects\isp_tim.o: .\Math\aq_math.h
 .\objects\isp_tim.o: .\Math\matrix.h
 .\objects\isp_tim.o: .\Math\srcdkf.h
+.\objects\isp_tim.o: .\BSP\vofa.h
 .\objects\isp_tim.o: .\Applications\imu.h
 .\objects\isp_tim.o: .\Applications\nav_ukf.h
 .\objects\isp_tim.o: .\Applications\d_imu.h

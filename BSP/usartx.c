@@ -542,7 +542,7 @@ void USART2_IRQHandler(void)
   }
 	else if(USART_GetITStatus(USART2, USART_IT_RXNE) != RESET)
   {
-		//CopeSerial2Data((unsigned char)USART2->DR);//处理数据
+		CopeSerial2Data((unsigned char)USART2->DR);//处理数据
 		USART_ClearITPendingBit(USART2, USART_IT_RXNE);
   }
 	
@@ -672,7 +672,7 @@ void Serial1Data(uint8_t ucData){
 				*/
 			
 			
-			if(strncmp(g_usart1_recv_buf, "V=\n ", 2) == 0)//
+			if(strncmp(g_usart1_recv_buf, "V=\n ", 2) == 0)//速度控制命令
 			{
 				sscanf(g_usart1_recv_buf, "V=%f\n", &OdriveData.SetVel[0].float_temp);//速度修改
 				OdriveData.SetVel[1].float_temp = -OdriveData.SetVel[0].float_temp;
@@ -681,42 +681,45 @@ void Serial1Data(uint8_t ucData){
 			}
 			
 			
-			if(strncmp(g_usart1_recv_buf, "A\n ", 2) == 0)//关闭LED1
+			if(strncmp(g_usart1_recv_buf, "P=\n ", 2) == 0)//
 			{
 				
-				//sscanf(g_usart1_recv_buf, "C=%f\n", &C);//速度限制修改
+				sscanf(g_usart1_recv_buf, "P=%f\n", &OdriveData.SetPos[0].float_temp);//速度修改
 				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", A);//速度限制修改后显示
 			}
 			
-			
-			if(strncmp(g_usart1_recv_buf, "S\n ", 2) == 0)//关闭LED1
+			if(strncmp(g_usart1_recv_buf, "Pos\n ", 4) == 0)//
 			{
-				//JY60_Calibration();
-				
-				//sscanf(g_usart1_recv_buf, "C=%f\n", &C);//速度限制修改
+				OdriveData.AxisState[axis0] = CMD_MENU;
+				OdriveData.ControlMode[0] = CONTROL_MODE_POSITION_TRAP;
+	
+				OdriveData.ControlModeFlag = 1;
+				OdriveData.RequestedStateFlag = 1;
+				//sscanf(g_usart1_recv_buf, "P=%f\n", &OdriveData.SetPos[0].float_temp);//速度修改
 				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", A);//速度限制修改后显示
 			}
 			
-			
-			if(strncmp(g_usart1_recv_buf, "D\n ", 2) == 0)//关闭LED1
+			if(strncmp(g_usart1_recv_buf, "Vel\n ", 4) == 0)//
 			{
-				//A = 50;
-				OdriveData.SetVel[1].float_temp = 0;
-				OdriveData.SetVel[0].float_temp = 0;
-				//sscanf(g_usart1_recv_buf, "C=%f\n", &C);//速度限制修改
+				
+				OdriveData.AxisState[axis0] = CMD_MENU;
+				OdriveData.ControlMode[0] = CONTROL_MODE_VELOCITY_RAMP;
+	
+				OdriveData.ControlModeFlag = 1;
+				OdriveData.RequestedStateFlag = 1;
+				//sscanf(g_usart1_recv_buf, "P=%f\n", &OdriveData.SetPos[0].float_temp);//速度修改
 				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", A);//速度限制修改后显示
 			}
 			
-			if(strncmp(g_usart1_recv_buf, "Q\n ", 2) == 0)//关闭LED1
+			if(strncmp(g_usart1_recv_buf, "Set\n ", 4) == 0)//
 			{
 				
-				//Locate_Rle(50000,10000,0);
+				OdriveData.AxisState[axis0] = CMD_MOTOR;
+				OdriveData.RequestedStateFlag = 1;
+				//sscanf(g_usart1_recv_buf, "P=%f\n", &OdriveData.SetPos[0].float_temp);//速度修改
+				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", A);//速度限制修改后显示
 			}
-			if(strncmp(g_usart1_recv_buf, "R\n ", 2) == 0)//关闭LED1
-			{
-				
-
-			}
+			
 			
 			//清空字符串数组
 			memset(g_usart1_recv_buf, 0, sizeof(g_usart1_recv_buf));

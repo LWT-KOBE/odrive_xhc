@@ -27,6 +27,7 @@
 /*- Utility  ----------------------*/
 #include "util.h"
 #include "cpu_utils.h"
+#include "vofa.h"
 
 #endif
 

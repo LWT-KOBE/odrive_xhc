@@ -21,13 +21,20 @@ Target DLL:      CMSIS_AGDI.dll V1.32.6.0
 Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
-C:\Users\13359\Desktop\AGV\ODrive_XHC\ModularReader.uvprojx
-Project File Date:  04/29/2024
+C:\Users\13359\Desktop\AGV\ODrive_AGV\ModularReader.uvprojx
+Project File Date:  05/05/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\ARM\ARMCC\Bin'
 Build target 'ModularReader'
-".\Objects\ModularReader.axf" - 0 Error(s), 0 Warning(s).
+compiling odrive.c...
+Applications\odrive.c(546): warning:  #188-D: enumerated type mixed with another type
+  	Spetsnaz->control_mode[axis] = CanRevData->Data[5];	
+Applications\odrive.c: 1 warning, 0 errors
+linking...
+Program Size: Code=35820 RO-data=15216 RW-data=608 ZI-data=81436  
+FromELF: creating hex file...
+".\Objects\ModularReader.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 

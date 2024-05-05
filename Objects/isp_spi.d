@@ -115,3 +115,4 @@
 .\objects\isp_spi.o: .\Math\aq_math.h
 .\objects\isp_spi.o: .\Math\matrix.h
 .\objects\isp_spi.o: .\Math\srcdkf.h
+.\objects\isp_spi.o: .\BSP\vofa.h

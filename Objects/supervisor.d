@@ -115,3 +115,4 @@
 .\objects\supervisor.o: .\Math\aq_math.h
 .\objects\supervisor.o: .\Math\matrix.h
 .\objects\supervisor.o: .\Math\srcdkf.h
+.\objects\supervisor.o: .\BSP\vofa.h

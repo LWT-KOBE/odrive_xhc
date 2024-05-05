@@ -471,6 +471,11 @@
               <FileType>1</FileType>
               <FilePath>.\Driver\driver_key.c</FilePath>
             </File>
+            <File>
+              <FileName>JY60.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BSP\JY60.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -530,6 +535,11 @@
               <FileName>usartx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\BSP\usartx.c</FilePath>
+            </File>
+            <File>
+              <FileName>vofa.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\BSP\vofa.c</FilePath>
             </File>
           </Files>
         </Group>

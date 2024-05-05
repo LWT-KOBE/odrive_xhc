@@ -115,3 +115,4 @@
 .\objects\config.o: .\Math\aq_math.h
 .\objects\config.o: .\Math\matrix.h
 .\objects\config.o: .\Math\srcdkf.h
+.\objects\config.o: .\BSP\vofa.h

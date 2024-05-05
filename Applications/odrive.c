@@ -3,7 +3,7 @@
 OdriveStruct_t OdriveData; 
 ODCanDataRecv_t OdReceivedData;
 
-////////////////////////////ODRIVE单驱板（M0）的CAN控制demo(STM32F407VIT6) 波特率：1000K  使用120Ω终端电阻/////////////////////////
+////////////////////////////ODRIVE单驱板（M0）的CAN控制(STM32F407VIT6) 波特率：1000K  使用120Ω终端电阻/////////////////////////
 /*********************************以下为驱动层代码*****************************************************************************/
 
 /*
@@ -107,6 +107,38 @@ void ODSendInputPosData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uin
 	
 }
 
+
+
+/*
+***************************************************
+函数名：ODSendInputPosData
+功能：电机位置增益命令_数据帧
+入口参数：	CANx：CAN1 or CAN2
+			ID_CAN：CANID 电机0或电机1的ID地址 规定： AXIS0_ID 0x001   AXIS1_ID 0x002
+			CMD_CAN：odrive的位置增益命令（MSG_SET_INPUT_POS ）
+			len：数据帧长度 
+			CanSendData：CAN发送的数据结构
+			Spetsnaz：发送的位置增益控制结构体
+			axis: 选择电机0或电机1命令发送 规定 ： axis0=0  axis1=1 
+返回值：无
+应用范围：内部调用
+备注：
+	 
+***************************************************
+*/
+void ODSendPos_gainData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData) {
+
+	CanSendData->data[0] = Spetsnaz->pos_gain[axis].u8_temp[0];
+	CanSendData->data[1] = Spetsnaz->pos_gain[axis].u8_temp[1];
+	CanSendData->data[2] = Spetsnaz->pos_gain[axis].u8_temp[2];
+	CanSendData->data[3] = Spetsnaz->pos_gain[axis].u8_temp[3];	
+
+	OdriveSendData(CANx,ID_CAN,CMD_CAN,len,CanSendData); 
+	
+	
+}
+
+
 /*
 ***************************************************
 函数名：ODSendInputVelData
@@ -155,7 +187,8 @@ void ODSendInputVelData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uin
 ***************************************************
 */
 void ODSendInputCurData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData) {
-
+	
+	
 	CanSendData->data[0] = Spetsnaz->SetCur[axis].u8_temp[0];
 	CanSendData->data[1] = Spetsnaz->SetCur[axis].u8_temp[1];
 	CanSendData->data[2] = Spetsnaz->SetCur[axis].u8_temp[2];
@@ -727,10 +760,6 @@ void CAN1_TX_IRQHandler(void){
 }
 
 
-
-
-
-
 void ODRequestedState(void){		
     //如果想要对状态参数进行操作，直接将OdriveData.flashSave拉高一次即可    
 	if(OdriveData.RequestedStateFlag){                                              
@@ -790,7 +819,7 @@ void ODSetMotorState(void){
     //如果想要对电机控制模式进行操作，直接将OdriveData.ControlModeFlag高一次即可,并且电机控制模式为CMD_MENU
 	if((OdriveData.ControlModeFlag)&&(OdriveData.AxisState[axis0] == CMD_MENU)){                                              
 			
-
+		
 		set_axis_requested_state(CAN1,AXIS0_ID,MSG_SET_CONTROL_MODE,1,&OdriveData,axis0,&ODSendData);		
 										
 		digitalLo(&OdriveData.ControlModeFlag);         
@@ -824,34 +853,38 @@ void OdriveGlobalInit(void){
 		CMD_MOTOR 109	//电机进入闭环状态
 
 	*/		
-	OdriveData.AxisState[axis0]   = CMD_MOTOR;//释放电机			
-	OdriveData.ControlMode[axis0] = CONTROL_MODE_VELOCITY_RAMP;//位置梯形模式
+	OdriveData.AxisState[axis0]   = CMD_MOTOR;//使能电机			
+	OdriveData.ControlMode[axis0] = CONTROL_MODE_VELOCITY_RAMP;//速度梯形模式
 	OdriveData.current_limit[axis0].float_temp = 15.0f;
 	OdriveData.vel_limit[axis0].float_temp = 35.0f;
 	
-	OdriveData.AxisState[axis1]   = CMD_MOTOR;//释放电机			
+	OdriveData.AxisState[axis1]   = CMD_MOTOR;//使能电机			
 	OdriveData.ControlMode[axis1] = CONTROL_MODE_VELOCITY_RAMP;//速度梯形模式
 	OdriveData.current_limit[axis1].float_temp = 15.0f;
 	OdriveData.vel_limit[axis1].float_temp = 35.0f;
 	
 }
 
+//ODrive控制更新任务
 void odrivelUpdateTask(void *Parameters){
+	//获取当前任务运行的时间
 	TickType_t xLastWakeTime = xTaskGetTickCount();
+	//拉低状态
 	digitalLo(&OdriveData.dataInitFlag);
 	while(true){
+		
 		vTaskDelayUntil(&xLastWakeTime,ODRIVE_NORMAL_PERIOD);
         //防止重复初始化
 		if(!OdriveData.dataInitFlag){	
             //所有控制全部初始化            
 			OdriveGlobalInit();																																							
 			digitalHi(&OdriveData.dataInitFlag);
-            
 		}  
-
+	
 	//如果电机处于闭环状态，发送力矩/位置/速度控制指令  频率100HZ		
 	if(OdriveData.AxisState[axis0] == CMD_MOTOR){
-
+					//OdriveData.pos_gain[0].float_temp = 26;
+					//ODSendPos_gainData(CAN1,AXIS0_ID,MSG_SET_POS_GAIN,4,&OdriveData,axis0,&ODSendData);
 					switch(OdriveData.ControlMode[axis0]){ 
 		
 						case CONTROL_MODE_CURRENT:
@@ -888,7 +921,7 @@ void odrivelUpdateTask(void *Parameters){
 					}			
 		
 	}
-	
+	//如果电机处于闭环状态，发送力矩/位置/速度控制指令  频率100HZ
 	if(OdriveData.AxisState[axis1] == CMD_MOTOR){
 
 					switch(OdriveData.ControlMode[axis1]){ 
@@ -963,11 +996,11 @@ void odrivelUpdateTask(void *Parameters){
 		
 		//ODReadEncodeEstimatesData()
 		
-		//printf("%f\r\n",OdReceivedData.vel_estimate[1]);
+		//printf("%f\r\n",OdReceivedData.vel_estimate->float_temp);
 
 		
-	}		
-        
+	}	
+        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,OdReceivedData.vel_estimate[0].float_temp,OdReceivedData.vel_estimate[1].float_temp,OdReceivedData.Iq_measured[0].float_temp,0,0,0,0,0,0,0,0,0);
 		digitalIncreasing(&OdriveData.loops);        
 
 	}

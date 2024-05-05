@@ -5,6 +5,7 @@
 #include "stm32f4xx.h"
 #include "stdio.h"
 #include "string.h"
+#include "JY60.h"
 #define 	RECV_BUF_SIZE 	400
 
 #define 	SEND_BUF_SIZE 	200

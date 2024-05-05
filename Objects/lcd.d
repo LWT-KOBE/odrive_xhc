@@ -112,6 +112,7 @@
 .\objects\lcd.o: .\Math\matrix.h
 .\objects\lcd.o: .\Math\srcdkf.h
 .\objects\lcd.o: .\Utility\cpu_utils.h
+.\objects\lcd.o: .\BSP\vofa.h
 .\objects\lcd.o: Applications\lcd.h
 .\objects\lcd.o: Applications\Odrive.h
 .\objects\lcd.o: .\Driver\driver_laser.h

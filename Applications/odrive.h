@@ -69,11 +69,13 @@ typedef  enum {
 		MSG_CLEAR_ERRORS = 0x018,                    // 清除错误
 
 		//新增
-		MSG_GET_TEMP,                        // 获取温度
-		MSG_SAVE_CONFIG,                     // 保存配置
-		MSG_SET_MOTOR_ENABLE,                // 启用电机
-		MSG_SET_MOTOR_DISABLE,               // 禁用电机
-		MSG_SET_CONTROL_MODE,                // 设置控制模式
+		MSG_GET_TEMP = 0x019,                        // 获取温度
+		MSG_SAVE_CONFIG = 0x01A,                     // 保存配置
+		MSG_SET_MOTOR_ENABLE = 0x01B,                // 启用电机
+		MSG_SET_MOTOR_DISABLE = 0x01C,               // 禁用电机
+		MSG_SET_CONTROL_MODE = 0x01D,                // 设置控制模式
+		MSG_SET_POS_GAIN = 0x01E,					 //	设置位置环增益
+        MSG_SET_VEL_GAINS = 0x01F,					 // 设置速度环增益
 
 		MSG_CO_HEARTBEAT_CMD = 0x700,        // CANOpen NMT Heartbeat SEND
     }ODCmdStruct_t;
@@ -200,7 +202,11 @@ typedef struct {
 	//电流限制——发送
 	formatTrans32Struct_t current_limit[2];
 
-
+	//位置环增益
+	formatTrans32Struct_t pos_gain[2];
+	
+	//速度环增益
+	formatTrans32Struct_t vel_gain[2];
 
 	//freertos相关
 	TaskHandle_t xHandleTask;
@@ -233,7 +239,7 @@ void ODSendInputCurData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uin
 void ODReadMotorPolePairs(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis);
 void ODReadLimitData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis);
 void ODSendLimitData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
-
+void ODSendPos_gainData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
 
 void OdriveInit(void);
 void ODRequestedState(void);	
