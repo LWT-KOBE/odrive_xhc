@@ -4,8 +4,8 @@
 #include "stm32f4xx.h"
 #include "Util.h"
 
-#define AXIS0_ID 0x001 //M0的CANID
-#define AXIS1_ID 0x002 //M1的CANID
+#define AXIS0_ID 0x000 //M0的CANID
+#define AXIS1_ID 0x003 //M1的CANID
 
 #define ODRIVE_PRIORITY 3
 #define ODRIVE_STACK_SIZE 512
@@ -60,7 +60,7 @@ typedef  enum {
 		MSG_SET_LIMITS = 0x00F,                      // 设置限制
 		MSG_START_ANTICOGGING = 0x010,               // 启动反扭矩
 		MSG_SET_TRAJ_VEL_LIMIT = 0x011,              // 设置轨迹速度限制
-		MSG_SET_TRAJ_ACCEL_LIMITS = 0x012,          // 设置轨迹加速度限制
+		MSG_SET_TRAJ_ACCEL_LIMITS = 0x012,           // 设置轨迹加速度限制
 		MSG_SET_TRAJ_INERTIA = 0x013,                // 设置轨迹惯性
 		MSG_GET_IQ = 0x014,                          // 获取电流
 		MSG_GET_SENSORLESS_ESTIMATES = 0x015,        // 获取无传感器估计值
@@ -75,7 +75,8 @@ typedef  enum {
 		MSG_SET_MOTOR_DISABLE = 0x01C,               // 禁用电机
 		MSG_SET_CONTROL_MODE = 0x01D,                // 设置控制模式
 		MSG_SET_POS_GAIN = 0x01E,					 //	设置位置环增益
-        MSG_SET_VEL_GAINS = 0x01F,					 // 设置速度环增益
+        MSG_SET_VEL_GAINS = 0x01F,					 // 设置速度环增益	
+		MSG_SET_VEL_INTEGRATOR_GAIN = 0x020,		 // 设置速度环积分增益
 
 		MSG_CO_HEARTBEAT_CMD = 0x700,        // CANOpen NMT Heartbeat SEND
     }ODCmdStruct_t;
@@ -161,7 +162,16 @@ typedef struct {
 
 
 typedef struct {
-
+	
+	//位置环增益
+	formatTrans32Struct_t Pos_gain[2];
+	
+	//速度环增益
+	formatTrans32Struct_t Vel_gain[2];
+	
+	//速度环积分增益
+	formatTrans32Struct_t Vel_integrator_gain[2];
+	
 	//电机的控制状态
 	ODAxisStateStruct_t	AxisState[2];
 	
@@ -202,11 +212,7 @@ typedef struct {
 	//电流限制——发送
 	formatTrans32Struct_t current_limit[2];
 
-	//位置环增益
-	formatTrans32Struct_t pos_gain[2];
 	
-	//速度环增益
-	formatTrans32Struct_t vel_gain[2];
 
 	//freertos相关
 	TaskHandle_t xHandleTask;
@@ -240,7 +246,8 @@ void ODReadMotorPolePairs(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t
 void ODReadLimitData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis);
 void ODSendLimitData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
 void ODSendPos_gainData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
-
+void ODSendVel_gainData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
+void ODSendVel_integrator_gainData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
 void OdriveInit(void);
 void ODRequestedState(void);	
 void ODFlashSave(void);	
@@ -248,8 +255,11 @@ void ODClearError(void);
 void ODFReadMotorPairs(void);	
 void ODSetLimit(void);	
 
+
+
 extern OdriveStruct_t OdriveData; 
 extern ODCanDataRecv_t OdReceivedData;
+extern ODCANSendStruct_t ODSendData;
 
 
 #endif

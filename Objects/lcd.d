@@ -113,6 +113,9 @@
 .\objects\lcd.o: .\Math\srcdkf.h
 .\objects\lcd.o: .\Utility\cpu_utils.h
 .\objects\lcd.o: .\BSP\vofa.h
+.\objects\lcd.o: .\BSP\usartx.h
+.\objects\lcd.o: .\BSP\JY60.h
+.\objects\lcd.o: .\BSP\cigan.h
 .\objects\lcd.o: Applications\lcd.h
 .\objects\lcd.o: Applications\Odrive.h
 .\objects\lcd.o: .\Driver\driver_laser.h

@@ -1,5 +1,6 @@
 #include "usartx.h"
 #include "Odrive.h"
+uint8_t flag;
 SEND_DATA Send_Data;
 RECEIVE_DATA Receive_Data;
 #define 	RECV_BUF_SIZE 	400
@@ -676,6 +677,8 @@ void Serial1Data(uint8_t ucData){
 			{
 				sscanf(g_usart1_recv_buf, "V=%f\n", &OdriveData.SetVel[0].float_temp);//速度修改
 				OdriveData.SetVel[1].float_temp = -OdriveData.SetVel[0].float_temp;
+				flag = 1;
+				//OdriveData.Vel_gain[0].float_temp += 5;
 				//printf("%f\r\n",OdriveData.SetVel[1].float_temp);
 				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", OdriveData.SetVel[0].float_temp);//修改后显示
 			}
@@ -713,11 +716,35 @@ void Serial1Data(uint8_t ucData){
 			
 			if(strncmp(g_usart1_recv_buf, "Set\n ", 4) == 0)//
 			{
-				
-				OdriveData.AxisState[axis0] = CMD_MOTOR;
+				OdriveData.AxisState[0] = 27;
+				//OdriveData.AxisState[axis0] = CMD_MOTOR;
 				OdriveData.RequestedStateFlag = 1;
 				//sscanf(g_usart1_recv_buf, "P=%f\n", &OdriveData.SetPos[0].float_temp);//速度修改
 				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", A);//速度限制修改后显示
+			}
+			
+			if(strncmp(g_usart1_recv_buf, "Pos_gain=\n ", 9) == 0)//位置环增益修改
+			{
+				sscanf(g_usart1_recv_buf, "Pos_gain=%f\n", &OdriveData.Pos_gain[0].float_temp);//增益修改
+				OdriveData.Pos_gain[1].float_temp = OdriveData.Pos_gain[0].float_temp;
+				//增益修改标识符
+				flag = 1;
+			}
+			
+			if(strncmp(g_usart1_recv_buf, "Vel_gain=\n ", 9) == 0)//速度环增益修改
+			{
+				sscanf(g_usart1_recv_buf, "Vel_gain=%f\n", &OdriveData.Vel_gain[0].float_temp);//增益修改
+				OdriveData.Vel_gain[1].float_temp = OdriveData.Vel_gain[0].float_temp;
+				//增益修改标识符
+				flag = 1;
+			}
+			
+			if(strncmp(g_usart1_recv_buf, "Vel_integrator_gain=\n ", 20) == 0)//速度环积分增益修改
+			{
+				sscanf(g_usart1_recv_buf, "Vel_integrator_gain=%f\n", &OdriveData.Vel_integrator_gain[0].float_temp);//增益修改
+				OdriveData.Vel_integrator_gain[1].float_temp = OdriveData.Vel_integrator_gain[0].float_temp;
+				//增益修改标识符
+				flag = 1;
 			}
 			
 			

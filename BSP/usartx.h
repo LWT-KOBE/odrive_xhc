@@ -55,7 +55,7 @@ typedef struct _RECEIVE_DATA_
 	}Control_Str;
 }RECEIVE_DATA;
 
-
+extern uint8_t flag;
 
 void data_transition(void);
 void USART1_SEND(void);

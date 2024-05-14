@@ -20,14 +20,15 @@ const CAN_FilterInitTypeDef  CAN1_FilterInitStructure = {
 };
 
 const CAN_FilterInitTypeDef  CAN2_FilterInitStructure = {
-	.CAN_FilterNumber = 14,										/*过滤器0*/					
+	.CAN_FilterNumber = 14,										/*过滤器0*/
 	.CAN_FilterMode = CAN_FilterMode_IdMask,	/*标识符屏蔽位模式*/	
 	.CAN_FilterScale = CAN_FilterScale_32bit,	/*32位的模式*/				
 	.CAN_FilterIdHigh = 0x0000,								/*32位MASK*/				
 	.CAN_FilterIdLow = 0x0000,
 	.CAN_FilterMaskIdHigh = 0x0000,
 	.CAN_FilterMaskIdLow = 0x0000,
-	.CAN_FilterFIFOAssignment = CAN_Filter_FIFO0,	/*过滤器0关联到FIFO0*/	
+	//.CAN_FilterFIFOAssignment = CAN_Filter_FIFO0,	/*过滤器0关联到FIFO0*/
+	.CAN_FilterFIFOAssignment = CAN_Filter_FIFO0,	/*过滤器0关联到FIFO0*/
 	.CAN_FilterActivation = ENABLE,								/*激活过滤器*/					
 };
 
@@ -113,7 +114,7 @@ BSP_CAN_Mode_Init(&can1,CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,3,CAN_Mode_Normal,Pr
 ***************************************************
 */
 //CANbps= Fpclk/((BRP+1)*((Tseg1+1)+(Tseg2+1)+1)  
-//所以这里CANbps=APB1总线频率30000000/4/(8+6+1))=500k bps
+//所以这里CANbps=APB1总线频率45M/3/(1+5+9))=1000k bps
 //总体配置方向: Tseg1>=Tseg2  Tseg2>=tq; Tseg2>=2TSJW	
 
 

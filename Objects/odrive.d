@@ -116,3 +116,6 @@
 .\objects\odrive.o: .\Math\matrix.h
 .\objects\odrive.o: .\Math\srcdkf.h
 .\objects\odrive.o: .\BSP\vofa.h
+.\objects\odrive.o: .\BSP\usartx.h
+.\objects\odrive.o: .\BSP\JY60.h
+.\objects\odrive.o: .\BSP\cigan.h

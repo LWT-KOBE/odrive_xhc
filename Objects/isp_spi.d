@@ -116,3 +116,6 @@
 .\objects\isp_spi.o: .\Math\matrix.h
 .\objects\isp_spi.o: .\Math\srcdkf.h
 .\objects\isp_spi.o: .\BSP\vofa.h
+.\objects\isp_spi.o: .\BSP\usartx.h
+.\objects\isp_spi.o: .\BSP\JY60.h
+.\objects\isp_spi.o: .\BSP\cigan.h

@@ -116,3 +116,6 @@
 .\objects\app_init.o: .\Math\matrix.h
 .\objects\app_init.o: .\Math\srcdkf.h
 .\objects\app_init.o: .\BSP\vofa.h
+.\objects\app_init.o: .\BSP\usartx.h
+.\objects\app_init.o: .\BSP\JY60.h
+.\objects\app_init.o: .\BSP\cigan.h

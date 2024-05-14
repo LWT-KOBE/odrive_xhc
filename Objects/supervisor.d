@@ -116,3 +116,6 @@
 .\objects\supervisor.o: .\Math\matrix.h
 .\objects\supervisor.o: .\Math\srcdkf.h
 .\objects\supervisor.o: .\BSP\vofa.h
+.\objects\supervisor.o: .\BSP\usartx.h
+.\objects\supervisor.o: .\BSP\JY60.h
+.\objects\supervisor.o: .\BSP\cigan.h

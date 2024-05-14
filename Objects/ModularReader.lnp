@@ -29,6 +29,7 @@
 ".\objects\bsp_iic.o"
 ".\objects\usartx.o"
 ".\objects\vofa.o"
+".\objects\cigan.o"
 ".\objects\misc.o"
 ".\objects\stm32f4xx_adc.o"
 ".\objects\stm32f4xx_can.o"

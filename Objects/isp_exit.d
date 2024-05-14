@@ -116,3 +116,6 @@
 .\objects\isp_exit.o: .\Math\matrix.h
 .\objects\isp_exit.o: .\Math\srcdkf.h
 .\objects\isp_exit.o: .\BSP\vofa.h
+.\objects\isp_exit.o: .\BSP\usartx.h
+.\objects\isp_exit.o: .\BSP\JY60.h
+.\objects\isp_exit.o: .\BSP\cigan.h

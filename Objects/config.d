@@ -116,3 +116,6 @@
 .\objects\config.o: .\Math\matrix.h
 .\objects\config.o: .\Math\srcdkf.h
 .\objects\config.o: .\BSP\vofa.h
+.\objects\config.o: .\BSP\usartx.h
+.\objects\config.o: .\BSP\JY60.h
+.\objects\config.o: .\BSP\cigan.h

@@ -28,6 +28,8 @@
 #include "util.h"
 #include "cpu_utils.h"
 #include "vofa.h"
+#include "usartx.h"
+#include "cigan.h"
 
 #endif
 
