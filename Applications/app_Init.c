@@ -4,6 +4,7 @@ taskInit_t taskInitData;
 void appInit(void *Parameters){
 	taskInitData.eventGroups = NULL;	//事件标志组清零
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
+	//NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	taskInitData.eventGroups = xEventGroupCreate();
 	/*- 在此处下写入初始化任务 -------*/
 	configInit();               			//加载默认参数

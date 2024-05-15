@@ -2,7 +2,6 @@
 
 OdriveStruct_t OdriveData; 
 ODCanDataRecv_t OdReceivedData;
-//CanRxMsg can2_rx_msg;
 uint8_t Flag = 0;
 
 ////////////////////////////ODRIVE单驱板（M0）的CAN控制(STM32F407VIT6) 波特率：1000K  使用120Ω终端电阻/////////////////////////
@@ -732,7 +731,7 @@ void CAN1_RX0_IRQHandler(void){
 		CAN_Receive(CAN1, CAN_FIFO0, &can1_rx_msg);
 		rxbuf3=can1_rx_msg.StdId;	
 		digitalIncreasing(&OdriveData.OdError.errorCount);
-				
+		//printf("9898\r\n");
 		/*********以下是自定义部分**********/
 		switch(can1_rx_msg.StdId>>5){         
 				case AXIS0_ID:
@@ -869,9 +868,10 @@ void CAN2_RX0_IRQHandler(void){
 		CAN_ClearITPendingBit(CAN2, CAN_IT_FF0);
 		CAN_ClearFlag(CAN2, CAN_FLAG_FF0);		
 		CAN_Receive(CAN2, CAN_FIFO0, &can2_rx_msg);
+		
 		rxbuf2=can2_rx_msg.StdId;	
 		digitalIncreasing(&OdriveData.OdError.errorCount);
-				
+		//printf("kkkk\r\n");
 		/*********以下是自定义部分**********/
 		switch(can2_rx_msg.StdId>>5){         
 				case AXIS0_ID:
@@ -980,8 +980,8 @@ void CAN2_RX0_IRQHandler(void){
 
 /*
 ***************************************************
-函数名：CAN1_TX_IRQHandler
-功能：CAN1发送中断
+函数名：CAN2_TX_IRQHandler
+功能：CAN2发送中断
 备注：
 ***************************************************
 */
@@ -1116,8 +1116,11 @@ void ODSetLimit(void){
 
 void OdriveGlobalInit(void){
 	
+	//初始化CAN1
     driver_can1_init(CAN1,BSP_GPIOD0,BSP_GPIOD1,4,0);
-	driver_can2_init(CAN2,BSP_GPIOB12,BSP_GPIOB13,4,0);
+//	driver_can2_init(CAN2,BSP_GPIOB12,BSP_GPIOB13,4,0);
+	//初始化CAN2
+	CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,24,CAN_Mode_Normal);
 	
 	//电机0初始配置	
 	/*
