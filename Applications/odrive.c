@@ -66,10 +66,12 @@ void OdriveSend_RemoteCmd(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN) {
 	//CAN ID 的前六位是轴ID（在odrive端设置为0x001），后五位是控制命令（比如 MSG_GET_ENCODER_ERROR）
 	txMessage->StdId = (ID_CAN<<5)+CMD_CAN;
 
-	txMessage->ExtId=0x12; 	 // 设置扩展标示符（29位） 
+	//txMessage->ExtId=0x12; 	 // 设置扩展标示符（29位） 
+	txMessage->ExtId=0x12; 	 // 设置扩展标示符（29位）
 	
 	txMessage->IDE = CAN_Id_Standard;
-	txMessage->RTR = CAN_RTR_Remote;
+	//txMessage->RTR = CAN_RTR_Remote;
+	txMessage->RTR = CAN_RTR_Data;
 	mbox = CAN_Transmit(CANx, txMessage);
 	while (CAN_TransmitStatus(CANx,mbox) == 0x00) {
 		i++;
@@ -383,7 +385,10 @@ void ODReadVbusData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz) {
 	Spetsnaz->vbus_voltage.u8_temp[2] = CanRevData->Data[2];	
 	Spetsnaz->vbus_voltage.u8_temp[3] = CanRevData->Data[3];
 	
-		
+	Spetsnaz->ibus.u8_temp[0] = CanRevData->Data[4];
+	Spetsnaz->ibus.u8_temp[1] = CanRevData->Data[5];
+	Spetsnaz->ibus.u8_temp[2] = CanRevData->Data[6];
+	Spetsnaz->ibus.u8_temp[3] = CanRevData->Data[7];
 }
 
 /*
@@ -637,6 +642,75 @@ void ODSendLimitData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_
 }
 
 
+/*
+***************************************************
+函数名：ODReadPos_gainData
+功能：读取该轴位置环增益
+入口参数：	
+			CanSendData：CAN发送的数据结构
+			Spetsnaz：接收母线电压和母线电流的数据结构体
+			axis: 选择电机0或电机1命令发送 规定 ： axis0=0  axis1=1 
+返回值：无
+应用范围：内部调用
+备注：
+	
+	返回的数据前四位（低到高）是ODRIVE的母线电压数据，后四位返回的是ODRIVE的母线电流数据，都是FLOAT型
+	所以用到了一个联合体进行数据转换，详情请看：
+	//联合体用于转换数据
+	typedef union{
+		u8 		u8_temp[4];
+		float float_temp;
+		s32 	s32_temp;
+		u32		u32_temp;
+	} formatTrans32Struct_t;
+***************************************************
+*/
+void ODReadPos_gainData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis) {
+		
+	
+	Spetsnaz->Pos_gain[axis].u8_temp[0] = CanRevData->Data[0];	
+	Spetsnaz->Pos_gain[axis].u8_temp[1] = CanRevData->Data[1];	
+	Spetsnaz->Pos_gain[axis].u8_temp[2] = CanRevData->Data[2];	
+	Spetsnaz->Pos_gain[axis].u8_temp[3] = CanRevData->Data[3];
+}
+
+/*
+***************************************************
+函数名：ODReadVel_gainsData
+功能：读取速度环增益值
+入口参数：	
+			CanSendData：CAN发送的数据结构
+			Spetsnaz：接收母线电压和母线电流的数据结构体
+			axis: 选择电机0或电机1命令发送 规定 ： axis0=0  axis1=1 
+返回值：无
+应用范围：内部调用
+备注：
+	
+	返回的数据前四位（低到高）是ODRIVE的母线电压数据，后四位返回的是ODRIVE的母线电流数据，都是FLOAT型
+	所以用到了一个联合体进行数据转换，详情请看：
+	//联合体用于转换数据
+	typedef union{
+		u8 		u8_temp[4];
+		float float_temp;
+		s32 	s32_temp;
+		u32		u32_temp;
+	} formatTrans32Struct_t;
+***************************************************
+*/
+void ODReadVel_gainsData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis) {
+		
+	
+	Spetsnaz->Vel_gain[axis].u8_temp[0] = CanRevData->Data[0];	
+	Spetsnaz->Vel_gain[axis].u8_temp[1] = CanRevData->Data[1];		
+	Spetsnaz->Vel_gain[axis].u8_temp[2] = CanRevData->Data[2];		
+	Spetsnaz->Vel_gain[axis].u8_temp[3] = CanRevData->Data[3];	
+	
+	Spetsnaz->Vel_integrator_gain[axis].u8_temp[0] = CanRevData->Data[4];	
+	Spetsnaz->Vel_integrator_gain[axis].u8_temp[1] = CanRevData->Data[5];		
+	Spetsnaz->Vel_integrator_gain[axis].u8_temp[2] = CanRevData->Data[6];		
+	Spetsnaz->Vel_integrator_gain[axis].u8_temp[3] = CanRevData->Data[7];
+}
+
 
 /*********************************以上为驱动层代码*****************************************************************************/
 
@@ -673,13 +747,13 @@ void driver_can1_init(CAN_TypeDef* rm_canx,BSP_GPIOSource_TypeDef *rm_canx_rx,BS
 		can1.CAN_FilterInitStructure = CAN2_FilterInitStructure;
 	}
 	//1M波特率
-	//BSP_CAN_Mode_Init(&can1,CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,3,CAN_Mode_Normal,Preemption,Sub);
+	BSP_CAN_Mode_Init(&can1,CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,3,CAN_Mode_Normal,Preemption,Sub);
 	
 	//250K波特率
 	//BSP_CAN_Mode_Init(&can1,CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,12,CAN_Mode_Normal,Preemption,Sub);
 	
 	//125K波特率
-	BSP_CAN_Mode_Init(&can1,CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,24,CAN_Mode_Normal,Preemption,Sub);
+	//BSP_CAN_Mode_Init(&can1,CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,24,CAN_Mode_Normal,Preemption,Sub);
 }
 
 /*
@@ -771,7 +845,15 @@ void CAN1_RX0_IRQHandler(void){
 						
 						case MSG_SET_LIMITS:
 								ODReadLimitData(&can1_rx_msg,&OdReceivedData,axis0);			
-						break;							
+						break;
+
+						case MSG_GET_POS_GAIN:
+								ODReadPos_gainData(&can1_rx_msg,&OdReceivedData,axis0);			
+						break;
+						
+						case MSG_GET_VEL_GAINS:
+								ODReadVel_gainsData(&can1_rx_msg,&OdReceivedData,axis0);			
+						break;
 						
 					default:	break;																			
 
@@ -1117,10 +1199,12 @@ void ODSetLimit(void){
 void OdriveGlobalInit(void){
 	
 	//初始化CAN1
-    driver_can1_init(CAN1,BSP_GPIOD0,BSP_GPIOD1,4,0);
+    driver_can1_init(CAN1,BSP_GPIOB8,BSP_GPIOB9,4,0);
 //	driver_can2_init(CAN2,BSP_GPIOB12,BSP_GPIOB13,4,0);
-	//初始化CAN2
-	CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,24,CAN_Mode_Normal);
+	//初始化CAN2 波特率125K
+	//CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,24,CAN_Mode_Normal);
+	//初始化CAN2 波特率250K
+	CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,12,CAN_Mode_Normal);
 	
 	//电机0初始配置	
 	/*
@@ -1154,11 +1238,14 @@ void odrivelUpdateTask(void *Parameters){
         //防止重复初始化
 		if(!OdriveData.dataInitFlag){	
             //所有控制全部初始化            
-			OdriveGlobalInit();																																							
+			OdriveGlobalInit();
+			
 			digitalHi(&OdriveData.dataInitFlag);
 			
 		}  
-	
+	//OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_GET_VBUS_VOLTAGE);
+//	OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_GET_POS_GAIN);
+//	OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_GET_VEL_GAINS);
 	//如果电机处于闭环状态，发送力矩/位置/速度控制指令  频率100HZ		
 	if(OdriveData.AxisState[axis0] == CMD_MOTOR){
 					
@@ -1181,7 +1268,6 @@ void odrivelUpdateTask(void *Parameters){
 							//OdriveData.SetVel[0].float_temp;
 						
 							//发送速度命令
-							
 							if(flag == 1){
 								ODSendInputVelData(CAN1,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
 								ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
@@ -1190,8 +1276,6 @@ void odrivelUpdateTask(void *Parameters){
 								ODSendInputVelData(CAN2,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 								flag = 0;
 							}
-						
-						break;							
 						case CONTROL_MODE_POSITION:
 						case CONTROL_MODE_POSITION_TRAP:
 
@@ -1199,7 +1283,7 @@ void odrivelUpdateTask(void *Parameters){
 							//OdriveData.SetPos[0].float_temp;
 						
 							//发送位置命令
-							ODSendInputPosData(CAN1,AXIS0_ID,MSG_SET_INPUT_POS,4,&OdriveData,axis0,&ODSendData);	
+							//ODSendInputPosData(CAN1,AXIS0_ID,MSG_SET_INPUT_POS,4,&OdriveData,axis0,&ODSendData);	
 						
 						break;																		
 					default:	break;																								
@@ -1228,12 +1312,12 @@ void odrivelUpdateTask(void *Parameters){
 							//OdriveData.SetVel[0].float_temp;
 						
 							//发送速度命令
-							if(flag == 1){
-								ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
+								if(flag == 1){
 								ODSendInputVelData(CAN1,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
+								ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 								
-								ODSendInputVelData(CAN2,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 								ODSendInputVelData(CAN2,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
+								ODSendInputVelData(CAN2,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 								flag = 0;
 							}
 								
@@ -1246,7 +1330,7 @@ void odrivelUpdateTask(void *Parameters){
 							//OdriveData.SetPos[0].float_temp;
 						
 							//发送位置命令
-							ODSendInputPosData(CAN1,AXIS1_ID,MSG_SET_INPUT_POS,4,&OdriveData,axis1,&ODSendData);	
+							//ODSendInputPosData(CAN1,AXIS1_ID,MSG_SET_INPUT_POS,4,&OdriveData,axis1,&ODSendData);	
 						
 						break;																		
 					default:	break;																								
@@ -1257,20 +1341,21 @@ void odrivelUpdateTask(void *Parameters){
 	//通过这个参数修改位置环增益参数
 	//OdriveData.Pos_gain[0].float_temp = test;
 	//发送位置环增益参数修改命令
-//	if(flag == 1){
-//		//位置环增益
-//		ODSendPos_gainData(CAN1,AXIS0_ID,MSG_SET_POS_GAIN,4,&OdriveData,axis0,&ODSendData);
-//		//速度环增益
+	if(flag == 1){
+		//位置环增益
+		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,0x1F);
+		ODSendPos_gainData(CAN2,AXIS0_ID,26,4,&OdriveData,axis0,&ODSendData);
+		//速度环增益
 //		ODSendVel_gainData(CAN1,AXIS0_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis0,&ODSendData);
 //		//速度环积分增益
 //		ODSendVel_integrator_gainData(CAN1,AXIS0_ID,MSG_SET_VEL_INTEGRATOR_GAIN,4,&OdriveData,axis0,&ODSendData);
-//		flag = 0;
-//	}
+		flag = 0;
+	}
 //	
 //	OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_ODRIVE_HEARTBEAT);
 //	OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_ODRIVE_HEARTBEAT);
 	//10Hz  轮循发送　
-	if(!((OdriveData.loops + 1) % 100)){	
+	if(!((OdriveData.loops + 1) % 200)){	
 		
 //		ODSetMotorState();
 //		
@@ -1298,7 +1383,7 @@ void odrivelUpdateTask(void *Parameters){
 //		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_GET_ENCODER_COUNT);
 
 		//读取总线电压
-//		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_GET_VBUS_VOLTAGE);	
+		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_GET_VBUS_VOLTAGE);	
 //		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_GET_VBUS_VOLTAGE);
 		
 		//读取温度
@@ -1309,22 +1394,8 @@ void odrivelUpdateTask(void *Parameters){
 
 		
 	}
-//		ODReadEncodeEstimatesData(&can1_rx_msg,&OdReceivedData,axis0);
-//		ODReadEncodeEstimatesData(&can1_rx_msg,&OdReceivedData,axis1);
-		if(PBin(4) == 0){
-			OdriveData.SetVel[0].float_temp = 0;
-			OdriveData.SetVel[1].float_temp = 0;
-			Flag = 1;
-			
-		}
-		if(Flag == 1){
-			if(OdReceivedData.vel_estimate[1].float_temp < 1){
-//				OdriveData.AxisState[0] = 27;
-//				OdriveData.AxisState[1] = 27;
-				//Flag = 0;
-			}
-		}
-        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,OdReceivedData.vel_estimate[0].float_temp,OdReceivedData.vel_estimate[1].float_temp,Flag,0,0,0,0,0,0,0,0,0);
+
+        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,OdReceivedData.vel_estimate[0].float_temp,OdReceivedData.vel_estimate[1].float_temp,Flag,OdReceivedData.ibus.float_temp,OdReceivedData.vbus_voltage.float_temp,OdReceivedData.Pos_gain[0].float_temp,OdReceivedData.Vel_gain[0].float_temp,OdReceivedData.Vel_integrator_gain[0].float_temp,0,0,0,0);
 		digitalIncreasing(&OdriveData.loops);        
 
 	}
