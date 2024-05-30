@@ -109,13 +109,16 @@
 .\objects\supervisor.o: Applications\supervisor.h
 .\objects\supervisor.o: Applications\lcd.h
 .\objects\supervisor.o: Applications\Odrive.h
+.\objects\supervisor.o: Applications\board.h
 .\objects\supervisor.o: .\Driver\driver_laser.h
 .\objects\supervisor.o: .\Utility\cpu_utils.h
+.\objects\supervisor.o: .\BSP\JY60.h
 .\objects\supervisor.o: .\Math\nav_para.h
 .\objects\supervisor.o: .\Math\aq_math.h
 .\objects\supervisor.o: .\Math\matrix.h
 .\objects\supervisor.o: .\Math\srcdkf.h
 .\objects\supervisor.o: .\BSP\vofa.h
 .\objects\supervisor.o: .\BSP\usartx.h
-.\objects\supervisor.o: .\BSP\JY60.h
 .\objects\supervisor.o: .\BSP\cigan.h
+.\objects\supervisor.o: Applications\balance.h
+.\objects\supervisor.o: Applications\pid.h

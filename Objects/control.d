@@ -116,6 +116,8 @@
 .\objects\control.o: .\BSP\usartx.h
 .\objects\control.o: .\BSP\JY60.h
 .\objects\control.o: .\BSP\cigan.h
+.\objects\control.o: Applications\balance.h
+.\objects\control.o: Applications\pid.h
 .\objects\control.o: Applications\lcd.h
 .\objects\control.o: Applications\Odrive.h
 .\objects\control.o: .\Driver\driver_laser.h

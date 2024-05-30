@@ -111,11 +111,13 @@
 .\objects\isp_exit.o: .\Applications\Odrive.h
 .\objects\isp_exit.o: .\Driver\driver_laser.h
 .\objects\isp_exit.o: .\Utility\cpu_utils.h
+.\objects\isp_exit.o: .\BSP\JY60.h
 .\objects\isp_exit.o: .\Math\nav_para.h
 .\objects\isp_exit.o: .\Math\aq_math.h
 .\objects\isp_exit.o: .\Math\matrix.h
 .\objects\isp_exit.o: .\Math\srcdkf.h
 .\objects\isp_exit.o: .\BSP\vofa.h
 .\objects\isp_exit.o: .\BSP\usartx.h
-.\objects\isp_exit.o: .\BSP\JY60.h
 .\objects\isp_exit.o: .\BSP\cigan.h
+.\objects\isp_exit.o: .\Applications\balance.h
+.\objects\isp_exit.o: .\Applications\pid.h

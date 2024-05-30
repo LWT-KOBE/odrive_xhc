@@ -11,6 +11,6 @@
 #include "lcd.h"
 #include "Odrive.h"
 #include "driver_laser.h"
-
+#include "JY60.h"
 
 #endif

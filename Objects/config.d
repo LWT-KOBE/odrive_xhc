@@ -111,11 +111,13 @@
 .\objects\config.o: Applications\Odrive.h
 .\objects\config.o: .\Driver\driver_laser.h
 .\objects\config.o: .\Utility\cpu_utils.h
+.\objects\config.o: .\BSP\JY60.h
 .\objects\config.o: .\Math\nav_para.h
 .\objects\config.o: .\Math\aq_math.h
 .\objects\config.o: .\Math\matrix.h
 .\objects\config.o: .\Math\srcdkf.h
 .\objects\config.o: .\BSP\vofa.h
 .\objects\config.o: .\BSP\usartx.h
-.\objects\config.o: .\BSP\JY60.h
 .\objects\config.o: .\BSP\cigan.h
+.\objects\config.o: Applications\balance.h
+.\objects\config.o: Applications\pid.h

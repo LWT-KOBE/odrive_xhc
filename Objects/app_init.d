@@ -111,11 +111,13 @@
 .\objects\app_init.o: Applications\Odrive.h
 .\objects\app_init.o: .\Driver\driver_laser.h
 .\objects\app_init.o: .\Utility\cpu_utils.h
+.\objects\app_init.o: .\BSP\JY60.h
 .\objects\app_init.o: .\Math\nav_para.h
 .\objects\app_init.o: .\Math\aq_math.h
 .\objects\app_init.o: .\Math\matrix.h
 .\objects\app_init.o: .\Math\srcdkf.h
 .\objects\app_init.o: .\BSP\vofa.h
 .\objects\app_init.o: .\BSP\usartx.h
-.\objects\app_init.o: .\BSP\JY60.h
 .\objects\app_init.o: .\BSP\cigan.h
+.\objects\app_init.o: Applications\balance.h
+.\objects\app_init.o: Applications\pid.h

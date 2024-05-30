@@ -3,13 +3,14 @@
 
 #include "stm32f4xx.h"
 #include "Util.h"
+#include "board.h"
 
 #define AXIS0_ID 0x000 //M0的CANID
-#define AXIS1_ID 0x003 //M1的CANID
+#define AXIS1_ID 0x002 //M1的CANID
 
 #define ODRIVE_PRIORITY 3
 #define ODRIVE_STACK_SIZE 512
-#define ODRIVE_NORMAL_PERIOD 10
+#define ODRIVE_NORMAL_PERIOD 8
 
 
 
@@ -67,16 +68,17 @@ typedef  enum {
 		MSG_RESET_ODRIVE = 0x016,                    // 重置ODrive
 		MSG_GET_VBUS_VOLTAGE = 0x017,                // 获取总线电压
 		MSG_CLEAR_ERRORS = 0x018,                    // 清除错误
-
+		MSG_SET_LINEAR_COUNT = 0x019,				 //
+        MSG_SET_POS_GAIN = 0x01A,					 // 设置位置环增益
+        MSG_SET_VEL_GAINS = 0x01B,					 //	设置速度环增益
+        MSG_GET_ADC_VOLTAGE = 0x01C,				 //
+        MSG_GET_CONTROLLER_ERROR = 0x01D,			 //
+		
 		//新增
-		MSG_GET_TEMP = 0x019,                        // 获取温度
-		MSG_SAVE_CONFIG = 0x01A,                     // 保存配置
-		MSG_SET_MOTOR_ENABLE = 0x01B,                // 启用电机
-		MSG_SET_MOTOR_DISABLE = 0x01C,               // 禁用电机
-		MSG_SET_CONTROL_MODE = 0x01D,                // 设置控制模式
-		MSG_SET_POS_GAIN = 0x01E,					 //	设置位置环增益
-        MSG_SET_VEL_GAINS = 0x01F,					 // 设置速度环增益	
-		MSG_SET_VEL_INTEGRATOR_GAIN = 0x020,		 // 设置速度环积分增益
+
+		MSG_GET_POS_GAIN = 0x01E,
+		MSG_GET_VEL_GAINS = 0x01F,
+		//MSG_SAVE_CONFIG = 0x01A,                     // 保存配置
 
 		MSG_CO_HEARTBEAT_CMD = 0x700,        // CANOpen NMT Heartbeat SEND
     }ODCmdStruct_t;
@@ -85,12 +87,13 @@ typedef  enum {
 	
 //电机控制模式
 typedef enum {
-	CONTROL_MODE_CURRENT		= 0,//电流控制模式——直接控制
-	CONTROL_MODE_CURRENT_RAMP	= 1,//电流控制模式——梯形
-	CONTROL_MODE_VELOCITY		= 2,//速度控制模式——直接控制
-	CONTROL_MODE_VELOCITY_RAMP	= 3,//速度控制模式——梯形
-	CONTROL_MODE_POSITION		= 4,//位置控制模式——直接控制
-	CONTROL_MODE_POSITION_TRAP	= 5,//位置控制模式——梯形
+	CONTROL_MODE_CURRENT		 = 0,//电流控制模式——直接控制
+	CONTROL_MODE_CURRENT_RAMP	 = 1,//电流控制模式——梯形
+	CONTROL_MODE_VELOCITY		 = 2,//速度控制模式——直接控制
+	CONTROL_MODE_VELOCITY_RAMP	 = 3,//速度控制模式——梯形
+	CONTROL_MODE_POSITION		 = 4,//位置控制模式——直接控制
+	CONTROL_MODE_POSITION_TRAP	 = 5,//位置控制模式——梯形
+	CONTROL_MODE_POSITION_FILTER = 6,//滤波位置模式
 
 } ODControlMode;
 
@@ -124,11 +127,15 @@ typedef struct {
 /*Odrive 的CAN接收结构体*/
 typedef struct {   
 		
-	formatTrans32Struct_t vbus_voltage ;//Odrive总线电压
-	formatTrans32Struct_t ibus ;//Odrive总线电流	
+	formatTrans32Struct_t vbus_voltage[2] ;//Odrive总线电压
+	formatTrans32Struct_t ibus[2] ;//Odrive总线电流	
 	formatTrans32Struct_t MotorError[2];//电机错误
 	formatTrans32Struct_t EncoderError[2];//编码器错误		
-	formatTrans32Struct_t temperature[2];//温度	
+	formatTrans32Struct_t temperature[2];//温度
+	
+	formatTrans32Struct_t Pos_gain[2];//位置环增益		
+	formatTrans32Struct_t Vel_gain[2];//速度环增益
+	formatTrans32Struct_t Vel_integrator_gain[2];//速度环积分增益
 	
 	//心跳信号反馈的速度/位置/电流数据，float型，精度0.1f
 	float heartbeat_Pos[2];
@@ -233,7 +240,7 @@ void set_axis_requested_state(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CA
 
 
 void ODReadHeartBeatData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis);
-void ODReadVbusData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz);
+void ODReadVbusData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis);
 void OdriveSend_RemoteCmd(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN);
 void ODReadTempData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis);
 void ODReadMotorErrorData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis);
@@ -246,8 +253,7 @@ void ODReadMotorPolePairs(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t
 void ODReadLimitData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis);
 void ODSendLimitData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
 void ODSendPos_gainData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
-void ODSendVel_gainData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
-void ODSendVel_integrator_gainData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
+void ODSendVel_gainsData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
 void OdriveInit(void);
 void ODRequestedState(void);	
 void ODFlashSave(void);	

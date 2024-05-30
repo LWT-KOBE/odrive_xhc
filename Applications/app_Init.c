@@ -19,10 +19,11 @@ void appInit(void *Parameters){
 	OdriveInit();
 	//无线数传初始化
 	//wirelessInit();
-	LcdTaskInit();
+	//控制初始化
 	controlInit();
 	
-	
+	//运动控制初始化
+	balanceInit();
     //虚拟串口初始化完成标志
 	usbVCP_Printf("All Init Successfully \r\n");             
 	/*- 在此处结束 ------------------*/

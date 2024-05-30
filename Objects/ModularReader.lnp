@@ -6,6 +6,8 @@
 ".\objects\supervisor.o"
 ".\objects\lcd.o"
 ".\objects\odrive.o"
+".\objects\pid.o"
+".\objects\balance.o"
 ".\objects\driver_clockcount.o"
 ".\objects\driver_crc.o"
 ".\objects\driver_rgb.o"

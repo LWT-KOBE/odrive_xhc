@@ -111,14 +111,16 @@
 .\objects\isp_tim.o: .\Applications\Odrive.h
 .\objects\isp_tim.o: .\Driver\driver_laser.h
 .\objects\isp_tim.o: .\Utility\cpu_utils.h
+.\objects\isp_tim.o: .\BSP\JY60.h
 .\objects\isp_tim.o: .\Math\nav_para.h
 .\objects\isp_tim.o: .\Math\aq_math.h
 .\objects\isp_tim.o: .\Math\matrix.h
 .\objects\isp_tim.o: .\Math\srcdkf.h
 .\objects\isp_tim.o: .\BSP\vofa.h
 .\objects\isp_tim.o: .\BSP\usartx.h
-.\objects\isp_tim.o: .\BSP\JY60.h
 .\objects\isp_tim.o: .\BSP\cigan.h
+.\objects\isp_tim.o: .\Applications\balance.h
+.\objects\isp_tim.o: .\Applications\pid.h
 .\objects\isp_tim.o: .\Applications\imu.h
 .\objects\isp_tim.o: .\Applications\nav_ukf.h
 .\objects\isp_tim.o: .\Applications\d_imu.h

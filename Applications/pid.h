@@ -57,7 +57,7 @@ f32_t differentialCal(differentialDataStruct_t *differential,f32_t currentData);
 float pidUpdate(pidStruct_t *pid, float setpoint, float position,float Dt);
 void pidZeroIntegral(pidStruct_t *pid, float pv, float iState);
 void pidZeroState(pidStruct_t *pid);
-
+float PID_angel(float angle_target, float angle_current,float limit);
 
 #endif
 

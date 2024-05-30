@@ -1,6 +1,6 @@
 #include "parameter.h"
 #include "pid.h"
-
+#include "board.h"
 pidStruct_t *pidInit(systemConfigPID_t *PIDConfigData){
 	pidStruct_t *pid;
     
@@ -145,5 +145,79 @@ void pidZeroState(pidStruct_t *pid){
 }
 
 
+/**************************************************************************
+函数功能：限幅函数
+入口参数：insert幅值,low最小值,high最大值
+返回  值：限幅后的值
+**************************************************************************/
+float target_limit_float(float insert,float low,float high)
+{
+    if (insert < low)
+        return low;
+    else if (insert > high)
+        return high;
+    else
+        return insert;	
+}
+int target_limit_int(int insert,int low,int high)
+{
+    if (insert < low)
+        return low;
+    else if (insert > high)
+        return high;
+    else
+        return insert;	
+}
 
 
+
+/**************************************************************************
+函数功能：角度转向PID
+入口参数：angle_target期望角度,angle_current当前角度,limit输出限制（速度）
+返回  值：限幅后的值
+**************************************************************************/
+float PID_angel(float angle_target, float angle_current,float limit){
+	
+	//PID输出值
+	static float motor_out;
+	//定义当前偏差,上一个偏差,累差值
+	static float bias,bias_last,err_num,Kp = 0.075f,Ki = 0.0000f,Kd = 0.5f;
+	
+	//获得偏差值,用于微分,起到阻尼的作用,防超调
+	bias = angle_target - angle_current;
+	bias = target_limit_float(bias,-90,90);
+	//还没完成转向,标志位为0
+	//获得累差值,用于积分,接近真实值
+	err_num += bias;
+	
+	//PID计算电机输出PWM值
+	motor_out = Kp*bias + Ki*err_num + Kd*(bias-bias_last);
+	
+	//记录上次偏差
+	bias_last = bias;
+	
+	
+	//限制最大输出
+	if(motor_out > limit)
+		motor_out = limit;
+	if(motor_out < -limit)
+		motor_out = -limit;
+	
+//	//提前刹停,利用惯性转完
+	if(fabs(bias) < 0.25){
+		err_num = 0;
+		bias_last = 0;
+		motor_out = 0;
+		Angle_Goal.change++;
+		if(Angle_Goal.change>10){
+			Angle_Goal.finish = 1;
+			Angle_Goal.change = 0;
+		}
+	}else{
+		Angle_Goal.finish = 0;
+		Angle_Goal.change = 0;
+	}
+
+	//返回脉冲频率值
+	return motor_out;
+}

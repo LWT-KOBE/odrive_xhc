@@ -416,6 +416,16 @@
               <FileType>1</FileType>
               <FilePath>.\Applications\odrive.c</FilePath>
             </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Applications\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>balance.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Applications\balance.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

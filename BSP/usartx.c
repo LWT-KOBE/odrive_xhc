@@ -1,5 +1,6 @@
 #include "usartx.h"
 #include "Odrive.h"
+
 uint8_t flag;
 SEND_DATA Send_Data;
 RECEIVE_DATA Receive_Data;
@@ -55,39 +56,8 @@ int fgetc(FILE *f)
 #endif
 
 
-/**************************************************************************
-Function: Serial port 1 sends data
-Input   : none
-Output  : none
-函数功能：串口1发送数据
-入口参数：无
-返回  值：无
-**************************************************************************/
-void USART1_SEND(void)
-{
-  unsigned char i = 0;	
-	
-	for(i=0; i<24; i++)
-	{
-		usart1_send(Send_Data.buffer[i]);
-	}	 
-}
-/**************************************************************************
-Function: Serial port 3 sends data
-Input   : none
-Output  : none
-函数功能：串口3发送数据
-入口参数：无
-返回  值：无
-**************************************************************************/
-void USART3_SEND(void)
-{
-  unsigned char i = 0;	
-	for(i=0; i<24; i++)
-	{
-		usart3_send(Send_Data.buffer[i]);
-	}	 
-}
+
+/***************************************************串口初始化部分************************************************************/
 
 /**************************************************************************
 Function: Serial port 1 initialization
@@ -193,288 +163,6 @@ void uart1_init(u32 bound)
 
 	
 }
-/**************************************************************************
-Function: Serial port 4 initialization
-Input   : none
-Output  : none
-函数功能：串口4初始化
-入口参数：无
-返回  值：无
-**************************************************************************/
-void uart4_init(u32 bound)
-{  	 
-	GPIO_InitTypeDef GPIO_InitStructure;
-	USART_InitTypeDef USART_InitStructure;
-	NVIC_InitTypeDef NVIC_InitStructure;
-
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);	 //Enable the gpio clock  //使能GPIO时钟
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE); //Enable the Usart clock //使能USART时钟
-	
-	GPIO_PinAFConfig(GPIOC,GPIO_PinSource10,GPIO_AF_UART4);		//TX
-	GPIO_PinAFConfig(GPIOC,GPIO_PinSource11 ,GPIO_AF_UART4);	//RX 
-	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10|GPIO_Pin_11;
-	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;            //输出模式
-	GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;          //推挽输出
-	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;       //高速50MHZ
-	GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;            //上拉
-	GPIO_Init(GPIOC, &GPIO_InitStructure);  		          //初始化
-	
-	//UsartNVIC configuration //UsartNVIC配置
-	NVIC_InitStructure.NVIC_IRQChannel = UART4_IRQn;
-	//Preempt priority //抢占优先级
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1 ;
-	//Subpriority //子优先级
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;	
-  //Enable the IRQ channel //IRQ通道使能	
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-  //Initialize the VIC register with the specified parameters 
-	//根据指定的参数初始化VIC寄存器		
-	NVIC_Init(&NVIC_InitStructure);	
-	
-	//USART Initialization Settings 初始化设置
-	USART_InitStructure.USART_BaudRate = bound; //Port rate //串口波特率
-	USART_InitStructure.USART_WordLength = USART_WordLength_8b; //The word length is 8 bit data format //字长为8位数据格式
-	USART_InitStructure.USART_StopBits = USART_StopBits_1; //A stop bit //一个停止
-	USART_InitStructure.USART_Parity = USART_Parity_No; //Prosaic parity bits //无奇偶校验位
-	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; //No hardware data flow control //无硬件数据流控制
-	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//Sending and receiving mode //收发模式
-	USART_Init(UART4, &USART_InitStructure);      //Initialize serial port 2 //初始化串口2
-	
-	USART_ITConfig(UART4, USART_IT_RXNE, ENABLE); //Open the serial port to accept interrupts //开启串口接受中断
-	USART_Cmd(UART4, ENABLE);                     //Enable serial port 2 //使能串口2 
-}
-/**************************************************************************
-Function: Serial port 3 initialization
-Input   : none
-Output  : none
-函数功能：串口3初始化
-入口参数：无
-返回  值：无
-**************************************************************************/
-void uart3_init(u32 bound)
-{  	 
-  GPIO_InitTypeDef GPIO_InitStructure;
-	USART_InitTypeDef USART_InitStructure;
-	NVIC_InitTypeDef NVIC_InitStructure;
-	
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	 //Enable the gpio clock  //使能GPIO时钟
-  RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE); //Enable the Usart clock //使能USART时钟
-	
-	GPIO_PinAFConfig(GPIOB,GPIO_PinSource10,GPIO_AF_USART3);	//RX
-	GPIO_PinAFConfig(GPIOB,GPIO_PinSource11,GPIO_AF_USART3);	//TX 
-	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10|GPIO_Pin_11;
-	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;            //输出模式
-	GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;          //推挽输出
-	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;       //高速50MHZ
-	GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;            //上拉
-	GPIO_Init(GPIOB, &GPIO_InitStructure);  		          //初始化
-	
-  //UsartNVIC configuration //UsartNVIC配置
-  NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
-	//Preempt priority //抢占优先级
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2 ;
-	//Preempt priority //抢占优先级
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		
-	//Enable the IRQ channel //IRQ通道使能	
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;	
-  //Initialize the VIC register with the specified parameters 
-	//根据指定的参数初始化VIC寄存器		
-	NVIC_Init(&NVIC_InitStructure);
-	
-  //USART Initialization Settings 初始化设置
-	USART_InitStructure.USART_BaudRate = bound; //Port rate //串口波特率
-	USART_InitStructure.USART_WordLength = USART_WordLength_8b; //The word length is 8 bit data format //字长为8位数据格式
-	USART_InitStructure.USART_StopBits = USART_StopBits_1; //A stop bit //一个停止
-	USART_InitStructure.USART_Parity = USART_Parity_No; //Prosaic parity bits //无奇偶校验位
-	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; //No hardware data flow control //无硬件数据流控制
-	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//Sending and receiving mode //收发模式
-  USART_Init(USART3, &USART_InitStructure);      //Initialize serial port 3 //初始化串口3
-	
-  USART_ITConfig(USART3, USART_IT_RXNE, ENABLE); //Open the serial port to accept interrupts //开启串口接受中断
-  USART_Cmd(USART3, ENABLE);                     //Enable serial port 3 //使能串口3 
-}
-/**************************************************************************
-Function: Serial port 1 receives interrupted
-Input   : none
-Output  : none
-函数功能：串口1接收中断
-入口参数：无
-返 回 值：无
-**************************************************************************/
-#define USART_REC_LEN  			200  	//定义最大接收字节数 200
-#define EN_USART1_RX 			1		//使能（1）/禁止（0）串口1接收
-//串口1中断服务程序
-//注意,读取USARTx->SR能避免莫名其妙的错误   	
-u8 USART_RX_BUF[USART_REC_LEN];     //接收缓冲,最大USART_REC_LEN个字节.
-//接收状态
-//bit15，	接收完成标志
-//bit14，	接收到0x0d
-//bit13~0，	接收到的有效字节数目
-u16 USART_RX_STA=0;       //接收状态标记
-int USART1_IRQHandler(void)
-{	
-	u8 Res;
-	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
-	{
-		Res = USART_ReceiveData(USART1);	//读取接收到的数据
-		Serial1Data(Res);
-		
-		if((USART_RX_STA&0x8000)==0)//接收未完成
-			{
-			if(USART_RX_STA&0x4000)//接收到了0x0d
-				{
-				if(Res!=0x0a)USART_RX_STA=0;//接收错误,重新开始
-				else USART_RX_STA|=0x8000;	//接收完成了 
-				}
-				else //还没收到0X0D
-				{	
-				if(Res==0x0d)USART_RX_STA|=0x4000;
-				else
-					{
-					USART_RX_BUF[USART_RX_STA&0X3FFF]=Res ;
-					USART_RX_STA++;
-					if(USART_RX_STA>(USART_REC_LEN-1))USART_RX_STA=0;//接收数据错误,重新开始接收	  
-					}		 
-				}
-			}
-		//清空标志位
-		USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
-	} 
-  return 0;
-}
-
-void u1_SendByte(uint8_t Byte)		//发送一个字节数据
-{
-	USART_SendData(USART1, Byte);
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
-}
-
-/*****************  发送一个16位数 **********************/
-void u1_SendHalfWord(uint16_t ch)
-{
-	uint8_t temp_h, temp_l;
-	
-	/* 取出高八位 */
-	temp_h = (ch&0XFF00)>>8;
-	/* 取出低八位 */
-	temp_l = ch&0XFF;
-	
-	/* 发送高八位 */
-	USART_SendData(USART1,temp_h);	
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
-	
-	/* 发送低八位 */
-	USART_SendData(USART1,temp_l);	
-	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);	
-}
-
-void u1_SendArray(uint8_t *Array, uint16_t Length)	//发送一个8位的数组
-{
-	uint16_t i;
-	for (i = 0; i < Length; i ++)
-	{
-		u1_SendByte(Array[i]);
-	}
-}
-
-void u1_Send_HalfWordArray(uint16_t *Array, uint16_t Length)	//发送一个16位的数组
-{
-	uint16_t i;
-	for (i = 0; i < Length; i ++)
-	{
-		u1_SendHalfWord(Array[i]);
-	}
-}
-
-/**************************************************************************
-Function: Refresh the OLED screen
-Input   : none
-Output  : none
-函数功能：串口4接收中断
-入口参数：无
-返回  值：无
-**************************************************************************/
-int UART4_IRQHandler(void)
-{	
-	u8 Res;
-	if(USART_GetITStatus(UART4, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
-	{	      
-		Res = USART_ReceiveData(UART4);	//读取接收到的数据
-		//USART_SendData(USART1,Res);			//回显
-		//Serial4Data(Res);
-		
-		USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);
-	}
-  return 0;	
-}
-
-
-
-
-/**************************************************************************
-Function: Serial port 3 receives interrupted
-Input   : none
-Output  : none
-函数功能：串口3接收中断
-入口参数：无
-返回  值：无
-**************************************************************************/
-int USART3_IRQHandler(void)
-{	u8 res;
-	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
-	{
-		res = USART_ReceiveData(USART3);
-		//Serial3Data(res);
-		//USART_SendData(USART1,res);
-		USART_ITConfig(USART3,USART_IT_RXNE,ENABLE);
-	} 
-  return 0;
-}
-
-
-/**************************************************************************
-Function: Serial port 1 sends data
-Input   : The data to send
-Output  : none
-函数功能：串口1发送数据
-入口参数：要发送的数据
-返回  值：无
-**************************************************************************/
-void usart1_send(u8 data)
-{
-	USART1->DR = data;
-	while((USART1->SR&0x40)==0);	
-}
-/**************************************************************************
-Function: Serial port 2 sends data
-Input   : The data to send
-Output  : none
-函数功能：串口2发送数据
-入口参数：要发送的数据
-返回  值：无
-**************************************************************************/
-void usart4_send(u8 data)
-{
-	UART4->DR = data;
-	while((UART4->SR&0x40)==0);	
-}
-/**************************************************************************
-Function: Serial port 3 sends data
-Input   : The data to send
-Output  : none
-函数功能：串口3发送数据
-入口参数：要发送的数据
-返回  值：无
-**************************************************************************/
-void usart3_send(u8 data)
-{
-	USART3->DR = data;
-	while((USART3->SR&0x40)==0);	
-}
-
-
 
 
 static unsigned char TxBuffer[256];
@@ -532,6 +220,216 @@ void uart2_init(u32 bound)
 	USART_Cmd(USART2, ENABLE);                     //Enable serial port 2 //使能串口2 
 }
 
+/**************************************************************************
+Function: Serial port 3 initialization
+Input   : none
+Output  : none
+函数功能：串口3初始化
+入口参数：无
+返回  值：无
+**************************************************************************/
+void uart3_init(u32 bound)
+{  	 
+	GPIO_InitTypeDef GPIO_InitStructure;
+	USART_InitTypeDef USART_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	 //Enable the gpio clock  //使能GPIO时钟
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE); //Enable the Usart clock //使能USART时钟
+	
+	GPIO_PinAFConfig(GPIOB,GPIO_PinSource10,GPIO_AF_USART3);	//RX
+	GPIO_PinAFConfig(GPIOB,GPIO_PinSource11,GPIO_AF_USART3);	//TX 
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10|GPIO_Pin_11;
+	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;            //输出模式
+	GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;          //推挽输出
+	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;       //高速50MHZ
+	GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;            //上拉
+	GPIO_Init(GPIOB, &GPIO_InitStructure);  		          //初始化
+	
+  //UsartNVIC configuration //UsartNVIC配置
+	NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
+	//Preempt priority //抢占优先级
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2 ;
+	//Preempt priority //抢占优先级
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		
+	//Enable the IRQ channel //IRQ通道使能	
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;	
+  //Initialize the VIC register with the specified parameters 
+	//根据指定的参数初始化VIC寄存器		
+	NVIC_Init(&NVIC_InitStructure);
+	
+  //USART Initialization Settings 初始化设置
+	USART_InitStructure.USART_BaudRate = bound; //Port rate //串口波特率
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b; //The word length is 8 bit data format //字长为8位数据格式
+	USART_InitStructure.USART_StopBits = USART_StopBits_1; //A stop bit //一个停止
+	USART_InitStructure.USART_Parity = USART_Parity_No; //Prosaic parity bits //无奇偶校验位
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; //No hardware data flow control //无硬件数据流控制
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//Sending and receiving mode //收发模式
+	USART_Init(USART3, &USART_InitStructure);      //Initialize serial port 3 //初始化串口3
+	
+  USART_ITConfig(USART3, USART_IT_RXNE, ENABLE); //Open the serial port to accept interrupts //开启串口接受中断
+  USART_Cmd(USART3, ENABLE);                     //Enable serial port 3 //使能串口3 
+}
+
+/**************************************************************************
+Function: Serial port 4 initialization
+Input   : none
+Output  : none
+函数功能：串口4初始化
+入口参数：无
+返回  值：无
+**************************************************************************/
+void uart4_init(u32 bound)
+{  	 
+	GPIO_InitTypeDef GPIO_InitStructure;
+	USART_InitTypeDef USART_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);	 //Enable the gpio clock  //使能GPIO时钟
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE); //Enable the Usart clock //使能USART时钟
+	
+	GPIO_PinAFConfig(GPIOC,GPIO_PinSource10,GPIO_AF_UART4);		//TX
+	GPIO_PinAFConfig(GPIOC,GPIO_PinSource11 ,GPIO_AF_UART4);	//RX 
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10|GPIO_Pin_11;
+	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;            //输出模式
+	GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;          //推挽输出
+	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;       //高速50MHZ
+	GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;            //上拉
+	GPIO_Init(GPIOC, &GPIO_InitStructure);  		          //初始化
+	
+	//UsartNVIC configuration //UsartNVIC配置
+	NVIC_InitStructure.NVIC_IRQChannel = UART4_IRQn;
+	//Preempt priority //抢占优先级
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=1 ;
+	//Subpriority //子优先级
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;	
+  //Enable the IRQ channel //IRQ通道使能	
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  //Initialize the VIC register with the specified parameters 
+	//根据指定的参数初始化VIC寄存器		
+	NVIC_Init(&NVIC_InitStructure);	
+	
+	//USART Initialization Settings 初始化设置
+	USART_InitStructure.USART_BaudRate = bound; //Port rate //串口波特率
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b; //The word length is 8 bit data format //字长为8位数据格式
+	USART_InitStructure.USART_StopBits = USART_StopBits_1; //A stop bit //一个停止
+	USART_InitStructure.USART_Parity = USART_Parity_No; //Prosaic parity bits //无奇偶校验位
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; //No hardware data flow control //无硬件数据流控制
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//Sending and receiving mode //收发模式
+	USART_Init(UART4, &USART_InitStructure);      //Initialize serial port 2 //初始化串口2
+	
+	USART_ITConfig(UART4, USART_IT_RXNE, ENABLE); //Open the serial port to accept interrupts //开启串口接受中断
+	USART_Cmd(UART4, ENABLE);                     //Enable serial port 2 //使能串口2 
+}
+
+
+/**************************************************************************
+Function: Serial port 5 initialization
+Input   : none
+Output  : none
+函数功能：串口5初始化
+入口参数：bound 波特率
+返回  值：无
+**************************************************************************/
+void uart5_init(u32 bound)
+{  	 
+	GPIO_InitTypeDef GPIO_InitStructure;
+	USART_InitTypeDef USART_InitStructure;
+	NVIC_InitTypeDef NVIC_InitStructure;
+	
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);	 //Enable the gpio clock  //使能GPIO时钟
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE); //Enable the Usart clock //使能USART时钟
+	
+	GPIO_PinAFConfig(GPIOD,GPIO_PinSource2,GPIO_AF_UART5);	//RX
+	GPIO_PinAFConfig(GPIOD,GPIO_PinSource12,GPIO_AF_UART5);	//TX 
+	
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_12;
+	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;            //输出模式
+	GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;          //推挽输出
+	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;       //高速50MHZ
+	GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;            //上拉
+	GPIO_Init(GPIOD, &GPIO_InitStructure);  		          //初始化
+	
+	//UsartNVIC configuration //UsartNVIC配置
+	NVIC_InitStructure.NVIC_IRQChannel = UART5_IRQn;
+	//Preempt priority //抢占优先级
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2 ;
+	//Preempt priority //抢占优先级
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		
+	//Enable the IRQ channel //IRQ通道使能	
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;	
+	//Initialize the VIC register with the specified parameters 
+	//根据指定的参数初始化VIC寄存器		
+	NVIC_Init(&NVIC_InitStructure);
+	
+	//USART Initialization Settings 初始化设置
+	USART_InitStructure.USART_BaudRate = bound; //Port rate //串口波特率
+	USART_InitStructure.USART_WordLength = USART_WordLength_8b; //The word length is 8 bit data format //字长为8位数据格式
+	USART_InitStructure.USART_StopBits = USART_StopBits_1; //A stop bit //一个停止
+	USART_InitStructure.USART_Parity = USART_Parity_No; //Prosaic parity bits //无奇偶校验位
+	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; //No hardware data flow control //无硬件数据流控制
+	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//Sending and receiving mode //收发模式
+	USART_Init(UART5, &USART_InitStructure);      //Initialize serial port 5 //初始化串口5
+	
+	USART_ITConfig(UART5, USART_IT_RXNE, ENABLE); //Open the serial port to accept interrupts //开启串口接受中断
+	USART_Cmd(UART5, ENABLE);                     //Enable serial port 5 //使能串口5 
+}
+
+
+/***************************************************串口接收中断部分**********************************************************/
+
+/**************************************************************************
+Function: Serial port 1 receives interrupted
+Input   : none
+Output  : none
+函数功能：串口1接收中断
+入口参数：无
+返 回 值：无
+**************************************************************************/
+#define USART_REC_LEN  			200  	//定义最大接收字节数 200
+#define EN_USART1_RX 			1		//使能（1）/禁止（0）串口1接收
+//串口1中断服务程序
+//注意,读取USARTx->SR能避免莫名其妙的错误   	
+u8 USART_RX_BUF[USART_REC_LEN];     //接收缓冲,最大USART_REC_LEN个字节.
+//接收状态
+//bit15，	接收完成标志
+//bit14，	接收到0x0d
+//bit13~0，	接收到的有效字节数目
+u16 USART_RX_STA=0;       //接收状态标记
+int USART1_IRQHandler(void)
+{	
+	u8 Res;
+	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
+	{
+		Res = USART_ReceiveData(USART1);	//读取接收到的数据
+		Serial1Data(Res);
+		
+		if((USART_RX_STA&0x8000)==0)//接收未完成
+			{
+			if(USART_RX_STA&0x4000)//接收到了0x0d
+				{
+				if(Res!=0x0a)USART_RX_STA=0;//接收错误,重新开始
+				else USART_RX_STA|=0x8000;	//接收完成了 
+				}
+				else //还没收到0X0D
+				{	
+				if(Res==0x0d)USART_RX_STA|=0x4000;
+				else
+					{
+					USART_RX_BUF[USART_RX_STA&0X3FFF]=Res ;
+					USART_RX_STA++;
+					if(USART_RX_STA>(USART_REC_LEN-1))USART_RX_STA=0;//接收数据错误,重新开始接收	  
+					}		 
+				}
+			}
+		//清空标志位
+		USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+	} 
+  return 0;
+}
+
 //串口2中断服务函数
 void USART2_IRQHandler(void)
 {
@@ -551,10 +449,201 @@ void USART2_IRQHandler(void)
 }
 
 
+/**************************************************************************
+Function: Serial port 3 receives interrupted
+Input   : none
+Output  : none
+函数功能：串口3接收中断
+入口参数：无
+返回  值：无
+**************************************************************************/
+int USART3_IRQHandler(void)
+{	u8 res;
+	if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
+	{
+		res = USART_ReceiveData(USART3);
+		//Serial3Data(res);
+		//USART_SendData(USART1,res);
+		USART_ITConfig(USART3,USART_IT_RXNE,ENABLE);
+	} 
+  return 0;
+}
+
+
+/**************************************************************************
+Function: Refresh the OLED screen
+Input   : none
+Output  : none
+函数功能：串口4接收中断
+入口参数：无
+返回  值：无
+**************************************************************************/
+int UART4_IRQHandler(void)
+{	
+	u8 Res;
+	if(USART_GetITStatus(UART4, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
+	{	      
+		Res = USART_ReceiveData(UART4);	//读取接收到的数据
+		//USART_SendData(USART1,Res);			//回显
+		//Serial4Data(Res);
+		
+		USART_ITConfig(UART4, USART_IT_RXNE, ENABLE);
+	}
+  return 0;	
+}
+
+
+/**************************************************************************
+函数功能：串口5接收中断
+入口参数：无
+返回  值：无
+**************************************************************************/
+int UART5_IRQHandler(void)
+{	
+	u8 Res;
+	if(USART_GetITStatus(UART5, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
+	{	      
+		Res = USART_ReceiveData(UART5);	//读取接收到的数据
+		USART_SendData(USART1,Res);			//回显
+		//Serial5Data(Res);
+		
+		USART_ITConfig(UART5, USART_IT_RXNE, ENABLE);
+	}
+  return 0;	
+}
+/***************************************************串口发送数据部分**********************************************************/
+
+/**************************************************************************
+Function: Serial port 1 sends data
+Input   : none
+Output  : none
+函数功能：串口1发送数据
+入口参数：无
+返回  值：无
+**************************************************************************/
+void USART1_SEND(void)
+{
+  unsigned char i = 0;	
+	
+	for(i=0; i<24; i++)
+	{
+		usart1_send(Send_Data.buffer[i]);
+	}	 
+}
+/**************************************************************************
+Function: Serial port 3 sends data
+Input   : none
+Output  : none
+函数功能：串口3发送数据
+入口参数：无
+返回  值：无
+**************************************************************************/
+void USART3_SEND(void)
+{
+  unsigned char i = 0;	
+	for(i=0; i<24; i++)
+	{
+		usart3_send(Send_Data.buffer[i]);
+	}	 
+}
+
+
+
+void u1_SendByte(uint8_t Byte)		//发送一个字节数据
+{
+	USART_SendData(USART1, Byte);
+	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+}
+
+/*****************  发送一个16位数 **********************/
+void u1_SendHalfWord(uint16_t ch)
+{
+	uint8_t temp_h, temp_l;
+	
+	/* 取出高八位 */
+	temp_h = (ch&0XFF00)>>8;
+	/* 取出低八位 */
+	temp_l = ch&0XFF;
+	
+	/* 发送高八位 */
+	USART_SendData(USART1,temp_h);	
+	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
+	
+	/* 发送低八位 */
+	USART_SendData(USART1,temp_l);	
+	while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);	
+}
+
+void u1_SendArray(uint8_t *Array, uint16_t Length)	//发送一个8位的数组
+{
+	uint16_t i;
+	for (i = 0; i < Length; i ++)
+	{
+		u1_SendByte(Array[i]);
+	}
+}
+
+void u1_Send_HalfWordArray(uint16_t *Array, uint16_t Length)	//发送一个16位的数组
+{
+	uint16_t i;
+	for (i = 0; i < Length; i ++)
+	{
+		u1_SendHalfWord(Array[i]);
+	}
+}
+
+
+
+
+
+
+
+
+/**************************************************************************
+Function: Serial port 1 sends data
+Input   : The data to send
+Output  : none
+函数功能：串口1发送数据
+入口参数：要发送的数据
+返回  值：无
+**************************************************************************/
+void usart1_send(u8 data)
+{
+	USART1->DR = data;
+	while((USART1->SR&0x40)==0);	
+}
+/**************************************************************************
+Function: Serial port 4 sends data
+Input   : The data to send
+Output  : none
+函数功能：串口4发送数据
+入口参数：要发送的数据
+返回  值：无
+**************************************************************************/
+void usart4_send(u8 data)
+{
+	UART4->DR = data;
+	while((UART4->SR&0x40)==0);	
+}
+/**************************************************************************
+Function: Serial port 3 sends data
+Input   : The data to send
+Output  : none
+函数功能：串口3发送数据
+入口参数：要发送的数据
+返回  值：无
+**************************************************************************/
+void usart3_send(u8 data)
+{
+	USART3->DR = data;
+	while((USART3->SR&0x40)==0);	
+}
+
+
 void UART2_Put_Char(unsigned char DataToSend)
 {
 	TxBuffer[count++] = DataToSend;  
-  USART_ITConfig(USART2, USART_IT_TXE, ENABLE);  
+	USART_ITConfig(USART2, USART_IT_TXE, ENABLE);  
 }
 
 void UART2_Put_String(unsigned char *Str)
@@ -569,79 +658,9 @@ void UART2_Put_String(unsigned char *Str)
 }
 
 
-/**************************************************************************
-Function: Serial port 5 initialization
-Input   : none
-Output  : none
-函数功能：串口3初始化
-入口参数：无
-返回  值：无
-**************************************************************************/
-void uart5_init(u32 bound)
-{  	 
-  GPIO_InitTypeDef GPIO_InitStructure;
-	USART_InitTypeDef USART_InitStructure;
-	NVIC_InitTypeDef NVIC_InitStructure;
-	
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);	 //Enable the gpio clock  //使能GPIO时钟
-  RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE); //Enable the Usart clock //使能USART时钟
-	
-	GPIO_PinAFConfig(GPIOD,GPIO_PinSource2,GPIO_AF_UART5);	//RX
-	GPIO_PinAFConfig(GPIOD,GPIO_PinSource12,GPIO_AF_UART5);	//TX 
-	
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_12;
-	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF;            //输出模式
-	GPIO_InitStructure.GPIO_OType=GPIO_OType_PP;          //推挽输出
-	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;       //高速50MHZ
-	GPIO_InitStructure.GPIO_PuPd=GPIO_PuPd_UP;            //上拉
-	GPIO_Init(GPIOD, &GPIO_InitStructure);  		          //初始化
-	
-  //UsartNVIC configuration //UsartNVIC配置
-  NVIC_InitStructure.NVIC_IRQChannel = UART5_IRQn;
-	//Preempt priority //抢占优先级
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority=2 ;
-	//Preempt priority //抢占优先级
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		
-	//Enable the IRQ channel //IRQ通道使能	
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;	
-  //Initialize the VIC register with the specified parameters 
-	//根据指定的参数初始化VIC寄存器		
-	NVIC_Init(&NVIC_InitStructure);
-	
-  //USART Initialization Settings 初始化设置
-	USART_InitStructure.USART_BaudRate = bound; //Port rate //串口波特率
-	USART_InitStructure.USART_WordLength = USART_WordLength_8b; //The word length is 8 bit data format //字长为8位数据格式
-	USART_InitStructure.USART_StopBits = USART_StopBits_1; //A stop bit //一个停止
-	USART_InitStructure.USART_Parity = USART_Parity_No; //Prosaic parity bits //无奇偶校验位
-	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None; //No hardware data flow control //无硬件数据流控制
-	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;	//Sending and receiving mode //收发模式
-	USART_Init(UART5, &USART_InitStructure);      //Initialize serial port 3 //初始化串口3
-	
-	USART_ITConfig(UART5, USART_IT_RXNE, ENABLE); //Open the serial port to accept interrupts //开启串口接受中断
-	USART_Cmd(UART5, ENABLE);                     //Enable serial port 3 //使能串口3 
-}
-
-/**************************************************************************
-函数功能：串口5接收中断
-入口参数：无
-返回  值：无
-**************************************************************************/
-int UART5_IRQHandler(void)
-{	
-	u8 Res;
-	if(USART_GetITStatus(UART5, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
-	{	      
-		Res = USART_ReceiveData(UART5);	//读取接收到的数据
-		//USART_SendData(USART1,Res);			//回显
-		//Serial5Data(Res);
-		
-		USART_ITConfig(UART5, USART_IT_RXNE, ENABLE);
-	}
-  return 0;	
-}
 
 
-
+/***************************************************串口接收发送函数**********************************************************/
 
 
 //串口1接收发送处理函数
@@ -747,6 +766,30 @@ void Serial1Data(uint8_t ucData){
 				flag = 1;
 			}
 			
+			if(strncmp(g_usart1_recv_buf, "OYY=\n ", 4) == 0)//速度控制命令
+			{
+				sscanf(g_usart1_recv_buf, "OYY=%f\n", &Angle_Goal.target);//速度修改
+				Angle_Goal.finish = 0;
+				//OdriveData.Vel_gain[0].float_temp += 5;
+				//printf("%f\r\n",OdriveData.SetVel[1].float_temp);
+				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", OdriveData.SetVel[0].float_temp);//修改后显示
+			}
+			
+			if(strncmp(g_usart1_recv_buf, "MOA=\n ", 4) == 0)//速度控制命令
+			{
+				sscanf(g_usart1_recv_buf, "MOA=%f\n", &Motor_SpeedA_Goal.target);//速度修改
+				//OdriveData.Vel_gain[0].float_temp += 5;
+				//printf("%f\r\n",OdriveData.SetVel[1].float_temp);
+				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", OdriveData.SetVel[0].float_temp);//修改后显示
+			}
+			
+			if(strncmp(g_usart1_recv_buf, "MOB=\n ", 4) == 0)//速度控制命令
+			{
+				sscanf(g_usart1_recv_buf, "MOB=%f\n", &Angle_Goal.target);//速度修改
+				//OdriveData.Vel_gain[0].float_temp += 5;
+				//printf("%f\r\n",OdriveData.SetVel[1].float_temp);
+				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", OdriveData.SetVel[0].float_temp);//修改后显示
+			}
 			
 			//清空字符串数组
 			memset(g_usart1_recv_buf, 0, sizeof(g_usart1_recv_buf));
@@ -756,5 +799,73 @@ void Serial1Data(uint8_t ucData){
 		}
 	
 	
+}
+
+
+//串口3接收处理函数
+void Serial3Data(uint8_t ucData){
+	static unsigned char ucRxBuffer[250];
+	static unsigned char ucRxCnt = 0;	
+	ucRxBuffer[ucRxCnt++]=ucData;	//将收到的数据存入缓冲区中
+	if (ucRxBuffer[0]!=0x01) //数据头不对，则重新开始寻找0x66数据头
+	{
+		if(ucRxBuffer[1]!=0x03){
+			if(ucRxBuffer[2]!=0x04){
+				ucRxCnt=0;
+				return;
+			}
+		}
+	}
+	if (ucRxCnt<16) {return;}//数据不满17个，则返回
+	else
+	{
+		for(int i = 0;i < 16; i++){
+			//buffer[i] = ucRxBuffer[i];
+		}
+		ucRxCnt=0;//清空缓存区
+	}
+}
+
+
+//串口4接收处理函数
+void Serial4Data(uint8_t ucData){
+	static unsigned char ucRxBuffer[250];
+	static unsigned char ucRxCnt = 0;	
+	ucRxBuffer[ucRxCnt++]=ucData;	//将收到的数据存入缓冲区中
+	if (ucRxBuffer[0]!=0x66) //数据头不对，则重新开始寻找0x66数据头
+	{
+		ucRxCnt=0;
+		return;
+	}
+	if (ucRxCnt<65) {return;}//数据不满65个，则返回
+	else
+	{
+		for(int i = 1;i < 65; i++){
+			//buf[i - 1] = ucRxBuffer[i];
+		}
+		ucRxCnt=0;//清空缓存区
+	}
+}
+
+
+//串口5接收处理函数
+void Serial5Data(uint8_t ucData){
+	static unsigned char ucRxBuffer[250];
+	static unsigned char ucRxCnt = 0;	
+	ucRxBuffer[ucRxCnt++]=ucData;	//将收到的数据存入缓冲区中
+	if(ucRxBuffer[0] != 0xAA){//数据头不对，则重新开始寻找0xAA、0x55数据头
+		if(ucRxBuffer[1] != 0x55){
+			ucRxCnt=0;
+			return;
+		}
+	}
+	if (ucRxCnt<2) {return;}//数据不满2个，则返回
+	else
+	{
+		for(int i = 0;i < 2; i++){
+			//buf_uart5[i] = ucRxBuffer[i];
+		}
+		ucRxCnt=0;//清空缓存区
+	}
 }
 
