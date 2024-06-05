@@ -27,7 +27,8 @@ void balanceUpdateTask(void *Parameters){
         //防止重复初始化
 		if(!balanceData.dataInitFlag){	
             //所有控制全部初始化            
-			balanceGlobalInit();																																							
+			balanceGlobalInit();
+			JY60_Calibration();
 			digitalHi(&getbalanceData()->dataInitFlag);
 		}
 		//获取imu数据信息

@@ -185,6 +185,7 @@ float PID_angel(float angle_target, float angle_current,float limit){
 	
 	//获得偏差值,用于微分,起到阻尼的作用,防超调
 	bias = angle_target - angle_current;
+	//误差限幅，限制转向角度的最大误差值,
 	bias = target_limit_float(bias,-90,90);
 	//还没完成转向,标志位为0
 	//获得累差值,用于积分,接近真实值
@@ -209,7 +210,7 @@ float PID_angel(float angle_target, float angle_current,float limit){
 		bias_last = 0;
 		motor_out = 0;
 		Angle_Goal.change++;
-		if(Angle_Goal.change>10){
+		if(Angle_Goal.change>50){
 			Angle_Goal.finish = 1;
 			Angle_Goal.change = 0;
 		}
@@ -221,3 +222,72 @@ float PID_angel(float angle_target, float angle_current,float limit){
 	//返回脉冲频率值
 	return motor_out;
 }
+
+///**************************************************************************
+//函数功能：位置式PID控制器
+//入口参数：实际位置，目标位置
+//返回  值：电机PWM
+//根据位置式离散PID公式
+//位置式PID的三个参数: Kp:提高响应速度 Ki:稳态 Kd:抑制震荡
+//pwm=Kp*e(k)+Ki*∑e(k)+Kd[e（k）-e(k-1)]
+//e(k)代表本次偏差 
+//e(k-1)代表上一次的偏差  
+//∑e(k)代表e(k)以及之前的偏差的累积和;其中k为1,2,...,k;
+//pwm代表输出
+//**************************************************************************/
+//float XC_Position_PID(float reality,float target)
+//{ 	
+//    static float Bias,Pwm,Last_Bias,Integral_bias=0;
+//    
+//    Bias=target-reality;                            /* 计算偏差 */
+//    Integral_bias+=Bias;	                        /* 偏差累积 */
+//    
+//    if(Integral_bias> 360) Integral_bias = 360;   	/* 积分限幅 */
+//    if(Integral_bias<-360) Integral_bias =-360;
+//    
+//    Pwm = (Angle_Position_KP*Bias)                        /* 比例环节 */
+//         +(Angle_Position_KI*Integral_bias)               /* 积分环节 */
+//         +(Angle_Position_KD*(Bias-Last_Bias));           /* 微分环节 */
+//    
+//    Last_Bias=Bias;                                 	/* 保存上次偏差 */
+//	
+//														/* 输出限幅 */
+//    return Pwm;                                     	/* 输出结果 */
+//}
+
+///**************************************************************************
+//函数功能：增量PID控制器
+//入口参数：实际值，目标值
+//返回  值：电机PWM
+//根据增量式离散PID公式 
+//增量式PID的三个参数: Kp:抑制震荡 Ki:提高响应速度 Kd:稳态
+//pwm+=Kp[e（k）-e(k-1)]+Ki*e(k)+Kd[e(k)-2e(k-1)+e(k-2)]
+//e(k)代表本次偏差 
+//e(k-1)代表上一次的偏差  以此类推 
+//pwm代表增量输出
+//**************************************************************************/
+//float XC_Incremental_PID(float reality,float target)
+//{ 	
+//	 static float Bias,Pwm,Last_bias=0,Prev_bias=0;
+//    
+//	 Bias=target-reality;                                   /* 计算偏差 */
+//    
+//	 Pwm += (Angle_Incremental_KP*(Bias-Last_bias))               /* 比例环节 */
+//           +(Angle_Incremental_KI*Bias)                           /* 积分环节 */
+//           +(Angle_Incremental_KD*(Bias-2*Last_bias+Prev_bias));  /* 微分环节 */ 
+//    
+//     Prev_bias=Last_bias;                                   /* 保存上上次偏差 */
+//	 Last_bias=Bias;	                                    /* 保存上一次偏差 */
+//		
+//	 if(fabs(Bias)<0.75){
+//		 Prev_bias = 0;
+//		 Last_bias = 0;
+//		 Pwm = 0;
+//	 }
+//    
+//	if(Pwm >  75) Pwm =  75;
+//	if(Pwm < -75) Pwm = -75;
+//	return Pwm;                                            /* 输出结果 */
+//}
+
+

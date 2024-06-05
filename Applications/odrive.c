@@ -782,6 +782,40 @@ void ODReadVel_gainsData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t 
 	Spetsnaz->Vel_integrator_gain[axis].u8_temp[3] = CanRevData->Data[7];
 }
 
+/*
+***************************************************
+函数名：ODReadVel_gainsData
+功能：读取速度环增益值
+入口参数：	
+			CanRevData：CAN接收的数据结构
+			Spetsnaz：接收母线电压和母线电流的数据结构体
+			num: 选择电机0或电机1命令发送 规定 ： axis0=0  axis1=1 
+返回值：无
+应用范围：内部调用
+备注：
+	
+	返回的数据前四位（低到高）是ODRIVE的母线电压数据，后四位返回的是ODRIVE的母线电流数据，都是FLOAT型
+	所以用到了一个联合体进行数据转换，详情请看：
+	//联合体用于转换数据
+	typedef union{
+		u8 		u8_temp[4];
+		float float_temp;
+		s32 	s32_temp;
+		u32		u32_temp;
+	} formatTrans32Struct_t;
+***************************************************
+*/
+void CG_Data(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t num) {
+		
+	
+	Spetsnaz->CG[num].u8_temp[0] = CanRevData->Data[0];	
+	Spetsnaz->CG[num].u8_temp[1] = CanRevData->Data[1];
+	Spetsnaz->CG[num].u8_temp[2] = CanRevData->Data[2];
+	Spetsnaz->CG[num].u8_temp[3] = CanRevData->Data[3];
+	
+	
+}
+
 
 /*********************************以上为驱动层代码*****************************************************************************/
 
@@ -994,7 +1028,11 @@ void CAN1_RX0_IRQHandler(void){
 				
 			default:	break;		
 
-        }	 
+        }
+
+		if(can1_rx_msg.StdId == 0x76){
+			CG_Data(&can1_rx_msg,&OdReceivedData,0);
+		}
 
 
 	}

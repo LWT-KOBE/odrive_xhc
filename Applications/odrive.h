@@ -136,6 +136,7 @@ typedef struct {
 	formatTrans32Struct_t Pos_gain[2];//位置环增益		
 	formatTrans32Struct_t Vel_gain[2];//速度环增益
 	formatTrans32Struct_t Vel_integrator_gain[2];//速度环积分增益
+	formatTrans32Struct_t CG[2];
 	
 	//心跳信号反馈的速度/位置/电流数据，float型，精度0.1f
 	float heartbeat_Pos[2];
