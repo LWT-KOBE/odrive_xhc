@@ -77,9 +77,6 @@ typedef  enum {
 		MSG_SET_POS_GAIN = 0x01E,					 //	设置位置环增益
         MSG_SET_VEL_GAINS = 0x01F,					 // 设置速度环增益	
 		MSG_SET_VEL_INTEGRATOR_GAIN = 0x020,		 // 设置速度环积分增益
-		
-		MSG_GET_POS_GAIN = 0x23,
-		MSG_GET_VEL_GAINS = 0x24,
 
 		MSG_CO_HEARTBEAT_CMD = 0x700,        // CANOpen NMT Heartbeat SEND
     }ODCmdStruct_t;
@@ -131,11 +128,7 @@ typedef struct {
 	formatTrans32Struct_t ibus ;//Odrive总线电流	
 	formatTrans32Struct_t MotorError[2];//电机错误
 	formatTrans32Struct_t EncoderError[2];//编码器错误		
-	formatTrans32Struct_t temperature[2];//温度
-	
-	formatTrans32Struct_t Pos_gain[2];//位置环增益		
-	formatTrans32Struct_t Vel_gain[2];//速度环增益
-	formatTrans32Struct_t Vel_integrator_gain[2];//速度环积分增益
+	formatTrans32Struct_t temperature[2];//温度	
 	
 	//心跳信号反馈的速度/位置/电流数据，float型，精度0.1f
 	float heartbeat_Pos[2];
