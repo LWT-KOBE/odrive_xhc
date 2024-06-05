@@ -504,8 +504,8 @@ int UART5_IRQHandler(void)
 	if(USART_GetITStatus(UART5, USART_IT_RXNE) != RESET) //Check if data is received //判断是否接收到数据
 	{	      
 		Res = USART_ReceiveData(UART5);	//读取接收到的数据
-		USART_SendData(USART1,Res);			//回显
-		//Serial5Data(Res);
+		//USART_SendData(USART1,Res);			//回显
+		Serial5Data(Res);
 		
 		USART_ITConfig(UART5, USART_IT_RXNE, ENABLE);
 	}
@@ -859,14 +859,26 @@ void Serial5Data(uint8_t ucData){
 			return;
 		}
 	}
-	if (ucRxCnt<2) {return;}//数据不满2个，则返回
+	if (ucRxCnt<4) {return;}//数据不满2个，则返回
 	else
 	{
-		for(int i = 0;i < 2; i++){
-			//buf_uart5[i] = ucRxBuffer[i];
+		for(int i = 0;i < 4; i++){
+			NFC.NFC_buf[i] = ucRxBuffer[i];
 		}
 		ucRxCnt=0;//清空缓存区
 	}
+	
+//	static unsigned char ucRxBuffer[250];
+//	static unsigned char ucRxCnt = 0;	
+//	ucRxBuffer[ucRxCnt++]=ucData;	//将收到的数据存入缓冲区中
+//	if (ucRxCnt<4) {return;}//数据不满8个，则返回
+//	else
+//	{
+//		for(int i = 0;i < 4; i++){
+//			NFC.NFC_buf[i] = ucRxBuffer[i];
+//		}
+//		ucRxCnt=0;//清空缓存区
+//	}
 }
 
 

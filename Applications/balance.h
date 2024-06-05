@@ -27,9 +27,14 @@ typedef struct{
 	uint8_t change;
 }balance_target_t;
 
+typedef struct{
+	uint8_t change;
+	uint8_t NFC_buf[4];
+}balance_NFC_t;
+
 balanceStruct_t* getbalanceData(void);
 
-
+extern balance_NFC_t NFC;
 extern balance_target_t Angle_Goal;
 extern float pbuf[10];
 extern balance_target_t Motor_SpeedA_Goal;

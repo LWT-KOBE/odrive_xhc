@@ -69,6 +69,10 @@ int USART1_IRQHandler(void);
 int UART4_IRQHandler(void);
 int USART3_IRQHandler(void);
 void Serial1Data(uint8_t ucData);
+
+void Serial3Data(uint8_t ucData);
+void Serial4Data(uint8_t ucData);
+void Serial5Data(uint8_t ucData);
 //float XYZ_Target_Speed_transition(u8 High,u8 Low);
 float Vz_to_Akm_Angle(float Vx, float Vz);
 void usart1_send(u8 data);

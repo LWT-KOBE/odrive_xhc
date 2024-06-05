@@ -1029,7 +1029,8 @@ void CAN1_RX0_IRQHandler(void){
 			default:	break;		
 
         }
-
+		
+		//接收处理磁传感器的can数据
 		if(can1_rx_msg.StdId == 0x76){
 			CG_Data(&can1_rx_msg,&OdReceivedData,0);
 		}
@@ -1515,7 +1516,7 @@ void odrivelUpdateTask(void *Parameters){
 	}
 //		OdriveData.SetVel[0].float_temp =  PID_angel(Angle_Goal.target,buf[9]);
 //		OdriveData.SetVel[1].float_temp =  PID_angel(Angle_Goal.target,buf[9]);
-        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,(OdReceivedData.vel_estimate[0].float_temp * 0.235f),OdReceivedData.vel_estimate[1].float_temp,pbuf[9],Angle_Goal.target,OdReceivedData.vbus_voltage[0].float_temp,OdReceivedData.Pos_gain[0].float_temp,OdReceivedData.Vel_gain[0].float_temp,OdReceivedData.Vel_integrator_gain[0].float_temp,OdReceivedData.Pos_gain[1].float_temp,OdReceivedData.Vel_gain[1].float_temp,OdReceivedData.Vel_integrator_gain[1].float_temp,Angle_Goal.finish);
+        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,(OdReceivedData.vel_estimate[0].float_temp * 0.235f),OdReceivedData.vel_estimate[1].float_temp,pbuf[9],Angle_Goal.target,OdReceivedData.vbus_voltage[0].float_temp,OdReceivedData.Pos_gain[0].float_temp,OdReceivedData.Vel_gain[0].float_temp,OdReceivedData.Vel_integrator_gain[0].float_temp,NFC.NFC_buf[2],NFC.NFC_buf[3],OdReceivedData.CG[0].float_temp,Angle_Goal.finish);
 		digitalIncreasing(&OdriveData.loops);        
 
 	}

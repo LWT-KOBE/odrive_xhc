@@ -3,6 +3,7 @@
 #include "board.h"
 #include "balance.h"
 balanceStruct_t balanceData;
+balance_NFC_t NFC;
 balance_target_t Angle_Goal;
 balance_target_t Motor_SpeedA_Goal;
 balance_target_t Motor_SpeedB_Goal;
@@ -45,6 +46,14 @@ void balanceUpdateTask(void *Parameters){
 			OdriveData.SetVel[1].float_temp =  PID_angel(Angle_Goal.target,pbuf[9],2);
 		}
 		
+//		if(NFC.NFC_buf[3] == 1){
+//			Motor_SpeedA_Goal.target = 0;
+//		}
+//		
+//		if(NFC.NFC_buf[3] == 2){
+//			Angle_Goal.finish = 0;
+//			Angle_Goal.target = 180;
+//		}
 		
 		digitalIncreasing(&getbalanceData()->loops);        
 

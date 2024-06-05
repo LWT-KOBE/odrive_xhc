@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\ModularReader.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\ModularReader.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Jun 05 14:18:02 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Jun 05 18:19:17 2024
 <BR><P>
 <H3>Maximum Stack Usage =        336 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1329,11 +1329,10 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f427xx.o(RESET)
 </UL>
-<P><STRONG><a name="[64]"></a>UART5_IRQHandler</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, usartx.o(i.UART5_IRQHandler))
+<P><STRONG><a name="[64]"></a>UART5_IRQHandler</STRONG> (Thumb, 90 bytes, Stack size 8 bytes, usartx.o(i.UART5_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = UART5_IRQHandler &rArr; USART_GetITStatus
 </UL>
-<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
-<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
+<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ReceiveData
 <LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_ITConfig
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_GetITStatus
 </UL>
@@ -1427,7 +1426,6 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;u1_SendArray
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART2_IRQHandler
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART5_IRQHandler
 </UL>
 
 <P><STRONG><a name="[120]"></a>USBD_ClrCfg</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, usbd_core.o(i.USBD_ClrCfg))
@@ -1709,8 +1707,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[108]"></a>USB_OTG_EP0_OutStart</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, usb_core.o(i.USB_OTG_EP0_OutStart))
-<BR><BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_OTG_ISR_Handler
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_CtlError
+<BR><BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_CtlError
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_OTG_ISR_Handler
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_StdItfReq
 <LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_StdEPReq
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBD_StdDevReq
@@ -2045,7 +2043,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;aqCalloc
 </UL>
 
-<P><STRONG><a name="[8e]"></a>odrivelUpdateTask</STRONG> (Thumb, 666 bytes, Stack size 24 bytes, odrive.o(i.odrivelUpdateTask))
+<P><STRONG><a name="[8e]"></a>odrivelUpdateTask</STRONG> (Thumb, 676 bytes, Stack size 24 bytes, odrive.o(i.odrivelUpdateTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 164<LI>Call Chain = odrivelUpdateTask &rArr; BSP_CAN_Mode_Init &rArr; BSP_GPIO_Init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
