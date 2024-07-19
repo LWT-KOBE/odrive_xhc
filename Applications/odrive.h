@@ -207,19 +207,19 @@ typedef struct {
 	formatTrans32Struct_t Vel_integrator_gain[2];
 	
 	//电机的控制状态
-	ODAxisStateStruct_t	AxisState[2];
+	ODAxisStateStruct_t	AxisState[4];
 	
 	//电机的控制模式	
-	ODControlMode ControlMode[2];
+	ODControlMode ControlMode[4];
 	
 	//设定电机的位置——float型
-	formatTrans32Struct_t SetPos[2];
+	formatTrans32Struct_t SetPos[4];
 	
 	//设定电机的速度——float型	
-	formatTrans32Struct_t SetVel[2];
+	formatTrans32Struct_t SetVel[4];
 	
 	//设定电机的电流——float型	
-	formatTrans32Struct_t SetCur[2];	
+	formatTrans32Struct_t SetCur[4];	
 		
 	//配置电机状态FLAG	
 	uint8_t RequestedStateFlag;
