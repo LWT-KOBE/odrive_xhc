@@ -45,6 +45,32 @@ typedef struct {
 	differentialDataStruct_t 	*differential;
 } pidStruct_t;
 
+
+
+
+//定义PID结构体用于存放一个PID的数据
+typedef struct
+{
+   	float kp, ki, kd; //三个系数
+    float error, lastError; //误差、上次误差
+    float integral, maxIntegral; //积分、积分限幅
+    float output, maxOutput; //输出、输出限幅
+	float pout;//比例计算输出
+	float alpha;//低通滤波器系数
+	float last_dev;//上一次低通滤波结果
+	float this_dev;//当前低通滤波结果
+}PID;
+
+//串级PID的结构体，包含两个单级PID
+typedef struct
+{
+    PID inner; //内环
+    PID outer; //外环
+    float output; //串级输出，等于inner.output
+}CascadePID;
+
+
+
 typedef struct {
 	f32_t dataFbd;
     f32_t dataRef;
@@ -58,6 +84,17 @@ float pidUpdate(pidStruct_t *pid, float setpoint, float position,float Dt);
 void pidZeroIntegral(pidStruct_t *pid, float pv, float iState);
 void pidZeroState(pidStruct_t *pid);
 float PID_angel(float angle_target, float angle_current,float limit);
+float Position_based_PID(float target,float current);
+float Incremental_PID(float reality,float target);
+float Position_PID(float reality,float target);
+float Position_PID_G(float reality,float target);
+float Position_PID_P(float reality,float target);
+float Position_PID_N(float reality,float target);
+float Position_PID_N1(float reality,float target);
+
+void PID_Init(PID *pid, float p, float i, float d, float maxI, float maxOut);
+void PID_Calc(PID *pid, float reference, float feedback);
+void PID_CascadeCalc(CascadePID *pid, float outerRef, float outerFdb, float innerFdb);
 
 #endif
 

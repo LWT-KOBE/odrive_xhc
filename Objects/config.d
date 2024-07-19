@@ -121,3 +121,4 @@
 .\objects\config.o: .\BSP\cigan.h
 .\objects\config.o: Applications\balance.h
 .\objects\config.o: Applications\pid.h
+.\objects\config.o: .\BSP\encoder.h

@@ -88,6 +88,10 @@ void UART2_Put_String(unsigned char *Str);
 void u1_SendByte(uint8_t Byte);
 void u1_SendArray(uint8_t *Array, uint16_t Length);
 void u1_SendHalfWord(uint16_t ch);
+
+void u3_SendByte(uint8_t Byte);
+void u3_SendArray(uint8_t *Array, uint16_t Length);
+float XYZ_Target_Speed_transition(u8 high,u8 low);
 #if Mec
 void Motion_analysis_transformation(float Encoder_A,float Encoder_B,float Encoder_C,float Encoder_D);
 #elif Omni

@@ -118,6 +118,8 @@
 .\objects\balance.o: .\BSP\cigan.h
 .\objects\balance.o: Applications\balance.h
 .\objects\balance.o: Applications\pid.h
+.\objects\balance.o: .\BSP\encoder.h
+.\objects\balance.o: .\Applications\board.h
 .\objects\balance.o: Applications\lcd.h
 .\objects\balance.o: Applications\Odrive.h
 .\objects\balance.o: .\Driver\driver_laser.h

@@ -1,1 +1,1 @@
-.\objects\startup_stm32f40_41xxx.o: Libraries\CMSIS\startup_stm32f40_41xxx.s
+.\objects\startup_stm32f40_41xxx.o: Libraries\CMSIS\Include\startup_stm32f40_41xxx.s

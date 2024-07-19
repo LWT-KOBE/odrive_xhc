@@ -121,3 +121,4 @@
 .\objects\odrive.o: .\BSP\cigan.h
 .\objects\odrive.o: Applications\balance.h
 .\objects\odrive.o: Applications\pid.h
+.\objects\odrive.o: .\BSP\encoder.h

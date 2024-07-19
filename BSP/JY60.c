@@ -15,7 +15,9 @@ SGyro 	stcGyro;	//定义陀螺仪结构体变量
 SAngle	stcAngle;	//定义角度结构体变量
 
 int32_t CNT = 0;
-float angle_now = 0,angle_last = 0,angle_err = 0;
+
+int FLAG = 0,FLAG1 = 0;
+float angle_now = 0,angle_last = 0,angle_err = 0,angle_frist = 0;
 
 //用串口2给JY模块发送指令
 void sendcmd(char cmd[])
@@ -77,10 +79,31 @@ void JY60_Calibration(void){
 	sendcmd(YAWCMD);//等待模块内部自动校准好，模块内部会自动计算需要一定的时间
 	//printf("校准成功!\r\n");
 }
+float JY_GET_FIRST(float* bbb){
+	FLAG ++;
+	if(FLAG == 20){
+		if((float)stcAngle.Angle[2]>=0.0f && stcAngle.Angle[2] < 32767){
+		bbb[0] = (float)stcAngle.Angle[2]/32768*180.0f;	//z轴
+		}
+	
+		if((float)stcAngle.Angle[2]< 0.0f && stcAngle.Angle[2] > -32768){
+			bbb[0] = (float)stcAngle.Angle[2]/32768*180.0f + 360.0f;	//z轴
+		}
+		FLAG = 0;
+	}
+	if(fabs(bbb[0]>0)){
+		FLAG1 = 1;
+	}
+	if(FLAG1 == 1){
+		FLAG = 0;
+	}
+	return bbb[0];
+}
 
 //获取JY60传感器数据
 void JY60_Get(float * pbuf){
 	
+	static float A = 0;
 	//获取加速度计数据
 	pbuf[0] = (float)stcAcc.a[0]/32768*16;			//Acc_x
 	pbuf[1] = (float)stcAcc.a[1]/32768*16;			//Acc_y
@@ -103,10 +126,17 @@ void JY60_Get(float * pbuf){
 		pbuf[8] = (float)stcAngle.Angle[2]/32768*180.0f + 360.0f;	//z轴
 	}
 	
+	
+	
 	//获取当前角度
+	//angle_now = pbuf[8];
+	//后续读取到的角度都减去初始角度,确保准确性(JY60六轴系列会自动调零，JY90系列是绝对角度所以得手动调零)
+	//pbuf[8] = pbuf[8] - A;
 	angle_now = pbuf[8];
 	//计算角度误差
 	angle_err = angle_now - angle_last;
+	
+	
 	
 	//过零检测算法
 	//如果误差大于180.0度

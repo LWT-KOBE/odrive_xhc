@@ -122,3 +122,4 @@
 .\objects\supervisor.o: .\BSP\cigan.h
 .\objects\supervisor.o: Applications\balance.h
 .\objects\supervisor.o: Applications\pid.h
+.\objects\supervisor.o: .\BSP\encoder.h

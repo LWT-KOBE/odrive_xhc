@@ -7,6 +7,8 @@
 
 #define AXIS0_ID 0x000 //M0的CANID
 #define AXIS1_ID 0x002 //M1的CANID
+#define AXIS2_ID 0x001 //M2的CANID
+#define AXIS3_ID 0x003 //M3的CANID
 
 #define ODRIVE_PRIORITY 3
 #define ODRIVE_STACK_SIZE 512
@@ -18,7 +20,8 @@
 enum{	
 	axis0=0,	
 	axis1=1,		
-	
+	axis2=2,
+	axis3=3
 };
 
 //电机错误值
@@ -65,15 +68,19 @@ typedef  enum {
 		MSG_SET_TRAJ_INERTIA = 0x013,                // 设置轨迹惯性
 		MSG_GET_IQ = 0x014,                          // 获取电流
 		MSG_GET_SENSORLESS_ESTIMATES = 0x015,        // 获取无传感器估计值
-		MSG_RESET_ODRIVE = 0x016,                    // 重置ODrive
-		MSG_GET_VBUS_VOLTAGE = 0x017,                // 获取总线电压
-		MSG_CLEAR_ERRORS = 0x018,                    // 清除错误
-		MSG_SET_LINEAR_COUNT = 0x019,				 //
-        MSG_SET_POS_GAIN = 0x01A,					 // 设置位置环增益
-        MSG_SET_VEL_GAINS = 0x01B,					 //	设置速度环增益
-        MSG_GET_ADC_VOLTAGE = 0x01C,				 //
-        MSG_GET_CONTROLLER_ERROR = 0x01D,			 //
+		MSG_GET_VBUS_VOLTAGE = 0x016,                // 获取总线电压
+		MSG_CLEAR_ERRORS = 0x017,                    // 清除错误
 		
+		
+		MSG_SET_LINEAR_COUNT = 0x018,				 //
+        MSG_SET_POS_GAIN = 0x019,					 // 设置位置环增益
+        MSG_SET_VEL_GAINS = 0x01A,					 //	设置速度环增益
+//        MSG_GET_ADC_VOLTAGE = 0x01B,				 //
+       
+		MSG_RESET_ODRIVE = 0x01B,                    // 重置ODrive
+		//MSG_SAVE_CONFIG = 0x01C,					 // 保存ODrive
+		MSG_GET_CONTROLLER_ERROR = 0x01C,			 //
+		MSG_GET_MOTOR_TEMP = 0x01D,					 // 获取温度
 		//新增
 
 		MSG_GET_POS_GAIN = 0x01E,
@@ -100,7 +107,20 @@ typedef enum {
 
 //电机控制状态
 typedef enum {
-
+	AXIS_STATE_UNDEFINED             = 0,
+	AXIS_STATE_IDLE                  = 1,
+	AXIS_STATE_STARTUP_SEQUENCE      = 2,
+	AXIS_STATE_FULL_CALIBRATION_SEQUENCE = 3,
+	AXIS_STATE_MOTOR_CALIBRATION     = 4,
+	AXIS_STATE_ENCODER_INDEX_SEARCH  = 6,
+	AXIS_STATE_ENCODER_OFFSET_CALIBRATION = 7,
+	AXIS_STATE_CLOSED_LOOP_CONTROL   = 8,
+	AXIS_STATE_LOCKIN_SPIN           = 9,
+	AXIS_STATE_ENCODER_DIR_FIND      = 10,
+	AXIS_STATE_HOMING                = 11,
+	AXIS_STATE_ENCODER_HALL_POLARITY_CALIBRATION = 12,
+	AXIS_STATE_ENCODER_HALL_PHASE_CALIBRATION = 13,
+	
 	// CMD
 	CMD_MENU	=	0x1B,	// Esc 释放电机
 	CMD_MOTOR   		=	'm',//电机进入闭环模式
@@ -127,27 +147,33 @@ typedef struct {
 /*Odrive 的CAN接收结构体*/
 typedef struct {   
 		
-	formatTrans32Struct_t vbus_voltage[2] ;//Odrive总线电压
-	formatTrans32Struct_t ibus[2] ;//Odrive总线电流	
-	formatTrans32Struct_t MotorError[2];//电机错误
-	formatTrans32Struct_t EncoderError[2];//编码器错误		
-	formatTrans32Struct_t temperature[2];//温度
+	formatTrans32Struct_t vbus_voltage[4] ;//Odrive总线电压
+	formatTrans32Struct_t ibus[4] ;//Odrive总线电流	
+	formatTrans32Struct_t MotorError[4];//电机错误
+	formatTrans32Struct_t EncoderError[4];//编码器错误		
+	formatTrans32Struct_t temperature[4];//板载温度
+	formatTrans32Struct_t motor_temperature[4];//电机温度
 	
-	formatTrans32Struct_t Pos_gain[2];//位置环增益		
-	formatTrans32Struct_t Vel_gain[2];//速度环增益
-	formatTrans32Struct_t Vel_integrator_gain[2];//速度环积分增益
-	formatTrans32Struct_t CG[2];
-	
-	//心跳信号反馈的速度/位置/电流数据，float型，精度0.1f
-	float heartbeat_Pos[2];
-	float heartbeat_Cur[2];
-	float heartbeat_Vel[2];	
+	formatTrans32Struct_t Pos_gain[4];//位置环增益		
+	formatTrans32Struct_t Vel_gain[4];//速度环增益
+	formatTrans32Struct_t Vel_integrator_gain[4];//速度环积分增益
+	formatTrans32Struct_t CG[4];
 	
 	//心跳信号反馈的轴错误数据
-	uint8_t heartbeat_AxisError[2];
+	formatTrans32Struct_t heartbeat_AxisError[4];
 	
-	//心跳信号反馈的电机控制状态数据	
-	uint8_t heartbeat_Current_State[2];
+	//心跳信号反馈当前电机状态
+	uint8_t heartbeat_current_state_[4];
+	
+	//心跳信号反馈电机标志
+	uint8_t heartbeat_motorFlags[4];
+	//心跳信号反馈编码器标志
+	uint8_t heartbeat_encoderFlags[4];
+	//心跳信号反馈的电机控制器错误和轨迹完成标志
+	uint8_t heartbeat_controllerFlags[4];
+	
+	
+
 	
 	//电机控制模式
 	ODControlMode control_mode[2];				
@@ -158,9 +184,9 @@ typedef struct {
 
 	formatTrans32Struct_t shadow_count[2];//shadow	
 	formatTrans32Struct_t count_in_cpr[2];//CPR
-	formatTrans32Struct_t pos_estimate[2];//位置	
-	formatTrans32Struct_t vel_estimate[2];//速度
-	formatTrans32Struct_t Iq_measured[2];//电流	
+	formatTrans32Struct_t pos_estimate[4];//位置	
+	formatTrans32Struct_t vel_estimate[4];//速度
+	formatTrans32Struct_t Iq_measured[4];//电流	
 
 	formatTrans32Struct_t vel_limit[2]; //速度限制——接收
 	formatTrans32Struct_t current_limit[2];//电流限制——接收
@@ -262,7 +288,7 @@ void ODClearError(void);
 void ODFReadMotorPairs(void);	
 void ODSetLimit(void);	
 
-
+void ODSendInputVelData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData);
 
 extern OdriveStruct_t OdriveData; 
 extern ODCanDataRecv_t OdReceivedData;

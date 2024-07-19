@@ -121,3 +121,4 @@
 .\objects\app_init.o: .\BSP\cigan.h
 .\objects\app_init.o: Applications\balance.h
 .\objects\app_init.o: Applications\pid.h
+.\objects\app_init.o: .\BSP\encoder.h

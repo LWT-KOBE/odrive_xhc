@@ -31,5 +31,6 @@ void CopeSerial1Data(unsigned char ucData);		//×ª·¢´®¿Ú1ÊÕµ½µÄÊý¾Ý¸ø´®¿Ú2£¨JYÄ£¿
 void JY60_send(void);							//·¢ËÍJY60µÄÊý¾Ý
 void JY60_Calibration(void);					//JY60Ð£×¼º¯Êý
 void JY60_Get(float * pbuf);					//»ñÈ¡JY60Êý¾Ý
+float JY_GET_FIRST(float* bbb);
 #endif
 

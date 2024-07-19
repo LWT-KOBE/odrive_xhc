@@ -32,6 +32,7 @@
 #include "cigan.h"
 #include "balance.h"
 #include "pid.h"
+#include "encoder.h"
 #endif
 
 

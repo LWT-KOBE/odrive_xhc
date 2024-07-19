@@ -122,3 +122,4 @@
 .\objects\usartx.o: .\BSP\cigan.h
 .\objects\usartx.o: .\Applications\balance.h
 .\objects\usartx.o: .\Applications\pid.h
+.\objects\usartx.o: .\BSP\encoder.h

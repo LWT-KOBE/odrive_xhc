@@ -13,7 +13,7 @@ void EXTI1_IRQHandler(void){
 	if(EXTI_GetITStatus(EXTI_Line1) != RESET){    
 		EXTI_ClearFlag(EXTI_Line1);          
 		EXTI_ClearITPendingBit(EXTI_Line1);
-		
+		Angle_Goal.target ++;
 		/*********以下是自定义部分**********/
 	}
 }
@@ -51,35 +51,16 @@ void EXTI4_IRQHandler(void){
 }
 
 void EXTI9_5_IRQHandler(void) {
-                 
-        //延时10ms
-     delay_ms(10);					              
-
-	if(KEY2==0)	 	 //KEY1按键
-	{    
-		if(++Menu1>4)	Menu1=0;				
-			
+	if(EXTI_GetITStatus(EXTI_Line6) != RESET){
+		//delay_ms(10);
+		EXTI_ClearFlag(EXTI_Line6);          
+		EXTI_ClearITPendingBit(EXTI_Line6);
+		//Angle_Goal.target++;
 		
 		
-    }	
-
-	if(KEY1==0)	 	 //KEY1按键
-	{	 	        
-		if(++Menu==4)	Menu=1;				
-	} 
-	
-
-
-	
-	            
-
-	EXTI_ClearITPendingBit(EXTI_Line8); //清除LINE12上的中断标志位               
-	EXTI_ClearITPendingBit(EXTI_Line9); //清除LINE12上的中断标志位      
-   
-  
-  
-  
-  
+		/*********以下是自定义部分**********/
+	}
+    
 }
 
 void EXTI15_10_IRQHandler(void) {

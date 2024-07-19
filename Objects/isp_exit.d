@@ -121,3 +121,4 @@
 .\objects\isp_exit.o: .\BSP\cigan.h
 .\objects\isp_exit.o: .\Applications\balance.h
 .\objects\isp_exit.o: .\Applications\pid.h
+.\objects\isp_exit.o: .\BSP\encoder.h

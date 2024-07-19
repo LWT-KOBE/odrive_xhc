@@ -4,7 +4,7 @@ OdriveStruct_t OdriveData;
 ODCanDataRecv_t OdReceivedData;
 uint8_t Flag = 0;
 float buf[10];
-////////////////////////////ODRIVE单驱板（M0）的CAN控制(STM32F407VIT6) 波特率：1000K  使用120Ω终端电阻/////////////////////////
+////////////////////////////ODRIVE单驱板（M0）的CAN控制(STM32F407VET6) 波特率：1000K  使用120Ω终端电阻/////////////////////////
 /*********************************以下为驱动层代码*****************************************************************************/
 
 /*
@@ -236,7 +236,7 @@ void ODSendInputCurData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uin
 
 /*
 ***************************************************
-函数名：set_axis_requested_state
+函数名：ODSET_CONTROL_MODE
 功能：电机状态参数配置_数据帧
 入口参数：	CANx：CAN1 orCAN2
 			ID_CAN：CANID 电机0或电机1的ID地址 规定： AXIS0_ID 0x001   AXIS1_ID 0x002
@@ -262,7 +262,7 @@ void ODSendInputCurData(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uin
 
 ***************************************************
 */
-void set_axis_requested_state(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData) {
+void ODSET_CONTROL_MODE(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData) {
 	
 	uint8_t CONTROL_MODE = 5;
 	
@@ -417,11 +417,22 @@ void set_axis_requested_state(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CA
 
 void ODReadHeartBeatData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis) {
 		
-	Spetsnaz->heartbeat_Cur[axis] = (float)(s16)((CanRevData->Data[1]<<8)|CanRevData->Data[0])/100.0f;
-	Spetsnaz->heartbeat_Pos[axis] = (float)(s16)((CanRevData->Data[3]<<8)|CanRevData->Data[2])/100.0f;
-	Spetsnaz->heartbeat_Vel[axis] = (float)(s16)((CanRevData->Data[5]<<8)|CanRevData->Data[4])/100.0f;	
-	Spetsnaz->heartbeat_AxisError[axis] = CanRevData->Data[6];
-	Spetsnaz->heartbeat_Current_State[axis] = CanRevData->Data[7];
+//	Spetsnaz->heartbeat_Cur[axis] = (float)(s16)((CanRevData->Data[1]<<8)|CanRevData->Data[0])/100.0f;
+//	Spetsnaz->heartbeat_Pos[axis] = (float)(s16)((CanRevData->Data[3]<<8)|CanRevData->Data[2])/100.0f;
+//	Spetsnaz->heartbeat_Vel[axis] = (float)(s16)((CanRevData->Data[5]<<8)|CanRevData->Data[4])/100.0f;	
+//	Spetsnaz->heartbeat_AxisError[axis] = CanRevData->Data[6];
+//	Spetsnaz->heartbeat_Current_State[axis] = CanRevData->Data[7];
+	
+	Spetsnaz->heartbeat_AxisError[axis].u8_temp[0] = CanRevData->Data[0]; 
+	Spetsnaz->heartbeat_AxisError[axis].u8_temp[1] = CanRevData->Data[1]; 
+	Spetsnaz->heartbeat_AxisError[axis].u8_temp[2] = CanRevData->Data[2]; 
+	Spetsnaz->heartbeat_AxisError[axis].u8_temp[3] = CanRevData->Data[3]; 
+	
+	Spetsnaz->heartbeat_current_state_[axis] = CanRevData->Data[4];
+	Spetsnaz->heartbeat_motorFlags[axis] = CanRevData->Data[5];
+	Spetsnaz->heartbeat_encoderFlags[axis] = CanRevData->Data[6];
+	Spetsnaz->heartbeat_controllerFlags[axis] = CanRevData->Data[7];
+	
 
 }
 
@@ -485,13 +496,18 @@ void ODReadVbusData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis)
 	} formatTrans32Struct_t;
 ***************************************************
 */void ODReadTempData(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t axis) {
-		
+	
+	//板载温度
 	Spetsnaz->temperature[axis].u8_temp[0] = CanRevData->Data[0];	
 	Spetsnaz->temperature[axis].u8_temp[1] = CanRevData->Data[1];	
 	Spetsnaz->temperature[axis].u8_temp[2] = CanRevData->Data[2];	
 	Spetsnaz->temperature[axis].u8_temp[3] = CanRevData->Data[3];
 	
-	
+	//电机温度
+	Spetsnaz->motor_temperature[axis].u8_temp[0] = CanRevData->Data[4];
+	Spetsnaz->motor_temperature[axis].u8_temp[1] = CanRevData->Data[5];
+	Spetsnaz->motor_temperature[axis].u8_temp[2] = CanRevData->Data[6];
+	Spetsnaz->motor_temperature[axis].u8_temp[3] = CanRevData->Data[7];
 }
 
 /*
@@ -817,6 +833,53 @@ void CG_Data(CanRxMsg* CanRevData,ODCanDataRecv_t* Spetsnaz,uint8_t num) {
 }
 
 
+/*
+***************************************************
+函数名：set_axis_requested_state
+功能：电机状态参数配置_数据帧
+入口参数：	CANx：CAN1 orCAN2
+			ID_CAN：CANID 电机0或电机1的ID地址 规定： AXIS0_ID 0x001   AXIS1_ID 0x002
+			CMD_CAN：odrive的状态参数配置命令（MSG_SET_CONTROLLER_MODES ）
+			len：数据帧长度
+			CONTROL_MODE：电机控制模式
+			CanSendData：CAN发送的数据结构
+			Spetsnaz：发送的电机参数结构体
+			axis: 选择电机0或电机1命令发送 规定 ： axis0=0  axis1=1 
+返回值：无
+应用范围：内部调用
+备注： uint8_t len的数据范围
+	 
+    enum {
+        AXIS_STATE_UNDEFINED             = 0,
+		AXIS_STATE_IDLE                  = 1,
+		AXIS_STATE_STARTUP_SEQUENCE      = 2,
+		AXIS_STATE_FULL_CALIBRATION_SEQUENCE = 3,
+		AXIS_STATE_MOTOR_CALIBRATION     = 4,
+		AXIS_STATE_ENCODER_INDEX_SEARCH  = 6,
+		AXIS_STATE_ENCODER_OFFSET_CALIBRATION = 7,
+		AXIS_STATE_CLOSED_LOOP_CONTROL   = 8,
+		AXIS_STATE_LOCKIN_SPIN           = 9,
+		AXIS_STATE_ENCODER_DIR_FIND      = 10,
+		AXIS_STATE_HOMING                = 11,
+		AXIS_STATE_ENCODER_HALL_POLARITY_CALIBRATION = 12,
+		AXIS_STATE_ENCODER_HALL_PHASE_CALIBRATION = 13,
+    }; 
+
+***************************************************
+*/
+void set_axis_requested_state(CAN_TypeDef *CANx, uint32_t ID_CAN,uint32_t CMD_CAN, uint8_t len,OdriveStruct_t* Spetsnaz,uint8_t axis,ODCANSendStruct_t* CanSendData) {
+	
+	CanSendData->data[0] = Spetsnaz->AxisState[axis];
+	CanSendData->data[1] = 0;
+	CanSendData->data[2] = 0;
+	CanSendData->data[3] = 0;
+
+	
+	OdriveSendData(CANx,ID_CAN,CMD_CAN,len,CanSendData); 
+}
+
+
+
 /*********************************以上为驱动层代码*****************************************************************************/
 
 
@@ -958,7 +1021,10 @@ void CAN1_RX0_IRQHandler(void){
 						
 						case MSG_GET_VEL_GAINS:
 								ODReadVel_gainsData(&can1_rx_msg,&OdReceivedData,axis0);
-								
+						break;
+						
+						case MSG_GET_MOTOR_TEMP:
+								ODReadTempData(&can1_rx_msg,&OdReceivedData,axis0);
 						break;
 						
 					default:	break;																			
@@ -1015,13 +1081,76 @@ void CAN1_RX0_IRQHandler(void){
 								
 						break;
 						
+						case MSG_GET_MOTOR_TEMP:
+								ODReadTempData(&can1_rx_msg,&OdReceivedData,axis1);
+						break;
+						
 					default:	break;			
 
 
 																							
 
 					
-					}						
+					}
+
+					case AXIS3_ID:							
+					switch((can1_rx_msg.StdId )&0x01F){ 
+
+						case MSG_ODRIVE_HEARTBEAT:
+							ODReadHeartBeatData(&can1_rx_msg,&OdReceivedData,axis3);
+						break;							
+						
+						case MSG_GET_VBUS_VOLTAGE:
+								ODReadVbusData(&can1_rx_msg,&OdReceivedData,axis3);
+											
+						break;	
+						
+//						case MSG_GET_TEMP:
+//								ODReadTempData(&can1_rx_msg,&OdReceivedData,axis1);
+											
+						break;								
+					
+						case MSG_GET_MOTOR_ERROR:
+								ODReadMotorErrorData(&can1_rx_msg,&OdReceivedData,axis3);			
+						break;
+						
+						case MSG_GET_ENCODER_COUNT:
+								ODReadEncoderCountData(&can1_rx_msg,&OdReceivedData,axis3);			
+						break;						
+						
+						case MSG_GET_ENCODER_ESTIMATES:
+								ODReadEncodeEstimatesData(&can1_rx_msg,&OdReceivedData,axis3);			
+						break;								
+		
+						case MSG_GET_ENCODER_ERROR:
+								ODReadEncodeErrorData(&can1_rx_msg,&OdReceivedData,axis3);			
+						break;						
+							
+						
+						case MSG_SET_LIMITS:
+								ODReadLimitData(&can1_rx_msg,&OdReceivedData,axis3);			
+						break;
+
+						case MSG_GET_VEL_GAINS:
+								ODReadVel_gainsData(&can1_rx_msg,&OdReceivedData,axis3);
+						break;
+						
+						case MSG_GET_POS_GAIN:
+								ODReadPos_gainData(&can1_rx_msg,&OdReceivedData,axis3);
+								
+						break;
+						
+						case MSG_GET_MOTOR_TEMP:
+								ODReadTempData(&can1_rx_msg,&OdReceivedData,axis3);
+						break;
+						
+					default:	break;			
+
+
+																							
+
+					
+					}
 						
 				break;					
 				
@@ -1029,11 +1158,6 @@ void CAN1_RX0_IRQHandler(void){
 			default:	break;		
 
         }
-		
-		//接收处理磁传感器的can数据
-		if(can1_rx_msg.StdId == 0x76){
-			CG_Data(&can1_rx_msg,&OdReceivedData,0);
-		}
 
 
 	}
@@ -1052,7 +1176,7 @@ void CAN1_TX_IRQHandler(void){
 		CAN_ClearITPendingBit(CAN1,CAN_IT_TME);
 
 		/*********以下是自定义部分**********/
-        
+        OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_GET_MOTOR_ERROR);
         
 	}
 }
@@ -1166,7 +1290,9 @@ void CAN2_RX0_IRQHandler(void){
 																							
 
 					
-					}						
+					}
+
+				
 						
 				break;					
 				
@@ -1261,6 +1387,9 @@ void ODFlashSave(void){
 		//config
 //		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_SAVE_CONFIG);
 //		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_SAVE_CONFIG);
+		
+		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_RESET_ODRIVE);
+		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_RESET_ODRIVE);
 //		
 //		OdriveSend_RemoteCmd(CAN2,AXIS0_ID,MSG_SAVE_CONFIG);
 //		OdriveSend_RemoteCmd(CAN2,AXIS1_ID,MSG_SAVE_CONFIG);
@@ -1286,14 +1415,31 @@ void ODClearError(void){
 	} 	
 }
 
+
+//重启odrive
+void ODRESET_ODRIVE(void){		
+	if(OdriveData.flashSaveFlag){                                              						
+		//config
+		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_RESET_ODRIVE);
+		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_RESET_ODRIVE);
+		
+			
+//		OdriveSend_RemoteCmd(CAN2,AXIS0_ID,MSG_SAVE_CONFIG);
+//		OdriveSend_RemoteCmd(CAN2,AXIS1_ID,MSG_SAVE_CONFIG);
+		digitalLo(&OdriveData.flashSaveFlag);         
+        
+	} 	
+}
+
+
 //设置电机控制状态
 void ODSetMotorState(void){		
     //如果想要对电机控制模式进行操作，直接将OdriveData.ControlModeFlag高一次即可,并且电机控制模式为CMD_MENU
 	if((OdriveData.ControlModeFlag)){                                              
 			
+		set_axis_requested_state(CAN1,AXIS0_ID,MSG_SET_AXIS_REQUESTED_STATE,4,&OdriveData,axis0,&ODSendData);
+		set_axis_requested_state(CAN1,AXIS1_ID,MSG_SET_AXIS_REQUESTED_STATE,4,&OdriveData,axis1,&ODSendData);
 		
-		set_axis_requested_state(CAN1,AXIS1_ID,MSG_SET_CONTROLLER_MODES,8,&OdriveData,axis0,&ODSendData);
-//		set_axis_requested_state(CAN2,AXIS0_ID,MSG_SET_CONTROL_MODE,1,&OdriveData,axis0,&ODSendData);
 										
 		digitalLo(&OdriveData.ControlModeFlag);         
         
@@ -1319,8 +1465,8 @@ void ODSetLimit(void){
 void OdriveGlobalInit(void){
 	
 	//初始化CAN1
-    //driver_can1_init(CAN1,BSP_GPIOB8,BSP_GPIOB9,4,0);//405
-	driver_can1_init(CAN1,BSP_GPIOD0,BSP_GPIOD1,4,0);//407
+    driver_can1_init(CAN1,BSP_GPIOB8,BSP_GPIOB9,4,0);//405
+	//driver_can1_init(CAN1,BSP_GPIOD0,BSP_GPIOD1,4,0);//407
 //	driver_can2_init(CAN2,BSP_GPIOB12,BSP_GPIOB13,4,0);
 	//初始化CAN2 波特率125K
 	//CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,24,CAN_Mode_Normal);
@@ -1328,20 +1474,14 @@ void OdriveGlobalInit(void){
 	//CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,12,CAN_Mode_Normal);
 	CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,3,CAN_Mode_Normal);
 	
-	//电机0初始配置	
-	/*
-		//只支持电机的使能/失能这两个指令 遥控帧
-		CMD_MENU 27 //释放电机
-		CMD_MOTOR 109	//电机进入闭环状态
+	//电机初始配置	
 
-	*/
-	//OdriveData.AxisState[axis0]   = CMD_MENU;//失能电机
-	OdriveData.AxisState[axis0]   = CMD_MOTOR;//使能电机			
+	OdriveData.AxisState[axis0]   = AXIS_STATE_CLOSED_LOOP_CONTROL;//使能电机			
 	OdriveData.ControlMode[axis0] = CONTROL_MODE_VELOCITY_RAMP;//速度梯形模式
 	OdriveData.current_limit[axis0].float_temp = 15.0f;
 	OdriveData.vel_limit[axis0].float_temp = 35.0f;
 	
-	OdriveData.AxisState[axis1]   = CMD_MOTOR;//使能电机			
+	OdriveData.AxisState[axis1]   = AXIS_STATE_CLOSED_LOOP_CONTROL;//使能电机			
 	OdriveData.ControlMode[axis1] = CONTROL_MODE_VELOCITY_RAMP;//速度梯形模式
 	OdriveData.current_limit[axis1].float_temp = 15.0f;
 	OdriveData.vel_limit[axis1].float_temp = 35.0f;
@@ -1364,9 +1504,11 @@ void odrivelUpdateTask(void *Parameters){
 			
 			digitalHi(&OdriveData.dataInitFlag);
 			
-		}  
-	//如果电机处于闭环状态，发送力矩/位置/速度控制指令  频率100HZ		
-	if(OdriveData.AxisState[axis0] == CMD_MOTOR){
+		}
+		
+	//如果电机处于闭环状态，发送力矩/位置/速度控制指令  频率100HZ
+	if(EW.change == 0){
+	if(OdriveData.AxisState[axis0] == AXIS_STATE_CLOSED_LOOP_CONTROL){
 					
 					switch(OdriveData.ControlMode[axis0]){ 
 		
@@ -1389,9 +1531,8 @@ void odrivelUpdateTask(void *Parameters){
 						
 							//发送速度命令
 //							if(flag == 1){
-								//ODSendInputVelData(CAN1,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
 								ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
-								
+								ODSendInputVelData(CAN1,AXIS3_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 //								ODSendInputVelData(CAN2,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
 //								ODSendInputVelData(CAN2,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 //								flag = 0;
@@ -1412,7 +1553,7 @@ void odrivelUpdateTask(void *Parameters){
 		
 	}
 	//如果电机处于闭环状态，发送力矩/位置/速度控制指令  频率100HZ
-	if(OdriveData.AxisState[axis1] == CMD_MOTOR){
+	if(OdriveData.AxisState[axis1] == AXIS_STATE_CLOSED_LOOP_CONTROL){
 
 					switch(OdriveData.ControlMode[axis1]){ 
 		
@@ -1435,6 +1576,7 @@ void odrivelUpdateTask(void *Parameters){
 							//发送速度命令
 //								if(flag == 1){
 								ODSendInputVelData(CAN1,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
+								ODSendInputVelData(CAN1,AXIS2_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
 								//ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 								
 //								ODSendInputVelData(CAN2,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
@@ -1458,37 +1600,26 @@ void odrivelUpdateTask(void *Parameters){
 					}			
 		
 	}
+}
 	
 	//通过这个参数修改位置环增益参数
 	//OdriveData.Pos_gain[0].float_temp = test;
 	//发送位置环增益参数修改命令
-//	if(flag == 1){
-//		//位置环增益
-//		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,0x1F);
-//		ODSendPos_gainData(CAN2,AXIS0_ID,26,4,&OdriveData,axis0,&ODSendData);
-//		//速度环增益
-////		ODSendVel_gainData(CAN1,AXIS0_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis0,&ODSendData);
-////		//速度环积分增益
-////		ODSendVel_integrator_gainData(CAN1,AXIS0_ID,MSG_SET_VEL_INTEGRATOR_GAIN,4,&OdriveData,axis0,&ODSendData);
-//		flag = 0;
-//	}
-//	
-//	OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_ODRIVE_HEARTBEAT);
-//	OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_ODRIVE_HEARTBEAT);
+	
 	//10Hz  轮循发送　
-	//OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_GET_ENCODER_COUNT);
-	//JY60_Get(buf);
 	if(!((OdriveData.loops + 1) % 100)){	
 
 		ODSetMotorState();
 //		
-////		//更改状态信息
+////	//更改状态信息
 //		ODRequestedState();		
-////		//保存参数
-//		ODFlashSave();
-////		//清除错误
-//		ODClearError();
-
+////	//保存参数
+		ODFlashSave();
+////	//清除错误
+		ODClearError();
+		
+		//重启odrive
+		ODRESET_ODRIVE();
 //		//设置电机电流/速度限制
 //		ODSetLimit();
 //		
@@ -1503,20 +1634,9 @@ void odrivelUpdateTask(void *Parameters){
 		
 		//读取编码器CPR值
 //		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_GET_ENCODER_COUNT);
-
-		//读取总线电压
-
-		//读取温度
-//		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_GET_TEMP);
-//		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_GET_TEMP);
-		
-		//printf("%f\r\n",OdReceivedData.vel_estimate->float_temp);
-
 		
 	}
-//		OdriveData.SetVel[0].float_temp =  PID_angel(Angle_Goal.target,buf[9]);
-//		OdriveData.SetVel[1].float_temp =  PID_angel(Angle_Goal.target,buf[9]);
-        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,(OdReceivedData.vel_estimate[0].float_temp * 0.235f),OdReceivedData.vel_estimate[1].float_temp,pbuf[9],Angle_Goal.target,OdReceivedData.vbus_voltage[0].float_temp,OdReceivedData.Pos_gain[0].float_temp,OdReceivedData.Vel_gain[0].float_temp,OdReceivedData.Vel_integrator_gain[0].float_temp,NFC.NFC_buf[2],NFC.NFC_buf[3],OdReceivedData.CG[0].float_temp,Angle_Goal.finish);
+        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,(OdReceivedData.vel_estimate[0].float_temp * 0.2199f),(OdReceivedData.vel_estimate[1].float_temp * 0.2199f),EW.Current_Mileage,OdReceivedData.ibus[0].float_temp,OdReceivedData.vbus_voltage[0].float_temp,OdReceivedData.Pos_gain[0].float_temp,OdReceivedData.Vel_gain[0].float_temp,OdReceivedData.Vel_integrator_gain[0].float_temp,OdReceivedData.Pos_gain[1].float_temp,OdReceivedData.Vel_gain[1].float_temp,OdReceivedData.Vel_integrator_gain[1].float_temp,Position_PID_G(EW.Current_Mileage,-Motor_SpeedB_Goal.target));
 		digitalIncreasing(&OdriveData.loops);        
 
 	}

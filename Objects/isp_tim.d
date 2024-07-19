@@ -121,6 +121,7 @@
 .\objects\isp_tim.o: .\BSP\cigan.h
 .\objects\isp_tim.o: .\Applications\balance.h
 .\objects\isp_tim.o: .\Applications\pid.h
+.\objects\isp_tim.o: .\BSP\encoder.h
 .\objects\isp_tim.o: .\Applications\imu.h
 .\objects\isp_tim.o: .\Applications\nav_ukf.h
 .\objects\isp_tim.o: .\Applications\d_imu.h
