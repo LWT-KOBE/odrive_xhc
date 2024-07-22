@@ -78,8 +78,8 @@ typedef  enum {
 //        MSG_GET_ADC_VOLTAGE = 0x01B,				 //
        
 		MSG_RESET_ODRIVE = 0x01B,                    // 重置ODrive
-		//MSG_SAVE_CONFIG = 0x01C,					 // 保存ODrive
-		MSG_GET_CONTROLLER_ERROR = 0x01C,			 //
+		MSG_SAVE_CONFIG = 0x01C,					 // 保存ODrive
+		//MSG_GET_CONTROLLER_ERROR = 0x01C,			 //
 		MSG_GET_MOTOR_TEMP = 0x01D,					 // 获取温度
 		//新增
 
@@ -227,6 +227,9 @@ typedef struct {
 	//保存ODRIVE的配置参数FLAG
 	uint8_t flashSaveFlag;
 	
+	//重启odrive
+	uint8_t RebotFlag;
+	
 	//配置电机控制模式FLAG	
 	uint8_t ControlModeFlag;	
 	
@@ -239,7 +242,16 @@ typedef struct {
 	//设置电流电压限制FLAG	
 	uint8_t SetLimitFlag;
 
-
+	
+	//配置电机位置环增添FLAG	
+	uint8_t Pos_gainFlag;
+	
+	//配置电机速度环增益FLAG	
+	uint8_t Vel_gainFlag;
+	
+	//配置电机速度环积分增益FLAG	
+	uint8_t Vel_integrator_gainFlag;
+	
 	//速度限制——发送
 	formatTrans32Struct_t vel_limit[2]; 
 	

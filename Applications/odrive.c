@@ -1385,11 +1385,11 @@ void ODRequestedState(void){
 void ODFlashSave(void){		
 	if(OdriveData.flashSaveFlag){                                              						
 		//config
-//		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_SAVE_CONFIG);
-//		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_SAVE_CONFIG);
+		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_SAVE_CONFIG);
+		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_SAVE_CONFIG);
 		
-		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_RESET_ODRIVE);
-		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_RESET_ODRIVE);
+//		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_RESET_ODRIVE);
+//		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_RESET_ODRIVE);
 //		
 //		OdriveSend_RemoteCmd(CAN2,AXIS0_ID,MSG_SAVE_CONFIG);
 //		OdriveSend_RemoteCmd(CAN2,AXIS1_ID,MSG_SAVE_CONFIG);
@@ -1418,7 +1418,7 @@ void ODClearError(void){
 
 //÷ÿ∆Ùodrive
 void ODRESET_ODRIVE(void){		
-	if(OdriveData.flashSaveFlag){                                              						
+	if(OdriveData.RebotFlag){                                              						
 		//config
 		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_RESET_ODRIVE);
 		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_RESET_ODRIVE);
@@ -1426,7 +1426,7 @@ void ODRESET_ODRIVE(void){
 			
 //		OdriveSend_RemoteCmd(CAN2,AXIS0_ID,MSG_SAVE_CONFIG);
 //		OdriveSend_RemoteCmd(CAN2,AXIS1_ID,MSG_SAVE_CONFIG);
-		digitalLo(&OdriveData.flashSaveFlag);         
+		digitalLo(&OdriveData.RebotFlag);         
         
 	} 	
 }
@@ -1634,6 +1634,12 @@ void odrivelUpdateTask(void *Parameters){
 		
 		//∂¡»°±‡¬Î∆˜CPR÷µ
 //		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_GET_ENCODER_COUNT);
+		
+//		ODSendPos_gainData(CAN1,AXIS0_ID,MSG_GET_POS_GAIN,4,&OdriveData,axis0,&ODSendData);
+//		ODSendPos_gainData(CAN1,AXIS1_ID,MSG_GET_POS_GAIN,4,&OdriveData,axis1,&ODSendData);
+
+		ODSendVel_gainsData(CAN1,AXIS0_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis0,&ODSendData);
+//		ODSendVel_gainsData(CAN1,AXIS1_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis1,&ODSendData);
 		
 	}
         vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,(OdReceivedData.vel_estimate[0].float_temp * 0.2199f),(OdReceivedData.vel_estimate[1].float_temp * 0.2199f),EW.Current_Mileage,OdReceivedData.ibus[0].float_temp,OdReceivedData.vbus_voltage[0].float_temp,OdReceivedData.Pos_gain[0].float_temp,OdReceivedData.Vel_gain[0].float_temp,OdReceivedData.Vel_integrator_gain[0].float_temp,OdReceivedData.Pos_gain[1].float_temp,OdReceivedData.Vel_gain[1].float_temp,OdReceivedData.Vel_integrator_gain[1].float_temp,Position_PID_G(EW.Current_Mileage,-Motor_SpeedB_Goal.target));

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\ModularReader.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\ModularReader.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Jul 19 10:51:54 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Jul 22 14:35:03 2024
 <BR><P>
 <H3>Maximum Stack Usage =        336 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1018,13 +1018,13 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[14d]"></a>FLASH_DataCacheCmd</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, stm32f4xx_flash.o(i.FLASH_DataCacheCmd))
-<BR><BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<BR><BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
 </UL>
 
 <P><STRONG><a name="[14e]"></a>FLASH_DataCacheReset</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f4xx_flash.o(i.FLASH_DataCacheReset))
-<BR><BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<BR><BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
 </UL>
 
 <P><STRONG><a name="[ef]"></a>FLASH_EraseSector</STRONG> (Thumb, 104 bytes, Stack size 12 bytes, stm32f4xx_flash.o(i.FLASH_EraseSector))
@@ -1156,8 +1156,8 @@ Global Symbols
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_TransmitStatus
 <LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN_Transmit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;odrivelUpdateTask
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN1_TX_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CAN1_TX_IRQHandler
+<LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;odrivelUpdateTask
 </UL>
 
 <P><STRONG><a name="[fc]"></a>PID_Calc</STRONG> (Thumb, 244 bytes, Stack size 0 bytes, pid.o(i.PID_Calc))
@@ -1929,8 +1929,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OdriveSend_RemoteCmd
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OdriveSendData
 </UL>
@@ -1940,8 +1940,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OdriveSend_RemoteCmd
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OdriveSendData
 </UL>
@@ -1955,7 +1955,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;appInit
 </UL>
 
-<P><STRONG><a name="[8b]"></a>balanceUpdateTask</STRONG> (Thumb, 1524 bytes, Stack size 40 bytes, balance.o(i.balanceUpdateTask))
+<P><STRONG><a name="[8b]"></a>balanceUpdateTask</STRONG> (Thumb, 1592 bytes, Stack size 40 bytes, balance.o(i.balanceUpdateTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = balanceUpdateTask &rArr; uart3_init &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
@@ -2046,8 +2046,8 @@ Global Symbols
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_Lock
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ClearFlag
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
 </UL>
 
 <P><STRONG><a name="[14c]"></a>flashErase</STRONG> (Thumb, 458 bytes, Stack size 24 bytes, driver_flash.o(i.flashErase))
@@ -2058,13 +2058,13 @@ Global Symbols
 <LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_EraseSector
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FLASH_ClearFlag
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
 </UL>
 
 <P><STRONG><a name="[14b]"></a>flashStartAddr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, driver_flash.o(i.flashStartAddr))
-<BR><BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<BR><BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
 </UL>
 
 <P><STRONG><a name="[89]"></a>fputc</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, usartx.o(i.fputc))
@@ -2091,8 +2091,8 @@ Global Symbols
 <P><STRONG><a name="[81]"></a>main</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = main &rArr; vTaskStartScheduler &rArr; xTimerCreateTimerTask &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll
 </UL>
-<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
+<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskCreate
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
 <LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
@@ -2103,7 +2103,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;aqCalloc
 </UL>
 
-<P><STRONG><a name="[88]"></a>odrivelUpdateTask</STRONG> (Thumb, 1076 bytes, Stack size 32 bytes, odrive.o(i.odrivelUpdateTask))
+<P><STRONG><a name="[88]"></a>odrivelUpdateTask</STRONG> (Thumb, 1164 bytes, Stack size 32 bytes, odrive.o(i.odrivelUpdateTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 172<LI>Call Chain = odrivelUpdateTask &rArr; BSP_CAN_Mode_Init &rArr; BSP_GPIO_Init &rArr; GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGetTickCount
@@ -2199,9 +2199,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vsnprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
+<BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configInit
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;appInit
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;configFlashWrite
 </UL>
 
 <P><STRONG><a name="[5]"></a>usbd_cdc_DataIn</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, driver_usbvcp.o(i.usbd_cdc_DataIn))
@@ -2555,11 +2555,11 @@ Global Symbols
 <LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vListInitialise
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;controlInit
+<BR>[Called By]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;controlInit
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;balanceInit
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OdriveInit
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskStartScheduler
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[175]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTimerCreateTimerTask
 </UL>
 

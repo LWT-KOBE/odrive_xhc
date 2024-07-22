@@ -61,11 +61,11 @@ void balanceUpdateTask(void *Parameters){
 		if(balanceData.flag == 0){
 //			Motor_SpeedA_Goal.target = Incremental_PID(OdReceivedData.vel_estimate[1].float_temp,Motor_SpeedB_Goal.target);
 			
-			OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.125f;
-			OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.125f;
+			OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.16f;
+			OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.16f;
 			
-//			OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.05f;
-//			OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.05f;
+//			OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.00f;
+//			OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.00f;
 			
 			Motor_SpeedB_Goal.target = 0;
 			Angle_Goal.target = OdReceivedData.vel_estimate[0].float_temp;
@@ -81,9 +81,15 @@ void balanceUpdateTask(void *Parameters){
 					PBout(3) = 1;
 				}
 				
-				if(pbuf[0] >= 400){
+				if(pbuf[0] >= 2000){
 					PDout(2) = 1;
-					PBout(3) = 1;
+					PBout(3) = 0;
+				}
+				
+				if(pbuf[0] >= 2450){
+					PDout(2) = 0;
+					PBout(3) = 0;
+					pbuf[0] = 2450;
 				}
 			}else{
 				pbuf[0] = 0;
@@ -97,6 +103,7 @@ void balanceUpdateTask(void *Parameters){
 				if(pbuf[1] >= 400){
 					PDout(2) = 0;
 					PBout(3) = 0;
+					pbuf[1] = 400;
 				}
 				
 			}

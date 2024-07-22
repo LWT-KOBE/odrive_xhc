@@ -397,6 +397,11 @@
               <FilePath>.\Applications\clockcount.c</FilePath>
             </File>
             <File>
+              <FileName>odrive.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Applications\odrive.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Applications\main.c</FilePath>
@@ -410,11 +415,6 @@
               <FileName>lcd.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Applications\lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>odrive.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Applications\odrive.c</FilePath>
             </File>
             <File>
               <FileName>pid.c</FileName>
