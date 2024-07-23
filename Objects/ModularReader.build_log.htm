@@ -22,58 +22,29 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 C:\Users\13359\Desktop\AGV\ODrive_XHC\ModularReader.uvprojx
-Project File Date:  07/19/2024
+Project File Date:  07/23/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\ARM\ARMCC\Bin'
 Build target 'ModularReader'
-compiling app_Init.c...
-compiling supervisor.c...
-compiling isp_spi.c...
-compiling main.c...
-compiling control.c...
-compiling isp_exit.c...
-compiling isp_tim.c...
-compiling balance.c...
-Applications\balance.c(158): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  				if(Motor_SpeedB_Goal.target >= 700.0){
-Applications\balance.c(163): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  				else if(Motor_SpeedB_Goal.target < 700.0 && Motor_SpeedB_Goal.target >=0){
-Applications\balance.c: 2 warnings, 0 errors
-compiling pid.c...
-Applications\pid.c(349): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-  	if(Pwm>0.1) Pwm  =  0.1;
-Applications\pid.c(469): warning:  #550-D: variable "dInput"  was set but never used
-      static float Bias,Pwm,Last_Bias,Integral_bias=0,Position_KP,Position_KI,Position_KD,last_dev,this_dev,alpha,last_Input,dInput;
-Applications\pid.c: 2 warnings, 0 errors
-compiling usartx.c...
-BSP\usartx.c(544): warning:  #550-D: variable "Res"  was set but never used
-  	u8 Res;
-BSP\usartx.c(816): warning:  #188-D: enumerated type mixed with another type
-  				OdriveData.AxisState[0] = 27;
-BSP\usartx.c(994): warning:  #188-D: enumerated type mixed with another type
-  				OdriveData.AxisState[0] = 27;
-BSP\usartx.c(1222): warning:  #177-D: variable "out"  was declared but never referenced
-  	float out = 0;
-BSP\usartx.c: 4 warnings, 0 errors
 compiling odrive.c...
-Applications\odrive.c(1001): warning:  #111-D: statement is unreachable
+Applications\odrive.c(1008): warning:  #111-D: statement is unreachable
   						break;								
-Applications\odrive.c(1059): warning:  #111-D: statement is unreachable
+Applications\odrive.c(1066): warning:  #111-D: statement is unreachable
   						break;								
-Applications\odrive.c(1118): warning:  #111-D: statement is unreachable
+Applications\odrive.c(1126): warning:  #111-D: statement is unreachable
   						break;								
-Applications\odrive.c(1226): warning:  #111-D: statement is unreachable
+Applications\odrive.c(1184): warning:  #111-D: statement is unreachable
   						break;								
-Applications\odrive.c(1271): warning:  #111-D: statement is unreachable
+Applications\odrive.c(1292): warning:  #111-D: statement is unreachable
   						break;								
-Applications\odrive.c: 5 warnings, 0 errors
-compiling encoder.c...
-compiling config.c...
+Applications\odrive.c(1337): warning:  #111-D: statement is unreachable
+  						break;								
+Applications\odrive.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=41032 RO-data=528 RW-data=908 ZI-data=78464  
+Program Size: Code=40160 RO-data=528 RW-data=908 ZI-data=78520  
 FromELF: creating hex file...
-".\Objects\ModularReader.axf" - 0 Error(s), 13 Warning(s).
+".\Objects\ModularReader.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -87,7 +58,7 @@ Package Vendor: Keil
   D:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

@@ -81,15 +81,15 @@ void balanceUpdateTask(void *Parameters){
 					PBout(3) = 1;
 				}
 				
-				if(pbuf[0] >= 2000){
+				if(pbuf[0] >= 800){
 					PDout(2) = 1;
 					PBout(3) = 0;
 				}
 				
-				if(pbuf[0] >= 2450){
+				if(pbuf[0] >= 1150){
 					PDout(2) = 0;
 					PBout(3) = 0;
-					pbuf[0] = 2450;
+					pbuf[0] = 1150;
 				}
 			}else{
 				pbuf[0] = 0;

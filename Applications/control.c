@@ -43,6 +43,7 @@ void controlUpdateTask(void *Parameters){
 		
 		u3_SendArray(temp,8);
 		
+		memset(temp, 0, sizeof(temp));
 		
 		digitalIncreasing(&getcontrolData()->loops);        
 

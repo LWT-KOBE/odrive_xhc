@@ -970,15 +970,22 @@ void driver_can2_init(CAN_TypeDef* rm_canx,BSP_GPIOSource_TypeDef *rm_canx_rx,BS
 //     Frame
 // nodeID | CMD
 // 6 bits | 5 bits
-
+CanRxMsg can1_rx_msg;
 u32 rxbuf3;
 void CAN1_RX0_IRQHandler(void){
-	CanRxMsg can1_rx_msg;
+	//CanRxMsg can1_rx_msg;
 	if (CAN_GetITStatus(CAN1,CAN_IT_FMP0)!= RESET){
+		// 清除中断标志和标志位
 		CAN_ClearITPendingBit(CAN1, CAN_IT_FF0);
-		CAN_ClearFlag(CAN1, CAN_FLAG_FF0);		
+		CAN_ClearFlag(CAN1, CAN_FLAG_FF0);
+		
+		// 从接收 FIFO 中读取消息		
 		CAN_Receive(CAN1, CAN_FIFO0, &can1_rx_msg);
-		rxbuf3=can1_rx_msg.StdId;	
+		
+		// 存储接收到的标准 ID
+		rxbuf3=can1_rx_msg.StdId;
+		// 递增错误计数
+		
 		digitalIncreasing(&OdriveData.OdError.errorCount);
 
 		/*********以下是自定义部分**********/
@@ -1042,7 +1049,7 @@ void CAN1_RX0_IRQHandler(void){
 				break;			
 			
 				case AXIS1_ID:							
-					switch((can1_rx_msg.StdId )&0x01F){ 
+					switch(can1_rx_msg.StdId & 0x01F){ 
 
 						case MSG_ODRIVE_HEARTBEAT:
 							ODReadHeartBeatData(&can1_rx_msg,&OdReceivedData,axis1);
@@ -1099,9 +1106,68 @@ void CAN1_RX0_IRQHandler(void){
 
 					
 					}
+					break;
+					
+					case AXIS2_ID:							
+					switch(can1_rx_msg.StdId & 0x01F){ 
+
+						case MSG_ODRIVE_HEARTBEAT:
+							ODReadHeartBeatData(&can1_rx_msg,&OdReceivedData,axis2);
+						break;							
+						
+						case MSG_GET_VBUS_VOLTAGE:
+								ODReadVbusData(&can1_rx_msg,&OdReceivedData,axis2);
+											
+						break;	
+						
+//						case MSG_GET_TEMP:
+//								ODReadTempData(&can1_rx_msg,&OdReceivedData,axis1);
+											
+						break;								
+					
+						case MSG_GET_MOTOR_ERROR:
+								ODReadMotorErrorData(&can1_rx_msg,&OdReceivedData,axis2);			
+						break;
+						
+						case MSG_GET_ENCODER_COUNT:
+								ODReadEncoderCountData(&can1_rx_msg,&OdReceivedData,axis2);			
+						break;						
+						
+						case MSG_GET_ENCODER_ESTIMATES:
+								ODReadEncodeEstimatesData(&can1_rx_msg,&OdReceivedData,axis2);			
+						break;								
+		
+						case MSG_GET_ENCODER_ERROR:
+								ODReadEncodeErrorData(&can1_rx_msg,&OdReceivedData,axis2);			
+						break;						
+							
+						
+						case MSG_SET_LIMITS:
+								ODReadLimitData(&can1_rx_msg,&OdReceivedData,axis2);			
+						break;
+
+						case MSG_GET_VEL_GAINS:
+								ODReadVel_gainsData(&can1_rx_msg,&OdReceivedData,axis2);
+						break;
+						
+						case MSG_GET_POS_GAIN:
+								ODReadPos_gainData(&can1_rx_msg,&OdReceivedData,axis2);
+								
+						break;
+						
+						case MSG_GET_MOTOR_TEMP:
+								ODReadTempData(&can1_rx_msg,&OdReceivedData,axis2);
+						break;
+						
+					default:	break;			
+
+
+																						
+					}
+					break;
 
 					case AXIS3_ID:							
-					switch((can1_rx_msg.StdId )&0x01F){ 
+					switch(can1_rx_msg.StdId & 0x01F){ 
 
 						case MSG_ODRIVE_HEARTBEAT:
 							ODReadHeartBeatData(&can1_rx_msg,&OdReceivedData,axis3);
@@ -1351,9 +1417,12 @@ void ODRequestedState(void){
 void ODFlashSave(void){		
 	if(OdriveData.flashSaveFlag){                                              						
 		//config
-		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_SAVE_CONFIG);
-		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_SAVE_CONFIG);
+//		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_SAVE_CONFIG);
+//		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_SAVE_CONFIG);
 		
+		
+		OdriveSend_RemoteCmd(CAN1,AXIS2_ID,MSG_SAVE_CONFIG);
+		OdriveSend_RemoteCmd(CAN1,AXIS3_ID,MSG_SAVE_CONFIG);
 //		OdriveSend_RemoteCmd(CAN1,AXIS0_ID,MSG_RESET_ODRIVE);
 //		OdriveSend_RemoteCmd(CAN1,AXIS1_ID,MSG_RESET_ODRIVE);
 //		
@@ -1369,8 +1438,11 @@ void ODChangeVel_gain(void){
 	if(OdriveData.Vel_gainFlag){                                              						
 		//config
 		
-		ODSendVel_gainsData(CAN1,AXIS0_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis0,&ODSendData);
-		ODSendVel_gainsData(CAN1,AXIS1_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis1,&ODSendData);
+//		ODSendVel_gainsData(CAN1,AXIS0_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis0,&ODSendData);
+//		ODSendVel_gainsData(CAN1,AXIS1_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis1,&ODSendData);
+		
+		ODSendVel_gainsData(CAN1,AXIS2_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis2,&ODSendData);
+		ODSendVel_gainsData(CAN1,AXIS3_ID,MSG_SET_VEL_GAINS,4,&OdriveData,axis3,&ODSendData);
 		
 		digitalLo(&OdriveData.Vel_gainFlag);         
         
@@ -1416,8 +1488,11 @@ void ODSetMotorState(void){
     //如果想要对电机控制模式进行操作，直接将OdriveData.ControlModeFlag高一次即可,并且电机控制模式为CMD_MENU
 	if((OdriveData.ControlModeFlag)){                                              
 			
-		set_axis_requested_state(CAN1,AXIS0_ID,MSG_SET_AXIS_REQUESTED_STATE,4,&OdriveData,axis0,&ODSendData);
-		set_axis_requested_state(CAN1,AXIS1_ID,MSG_SET_AXIS_REQUESTED_STATE,4,&OdriveData,axis1,&ODSendData);
+//		set_axis_requested_state(CAN1,AXIS0_ID,MSG_SET_AXIS_REQUESTED_STATE,4,&OdriveData,axis0,&ODSendData);
+//		set_axis_requested_state(CAN1,AXIS1_ID,MSG_SET_AXIS_REQUESTED_STATE,4,&OdriveData,axis1,&ODSendData);
+		
+		set_axis_requested_state(CAN1,AXIS2_ID,MSG_SET_AXIS_REQUESTED_STATE,4,&OdriveData,axis2,&ODSendData);
+		set_axis_requested_state(CAN1,AXIS3_ID,MSG_SET_AXIS_REQUESTED_STATE,4,&OdriveData,axis3,&ODSendData);
 		
 										
 		digitalLo(&OdriveData.ControlModeFlag);         
@@ -1513,7 +1588,7 @@ void odrivelUpdateTask(void *Parameters){
 								
 								if(NFC.flag == 0){
 									ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
-									ODSendInputVelData(CAN1,AXIS3_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
+									ODSendInputVelData(CAN1,AXIS2_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 								}
 								NFC.flag++;
 //								ODSendInputVelData(CAN2,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
@@ -1562,7 +1637,7 @@ void odrivelUpdateTask(void *Parameters){
 								
 								if(NFC.flag == 2){
 									ODSendInputVelData(CAN1,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
-									ODSendInputVelData(CAN1,AXIS2_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
+									ODSendInputVelData(CAN1,AXIS3_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
 									NFC.flag = 0;
 								}
 								

@@ -7,11 +7,12 @@
 
 #define AXIS0_ID 0x000 //M0的CANID
 #define AXIS1_ID 0x002 //M1的CANID
-#define AXIS2_ID 0x001 //M2的CANID
-#define AXIS3_ID 0x003 //M3的CANID
+#define AXIS2_ID 0x004 //M2的CANID
+#define AXIS3_ID 0x006 //M3的CANID
+//#define AXIS3_ID 0x003 //M3的CANID
 
 #define ODRIVE_PRIORITY 3
-#define ODRIVE_STACK_SIZE 512
+#define ODRIVE_STACK_SIZE 1024
 #define ODRIVE_NORMAL_PERIOD 8
 
 
@@ -198,13 +199,13 @@ typedef struct {
 typedef struct {
 	
 	//位置环增益
-	formatTrans32Struct_t Pos_gain[2];
+	formatTrans32Struct_t Pos_gain[4];
 	
 	//速度环增益
-	formatTrans32Struct_t Vel_gain[2];
+	formatTrans32Struct_t Vel_gain[4];
 	
 	//速度环积分增益
-	formatTrans32Struct_t Vel_integrator_gain[2];
+	formatTrans32Struct_t Vel_integrator_gain[4];
 	
 	//电机的控制状态
 	ODAxisStateStruct_t	AxisState[4];
@@ -232,9 +233,10 @@ typedef struct {
 	
 	//配置电机控制模式FLAG	
 	uint8_t ControlModeFlag;	
-	
+	uint8_t ControlModeFlag1;
 	//清楚电机错误FLAG
 	uint8_t clearerrorFlag;
+	uint8_t clearerrorFlag1;
 	
 	//查询电机的电感/电阻/极对数和电机控制状态
 	uint8_t readpairsFlag;
@@ -253,10 +255,10 @@ typedef struct {
 	uint8_t Vel_integrator_gainFlag;
 	
 	//速度限制——发送
-	formatTrans32Struct_t vel_limit[2]; 
+	formatTrans32Struct_t vel_limit[4]; 
 	
 	//电流限制——发送
-	formatTrans32Struct_t current_limit[2];
+	formatTrans32Struct_t current_limit[4];
 
 	
 
