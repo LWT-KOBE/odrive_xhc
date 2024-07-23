@@ -176,20 +176,20 @@ typedef struct {
 
 	
 	//电机控制模式
-	ODControlMode control_mode[2];				
+	ODControlMode control_mode[4];				
 	
-	float motor_phase_resistance[2];//电机电阻值
-	float motor_phase_inductance[2];//电机电感值
-	uint8_t motor_pole_pairs[2];//电机的极对数
+	float motor_phase_resistance[4];//电机电阻值
+	float motor_phase_inductance[4];//电机电感值
+	uint8_t motor_pole_pairs[4];//电机的极对数
 
-	formatTrans32Struct_t shadow_count[2];//shadow	
-	formatTrans32Struct_t count_in_cpr[2];//CPR
+	formatTrans32Struct_t shadow_count[4];//shadow	
+	formatTrans32Struct_t count_in_cpr[4];//CPR
 	formatTrans32Struct_t pos_estimate[4];//位置	
 	formatTrans32Struct_t vel_estimate[4];//速度
 	formatTrans32Struct_t Iq_measured[4];//电流	
 
-	formatTrans32Struct_t vel_limit[2]; //速度限制——接收
-	formatTrans32Struct_t current_limit[2];//电流限制——接收
+	formatTrans32Struct_t vel_limit[4]; //速度限制——接收
+	formatTrans32Struct_t current_limit[4];//电流限制——接收
 
 
 }ODCanDataRecv_t;

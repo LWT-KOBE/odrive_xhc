@@ -1510,12 +1510,17 @@ void odrivelUpdateTask(void *Parameters){
 						
 							//发送速度命令
 //							if(flag == 1){
-								ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
-								ODSendInputVelData(CAN1,AXIS3_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
+								
+								if(NFC.flag == 0){
+									ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
+									ODSendInputVelData(CAN1,AXIS3_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
+								}
+								NFC.flag++;
 //								ODSendInputVelData(CAN2,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
 //								ODSendInputVelData(CAN2,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 //								flag = 0;
 //							}
+						break;
 						case CONTROL_MODE_POSITION:
 						case CONTROL_MODE_POSITION_TRAP:
 
@@ -1554,8 +1559,13 @@ void odrivelUpdateTask(void *Parameters){
 						
 							//发送速度命令
 //								if(flag == 1){
-								ODSendInputVelData(CAN1,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
-								ODSendInputVelData(CAN1,AXIS2_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
+								
+								if(NFC.flag == 2){
+									ODSendInputVelData(CAN1,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
+									ODSendInputVelData(CAN1,AXIS2_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
+									NFC.flag = 0;
+								}
+								
 								//ODSendInputVelData(CAN1,AXIS0_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis0,&ODSendData);
 								
 //								ODSendInputVelData(CAN2,AXIS1_ID,MSG_SET_INPUT_VEL,4,&OdriveData,axis1,&ODSendData);
