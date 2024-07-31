@@ -224,12 +224,15 @@ typedef struct {
 		
 	//配置电机状态FLAG	
 	uint8_t RequestedStateFlag;
+	uint8_t RequestedStateFlag1;
 
 	//保存ODRIVE的配置参数FLAG
 	uint8_t flashSaveFlag;
+	uint8_t flashSaveFlag1;
 	
 	//重启odrive
 	uint8_t RebotFlag;
+	uint8_t RebotFlag1;
 	
 	//配置电机控制模式FLAG	
 	uint8_t ControlModeFlag;	
@@ -240,19 +243,20 @@ typedef struct {
 	
 	//查询电机的电感/电阻/极对数和电机控制状态
 	uint8_t readpairsFlag;
-
+	uint8_t readpairsFlag1;
+	
 	//设置电流电压限制FLAG	
 	uint8_t SetLimitFlag;
+	uint8_t SetLimitFlag1;
 
 	
 	//配置电机位置环增添FLAG	
 	uint8_t Pos_gainFlag;
+	uint8_t Pos_gainFlag1;
 	
 	//配置电机速度环增益FLAG	
 	uint8_t Vel_gainFlag;
-	
-	//配置电机速度环积分增益FLAG	
-	uint8_t Vel_integrator_gainFlag;
+	uint8_t Vel_gainFlag1;
 	
 	//速度限制——发送
 	formatTrans32Struct_t vel_limit[4]; 
