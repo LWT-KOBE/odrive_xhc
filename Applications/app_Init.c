@@ -22,6 +22,13 @@ void appInit(void *Parameters){
 	//控制初始化
 	controlInit();
 	
+	//小火车控制任务初始化
+	XHCDataInit();
+	
+	//CAN2控制任务初始化
+	CAN2DataInit();
+	
+	
 	//运动控制初始化
 	balanceInit();
     //虚拟串口初始化完成标志

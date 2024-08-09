@@ -96,6 +96,8 @@
 .\objects\control.o: .\Driver\driver_crc.h
 .\objects\control.o: .\Driver\driver_key.h
 .\objects\control.o: .\Driver\driver_lcd.h
+.\objects\control.o: Applications\XHC_Task.h
+.\objects\control.o: Applications\CAN2_Task.h
 .\objects\control.o: Applications\config.h
 .\objects\control.o: Applications\main.h
 .\objects\control.o: Applications\supervisor.h

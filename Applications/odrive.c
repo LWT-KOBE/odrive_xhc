@@ -1256,144 +1256,6 @@ void CAN1_TX_IRQHandler(void){
 
 
 
-//     Frame
-// nodeID | CMD
-// 6 bits | 5 bits
-
-u32 rxbuf2;
-void CAN2_RX0_IRQHandler(void){
-	CanRxMsg can2_rx_msg;
-	if (CAN_GetITStatus(CAN2,CAN_IT_FMP0)!= RESET){
-		CAN_ClearITPendingBit(CAN2, CAN_IT_FF0);
-		CAN_ClearFlag(CAN2, CAN_FLAG_FF0);		
-		CAN_Receive(CAN2, CAN_FIFO0, &can2_rx_msg);
-		
-		rxbuf2=can2_rx_msg.StdId;	
-		digitalIncreasing(&OdriveData.OdError.errorCount);
-		/*********以下是自定义部分**********/
-		switch(can2_rx_msg.StdId>>5){         
-				case AXIS0_ID:
-		
-					switch(can2_rx_msg.StdId&0x01F){ 
-
-						case MSG_ODRIVE_HEARTBEAT:
-							ODReadHeartBeatData(&can2_rx_msg,&OdReceivedData,axis0);
-						break;							
-						
-						case MSG_GET_VBUS_VOLTAGE:
-								ODReadVbusData(&can2_rx_msg,&OdReceivedData,axis0);
-											
-						break;	
-						
-//						case MSG_GET_TEMP:
-//								ODReadTempData(&can2_rx_msg,&OdReceivedData,axis0);
-											
-						break;								
-					
-						case MSG_GET_MOTOR_ERROR:
-								ODReadMotorErrorData(&can2_rx_msg,&OdReceivedData,axis0);			
-						break;
-						
-						case MSG_GET_ENCODER_COUNT:
-								ODReadEncoderCountData(&can2_rx_msg,&OdReceivedData,axis0);			
-						break;						
-						
-						case MSG_GET_ENCODER_ESTIMATES:
-								ODReadEncodeEstimatesData(&can2_rx_msg,&OdReceivedData,axis0);			
-						break;								
-		
-						case MSG_GET_ENCODER_ERROR:
-								ODReadEncodeErrorData(&can2_rx_msg,&OdReceivedData,axis0);			
-						break;						
-							
-						
-						case MSG_SET_LIMITS:
-								ODReadLimitData(&can2_rx_msg,&OdReceivedData,axis0);			
-						break;							
-						
-					default:	break;																			
-
-					
-					}						
-						
-				break;			
-			
-				case AXIS1_ID:							
-					switch(can2_rx_msg.StdId&0x01F){ 
-
-						case MSG_ODRIVE_HEARTBEAT:
-							ODReadHeartBeatData(&can2_rx_msg,&OdReceivedData,axis1);
-						break;							
-						
-						case MSG_GET_VBUS_VOLTAGE:
-								ODReadVbusData(&can2_rx_msg,&OdReceivedData,axis1);
-											
-						break;	
-						
-//						case MSG_GET_TEMP:
-//								ODReadTempData(&can2_rx_msg,&OdReceivedData,axis1);
-											
-						break;								
-					
-						case MSG_GET_MOTOR_ERROR:
-								ODReadMotorErrorData(&can2_rx_msg,&OdReceivedData,axis1);			
-						break;
-						
-						case MSG_GET_ENCODER_COUNT:
-								ODReadEncoderCountData(&can2_rx_msg,&OdReceivedData,axis1);			
-						break;						
-						
-						case MSG_GET_ENCODER_ESTIMATES:
-								ODReadEncodeEstimatesData(&can2_rx_msg,&OdReceivedData,axis1);			
-						break;								
-		
-						case MSG_GET_ENCODER_ERROR:
-								ODReadEncodeErrorData(&can2_rx_msg,&OdReceivedData,axis1);			
-						break;						
-							
-						
-						case MSG_SET_LIMITS:
-								ODReadLimitData(&can2_rx_msg,&OdReceivedData,axis1);			
-						break;							
-						
-					default:	break;			
-
-
-																							
-
-					
-					}
-
-				
-						
-				break;					
-				
-				
-			default:	break;		
-
-        }	 
-
-
-	}
-}
-
-
-/*
-***************************************************
-函数名：CAN2_TX_IRQHandler
-功能：CAN2发送中断
-备注：
-***************************************************
-*/
-void CAN2_TX_IRQHandler(void){
-	if (CAN_GetITStatus(CAN2,CAN_IT_TME)!= RESET){
-		CAN_ClearITPendingBit(CAN2,CAN_IT_TME);
-
-		/*********以下是自定义部分**********/
-        
-        
-	}
-}
 
 
 
@@ -1598,15 +1460,10 @@ void OdriveGlobalInit(void){
 	//初始化CAN1
     driver_can1_init(CAN1,BSP_GPIOB8,BSP_GPIOB9,4,0);//405
 	//driver_can1_init(CAN1,BSP_GPIOD0,BSP_GPIOD1,4,0);//407
-//	driver_can2_init(CAN2,BSP_GPIOB12,BSP_GPIOB13,4,0);
-	//初始化CAN2 波特率125K
-	//CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,24,CAN_Mode_Normal);
-	//初始化CAN2 波特率250K
-	//CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,12,CAN_Mode_Normal);
-	CAN2_Mode_Init(CAN_SJW_1tq,CAN_BS2_5tq,CAN_BS1_9tq,3,CAN_Mode_Normal);
+	//driver_can2_init(CAN2,BSP_GPIOB12,BSP_GPIOB13,4,0);
+	
 	
 	//电机初始配置	
-
 	OdriveData.AxisState[axis0]   = AXIS_STATE_CLOSED_LOOP_CONTROL;//使能电机1			
 	OdriveData.ControlMode[axis0] = CONTROL_MODE_VELOCITY_RAMP;//速度梯形模式
 	OdriveData.current_limit[axis0].float_temp = 15.0f;
@@ -1690,7 +1547,7 @@ void odrivelUpdateTask(void *Parameters){
 							//OdriveData.SetPos[0].float_temp;
 						
 							//发送位置命令
-							//ODSendInputPosData(CAN1,AXIS0_ID,MSG_SET_INPUT_POS,4,&OdriveData,axis0,&ODSendData);
+							ODSendInputPosData(CAN1,AXIS0_ID,MSG_SET_INPUT_POS,4,&OdriveData,axis0,&ODSendData);
 							//ODSendInputPosData(CAN1,AXIS1_ID,MSG_SET_INPUT_POS,4,&OdriveData,axis0,&ODSendData);
 						
 						break;																		

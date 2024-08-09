@@ -104,6 +104,8 @@
 .\objects\config.o: Applications\application.h
 .\objects\config.o: Applications\app_Init.h
 .\objects\config.o: Applications\clockcount.h
+.\objects\config.o: Applications\XHC_Task.h
+.\objects\config.o: Applications\CAN2_Task.h
 .\objects\config.o: Applications\main.h
 .\objects\config.o: Applications\supervisor.h
 .\objects\config.o: Applications\board.h

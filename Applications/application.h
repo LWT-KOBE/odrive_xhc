@@ -3,6 +3,8 @@
 
 #include "app_Init.h"
 #include "clockcount.h"
+#include "XHC_Task.h"
+#include "CAN2_Task.h"
 #include "control.h"
 #include "config.h"
 #include "main.h"

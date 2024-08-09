@@ -282,9 +282,9 @@ pwm代表增量输出
 float Incremental_PID(float reality,float target)
 { 	
 	 static float Bias,Pwm,Last_bias=0,Prev_bias=0,Incremental_KP,Incremental_KI,Incremental_KD;
-     Incremental_KP = 0.05f;
-	 Incremental_KI = 0.00f;
-	 Incremental_KD = 0.05f;
+     Incremental_KP = 0.5f;
+	 Incremental_KI = 0.5f;
+	 Incremental_KD = 0.00f;
 	 Bias=target-reality;                                   /* 计算偏差 */
     
 	 Pwm += (Incremental_KP*(Bias-Last_bias))               /* 比例环节 */
@@ -614,7 +614,7 @@ void PID_Calc(PID *pid, float reference, float feedback)
 	pid->last_dev = pid->this_dev;
 	
 	
-	if(fabs(pid->error)<0.5){
+	if(fabs(pid->error)<0.75){
 		pid->output = 0;
 		Motor_SpeedB_Goal.change++;
 		if(Motor_SpeedB_Goal.change > 50){

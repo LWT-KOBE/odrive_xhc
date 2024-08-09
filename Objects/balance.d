@@ -96,6 +96,8 @@
 .\objects\balance.o: .\Driver\driver_crc.h
 .\objects\balance.o: .\Driver\driver_key.h
 .\objects\balance.o: .\Driver\driver_lcd.h
+.\objects\balance.o: Applications\XHC_Task.h
+.\objects\balance.o: Applications\CAN2_Task.h
 .\objects\balance.o: Applications\config.h
 .\objects\balance.o: Applications\main.h
 .\objects\balance.o: Applications\supervisor.h

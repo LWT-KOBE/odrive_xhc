@@ -103,6 +103,8 @@
 .\objects\odrive.o: Applications\application.h
 .\objects\odrive.o: Applications\app_Init.h
 .\objects\odrive.o: Applications\clockcount.h
+.\objects\odrive.o: Applications\XHC_Task.h
+.\objects\odrive.o: Applications\CAN2_Task.h
 .\objects\odrive.o: Applications\config.h
 .\objects\odrive.o: Applications\main.h
 .\objects\odrive.o: Applications\supervisor.h

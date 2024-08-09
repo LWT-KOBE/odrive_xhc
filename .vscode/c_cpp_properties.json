@@ -25,7 +25,8 @@
                 "D:\\ARM\\ARMCC\\include\\rw",
                 "c:\\Users\\13359\\Desktop\\AGV\\ODrive_XHC\\Libraries\\STM32F4xx_StdPeriph_Driver\\src",
                 "c:\\Users\\13359\\Desktop\\AGV\\ODrive_XHC\\FreeRTOS",
-                "c:\\Users\\13359\\Desktop\\AGV\\ODrive_XHC\\Libraries\\CMSIS\\ST\\STM32F4xx\\Source\\Templates"
+                "c:\\Users\\13359\\Desktop\\AGV\\ODrive_XHC\\Libraries\\CMSIS\\ST\\STM32F4xx\\Source\\Templates",
+                "c:\\Users\\13359\\Desktop\\AGV\\ODrive_XHC\\DOC"
             ],
             "defines": [
                 "STM32F427_437xx",

@@ -104,6 +104,8 @@
 .\objects\encoder.o: .\Applications\application.h
 .\objects\encoder.o: .\Applications\app_Init.h
 .\objects\encoder.o: .\Applications\clockcount.h
+.\objects\encoder.o: .\Applications\XHC_Task.h
+.\objects\encoder.o: .\Applications\CAN2_Task.h
 .\objects\encoder.o: .\Applications\config.h
 .\objects\encoder.o: .\Applications\main.h
 .\objects\encoder.o: .\Applications\supervisor.h

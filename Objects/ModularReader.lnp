@@ -8,6 +8,8 @@
 ".\objects\lcd.o"
 ".\objects\pid.o"
 ".\objects\balance.o"
+".\objects\xhc_task.o"
+".\objects\can2_task.o"
 ".\objects\driver_clockcount.o"
 ".\objects\driver_crc.o"
 ".\objects\driver_rgb.o"

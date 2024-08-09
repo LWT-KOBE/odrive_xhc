@@ -106,6 +106,8 @@
 .\objects\usartx.o: .\Applications\application.h
 .\objects\usartx.o: .\Applications\app_Init.h
 .\objects\usartx.o: .\Applications\clockcount.h
+.\objects\usartx.o: .\Applications\XHC_Task.h
+.\objects\usartx.o: .\Applications\CAN2_Task.h
 .\objects\usartx.o: .\Applications\config.h
 .\objects\usartx.o: .\Applications\main.h
 .\objects\usartx.o: .\Applications\supervisor.h

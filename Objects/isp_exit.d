@@ -103,6 +103,8 @@
 .\objects\isp_exit.o: .\Applications\application.h
 .\objects\isp_exit.o: .\Applications\app_Init.h
 .\objects\isp_exit.o: .\Applications\clockcount.h
+.\objects\isp_exit.o: .\Applications\XHC_Task.h
+.\objects\isp_exit.o: .\Applications\CAN2_Task.h
 .\objects\isp_exit.o: .\Applications\config.h
 .\objects\isp_exit.o: .\Applications\main.h
 .\objects\isp_exit.o: .\Applications\supervisor.h

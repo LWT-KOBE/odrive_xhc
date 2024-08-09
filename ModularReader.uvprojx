@@ -80,9 +80,9 @@
             <nStopB2X>0</nStopB2X>
           </BeforeMake>
           <AfterMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>fromelf --bin -o ".\bin_file\@L.bin" "#L"</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -425,6 +425,16 @@
               <FileName>balance.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Applications\balance.c</FilePath>
+            </File>
+            <File>
+              <FileName>XHC_Task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Applications\XHC_Task.c</FilePath>
+            </File>
+            <File>
+              <FileName>CAN2_Task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Applications\CAN2_Task.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -833,6 +843,16 @@
               <FileName>MODBUSProtocol.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Driver\MODBUSProtocol.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>DOC</GroupName>
+          <Files>
+            <File>
+              <FileName>readme.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\DOC\readme.txt</FilePath>
             </File>
           </Files>
         </Group>

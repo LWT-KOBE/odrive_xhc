@@ -103,6 +103,8 @@
 .\objects\isp_spi.o: .\Applications\application.h
 .\objects\isp_spi.o: .\Applications\app_Init.h
 .\objects\isp_spi.o: .\Applications\clockcount.h
+.\objects\isp_spi.o: .\Applications\XHC_Task.h
+.\objects\isp_spi.o: .\Applications\CAN2_Task.h
 .\objects\isp_spi.o: .\Applications\config.h
 .\objects\isp_spi.o: .\Applications\main.h
 .\objects\isp_spi.o: .\Applications\supervisor.h

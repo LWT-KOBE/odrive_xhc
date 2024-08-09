@@ -106,6 +106,8 @@
 .\objects\pid.o: Applications\application.h
 .\objects\pid.o: Applications\app_Init.h
 .\objects\pid.o: Applications\clockcount.h
+.\objects\pid.o: Applications\XHC_Task.h
+.\objects\pid.o: Applications\CAN2_Task.h
 .\objects\pid.o: Applications\main.h
 .\objects\pid.o: Applications\supervisor.h
 .\objects\pid.o: Applications\board.h

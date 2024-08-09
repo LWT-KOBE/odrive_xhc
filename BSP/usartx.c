@@ -904,22 +904,22 @@ void Serial1Data(uint8_t ucData){
 
 //串口3接收处理函数
 void Serial3Data(uint8_t ucData){
-//	static unsigned char ucRxBuffer[250];
-//	static unsigned char ucRxCnt = 0;	
-//	ucRxBuffer[ucRxCnt++]=ucData;	//将收到的数据存入缓冲区中
-//	if (ucRxBuffer[0]!=0xFC) //数据头不对，则重新开始寻找0x66数据头
-//	{
-//		if(ucRxBuffer[1]!=0x05){
-//				ucRxCnt=0;
-//				return;
-//		}
-//	}
-//	if (ucRxCnt<4) {return;}//数据不满4个，则返回
-//	else
-//	{
-//		
-//		ucRxCnt=0;//清空缓存区
-//	}
+	static unsigned char ucRxBuffer[250];
+	static unsigned char ucRxCnt = 0;	
+	ucRxBuffer[ucRxCnt++]=ucData;	//将收到的数据存入缓冲区中
+	if (ucRxBuffer[0]!=0xFC) //数据头不对，则重新开始寻找0x66数据头
+	{
+		if(ucRxBuffer[1]!=0x05){
+				ucRxCnt=0;
+				return;
+		}
+	}
+	if (ucRxCnt<4) {return;}//数据不满4个，则返回
+	else
+	{
+		Motor_SpeedA_Goal.target = XYZ_Target_Speed_transition(ucRxBuffer[3],ucRxBuffer[2]);
+		ucRxCnt=0;//清空缓存区
+	}
 	
 	
 	//保存接收的字符到字符串数组的对应的位置

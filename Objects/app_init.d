@@ -103,6 +103,8 @@
 .\objects\app_init.o: Applications\application.h
 .\objects\app_init.o: Applications\app_Init.h
 .\objects\app_init.o: Applications\clockcount.h
+.\objects\app_init.o: Applications\XHC_Task.h
+.\objects\app_init.o: Applications\CAN2_Task.h
 .\objects\app_init.o: Applications\config.h
 .\objects\app_init.o: Applications\main.h
 .\objects\app_init.o: Applications\supervisor.h
