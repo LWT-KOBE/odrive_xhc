@@ -3686,7 +3686,7 @@
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
-        <Name>E:\odrive_xhc-55\Libraries\USB\STM32_USB_OTG_Driver\usb_dcd.h</Name>
+        <Name>.\Libraries\USB\STM32_USB_OTG_Driver\usb_dcd.h</Name>
         <ColumnNumber>0</ColumnNumber>
         <TopLine>1</TopLine>
         <CurrentLine>1</CurrentLine>
@@ -3695,7 +3695,7 @@
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
-        <Name>E:\odrive_xhc-55\BSP\bsp_flash.h</Name>
+        <Name>.\BSP\bsp_flash.h</Name>
         <ColumnNumber>0</ColumnNumber>
         <TopLine>1</TopLine>
         <CurrentLine>1</CurrentLine>
