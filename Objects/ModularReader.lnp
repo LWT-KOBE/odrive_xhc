@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp.sp
+--cpu=Cortex-M4.fp
 ".\objects\app_init.o"
 ".\objects\control.o"
 ".\objects\clockcount.o"
@@ -9,7 +9,7 @@
 ".\objects\pid.o"
 ".\objects\balance.o"
 ".\objects\xhc_task.o"
-".\objects\can2_task.o"
+".\objects\can1_task.o"
 ".\objects\driver_clockcount.o"
 ".\objects\driver_crc.o"
 ".\objects\driver_rgb.o"

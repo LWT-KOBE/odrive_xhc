@@ -26,7 +26,7 @@ void appInit(void *Parameters){
 	XHCDataInit();
 	
 	//CAN2控制任务初始化
-	CAN2DataInit();
+	//CAN2DataInit();
 	
 	
 	//运动控制初始化

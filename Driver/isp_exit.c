@@ -65,27 +65,27 @@ void EXTI9_5_IRQHandler(void) {
 
 void EXTI15_10_IRQHandler(void) {
 	
-       //延时10ms
-     delay_ms(10); 
-	
-	if(KEY3==0)	 	 //KEY1按键
-	{    
-	
-        if(Menu==1)	Set_Pos+=0.25f;   
-        else if(Menu==2)	Set_Vel+=0.5f;  
-        else if(Menu==3)	Set_Cur+=0.05f;    
-//		else if(Menu==0){
-//			Set_Pos =0.0f;
-//			Set_Vel =0.0f;
-//			Set_Cur =0.0f;
-//		}			
-	
-    }
+////       //延时10ms
+////     delay_ms(10); 
+////	
+////	if(KEY3==0)	 	 //KEY1按键
+////	{    
+////	
+////        if(Menu==1)	Set_Pos+=0.25f;   
+////        else if(Menu==2)	Set_Vel+=0.5f;  
+////        else if(Menu==3)	Set_Cur+=0.05f;    
+//////		else if(Menu==0){
+//////			Set_Pos =0.0f;
+//////			Set_Vel =0.0f;
+//////			Set_Cur =0.0f;
+//////		}			
+//	
+//    }
 
 
-	
-	EXTI_ClearITPendingBit(EXTI_Line12); //清除LINE12上的中断标志位      
-	//EXTI_ClearITPendingBit(EXTI_Line15); //清除LINE12上的中断标志位      
+//	
+//	EXTI_ClearITPendingBit(EXTI_Line12); //清除LINE12上的中断标志位      
+//	//EXTI_ClearITPendingBit(EXTI_Line15); //清除LINE12上的中断标志位      
 
 
 	

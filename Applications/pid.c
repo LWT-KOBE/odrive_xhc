@@ -238,9 +238,9 @@ pwm代表输出
 float Position_PID(float reality,float target)
 { 	
     static float Bias,Pwm,Last_Bias,Integral_bias=0,Position_KP,Position_KI,Position_KD;
-    Position_KP = 0.35f;
-	Position_KI = 0.005f;
-	Position_KD = 0.0f;
+    Position_KP = 1.5f;
+	Position_KI = 0.000f;
+	Position_KD = 6.0f;
 	
     Bias=target-reality;                            /* 计算偏差 */
     Integral_bias+=Bias;	                        /* 偏差累积 */
@@ -258,8 +258,8 @@ float Position_PID(float reality,float target)
 //	if(Pwm >  0.9f) Pwm =  0.9f;
 //	if(Pwm < -0.9f) Pwm = -0.9f;						/* 输出限幅 */
 	
-	if(Pwm >  0.1f) Pwm =  0.1f;
-	if(Pwm < -0.1f) Pwm = -0.1f;						/* 输出限幅 */
+	if(Pwm >  2.2f) Pwm =  2.2f;
+	if(Pwm < -2.2f) Pwm = -2.2f;						/* 输出限幅 */
 	
 //	if(fabs(Bias)<0.15){
 //		Pwm = 0;
@@ -279,31 +279,51 @@ e(k)代表本次偏差
 e(k-1)代表上一次的偏差  以此类推 
 pwm代表增量输出
 **************************************************************************/
+
 float Incremental_PID(float reality,float target)
 { 	
-	 static float Bias,Pwm,Last_bias=0,Prev_bias=0,Incremental_KP,Incremental_KI,Incremental_KD;
-     Incremental_KP = 0.5f;
-	 Incremental_KI = 0.5f;
-	 Incremental_KD = 0.00f;
-	 Bias=target-reality;                                   /* 计算偏差 */
+	 static float Bias,Pwm,Last_bias=0,Prev_bias=0,Incremental_KP,Incremental_KI,Incremental_KD,last_dev,this_dev,alpha;
+//   Incremental_KP = 0.00125f;
+//	 Incremental_KI = 0.00125f;
+//	 Incremental_KD = 0.00f;
+	 
+	 alpha = 0.02;
+	 //5ms状态下
+	 Incremental_KP = 8.0f;
+	 Incremental_KI = 0.07f;
+	 Incremental_KD = 0.0f;
+	
+//	 Incremental_KP = 0.000125f;
+//	 Incremental_KI = 0.001f;
+//	 Incremental_KD = 0.00f;
+	 
+	 if(target == 0){
+		 Bias = 0;
+		 Last_bias = 0;
+		 Pwm = 0;
+		 Prev_bias = 0;
+	 }
+	 Bias=target - reality;                                   /* 计算偏差 */
+
     
 	 Pwm += (Incremental_KP*(Bias-Last_bias))               /* 比例环节 */
            +(Incremental_KI*Bias)                           /* 积分环节 */
-           +(Incremental_KD*(Bias-2*Last_bias+Prev_bias));  /* 微分环节 */ 
-    
+           +(Incremental_KD*(Bias-2*Last_bias+Prev_bias));  /* 微分环节 */
+	 
+	 
      Prev_bias=Last_bias;                                   /* 保存上上次偏差 */
 	 Last_bias=Bias;	                                    /* 保存上一次偏差 */
 		
-//	 if(fabs(Bias)<0.75){
-//		 Prev_bias = 0;
-//		 Last_bias = 0;
-//		 Pwm = 0;
-//	 }
-    
 	//限幅
-	if(Pwm >  2.2f) Pwm =  2.2f;
-	if(Pwm < -2.2f) Pwm = -2.2f;
-	return Pwm;                                            /* 输出结果 */
+	if(Pwm >  3.5f) Pwm =  3.5;
+	if(Pwm < -3.5f) Pwm = -3.5f;
+	
+	//一阶低通滤波微分部分处理
+	this_dev = Pwm * (1 - alpha) + alpha * last_dev;
+	//记录上一个低通微分处理之后的值
+	last_dev = this_dev;
+	//return Pwm;                                            /* 输出结果 */
+	return this_dev;                                            /* 输出结果 */
 }
 
 //位置式PID计算

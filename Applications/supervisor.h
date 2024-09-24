@@ -27,7 +27,7 @@ enum {
 	LCD_TASK,
 	ODRIVE_TASK,
 	XHC_Task,
-	CAN2_Task,
+	CAN1_Task,
 	LIST_OF_TASK,
 	
 };

@@ -864,7 +864,7 @@ void Serial1Data(uint8_t ucData){
 			
 			if(strncmp(g_usart1_recv_buf, "MOB=\n ", 4) == 0)//速度控制命令
 			{
-				balanceData.flag = 1;
+				//balanceData.flag = 1;
 				sscanf(g_usart1_recv_buf, "MOB=%f\n", &Motor_SpeedB_Goal.target);//速度修改
 				//OdriveData.Vel_gain[0].float_temp += 5;
 				//printf("%f\r\n",OdriveData.SetVel[1].float_temp);

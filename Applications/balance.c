@@ -59,32 +59,52 @@ void balanceUpdateTask(void *Parameters){
 		
 		//正常发速度指令控制
 		if(balanceData.flag == 0){
-			//Motor_SpeedA_Goal.target = Incremental_PID(OdReceivedData.vel_estimate[1].float_temp,Motor_SpeedB_Goal.target);
+			
+			
+			
+			Motor_SpeedA_Goal.target = Incremental_PID((OdReceivedData.vel_estimate[1].float_temp * 0.2199f),Motor_SpeedB_Goal.target);
+			
+			//Motor_SpeedA_Goal.target = Position_PID((OdReceivedData.vel_estimate[1].float_temp * 0.2199f ),Motor_SpeedB_Goal.target);
+			
+			if(Motor_SpeedB_Goal.target == 0){
+				
+				if(fabs(OdReceivedData.vel_estimate[1].float_temp * 0.2199f ) <= 0.2){
+					Motor_SpeedA_Goal.target = 0;
+				}else if(OdReceivedData.vel_estimate[1].float_temp * 0.2199f  > 0.2){
+					Motor_SpeedA_Goal.target = -1.575;
+				}else if(OdReceivedData.vel_estimate[1].float_temp * 0.2199f  < -0.2){
+					Motor_SpeedA_Goal.target = 1.575;
+				}
+			}
+			
+//			if(Motor_SpeedB_Goal.target == 0){
+//				Motor_SpeedA_Goal.target = 0;
+//			}
 			//分段控制速度 因为odrive端只有Kp,和设定的目标值有静态差距，故在发送时增大发送值来达到真正的期望值
-			if(fabs(Motor_SpeedA_Goal.target) <=0.5f){
-				OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.275f;
-				OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.275f;
-			}
+//			if(fabs(Motor_SpeedA_Goal.target) <=0.5f){
+//				OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.275f;
+//				OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.275f;
+//			}
+//			
+//			else if(fabs(Motor_SpeedA_Goal.target) <=1 && fabs(Motor_SpeedA_Goal.target) > 0.5f){
+//				OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.2f;
+//				OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.2f;
+//			}
+//			
+//			if(fabs(Motor_SpeedA_Goal.target) <=1.5f && fabs(Motor_SpeedA_Goal.target) > 1.0f){
+//				OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.125f;
+//				OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.125f;
+//			}
+//			
+//			else if(fabs(Motor_SpeedA_Goal.target) >1.5f){
+//				OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.095f;
+//				OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.095f;
+//			}
 			
-			else if(fabs(Motor_SpeedA_Goal.target) <=1 && fabs(Motor_SpeedA_Goal.target) > 0.5f){
-				OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.2f;
-				OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.2f;
-			}
+			OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.00f;
+			OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.00f;
 			
-			if(fabs(Motor_SpeedA_Goal.target) <=1.5f && fabs(Motor_SpeedA_Goal.target) > 1.0f){
-				OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.125f;
-				OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.125f;
-			}
-			
-			else if(fabs(Motor_SpeedA_Goal.target) >1.5f){
-				OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.095f;
-				OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.095f;
-			}
-			
-//			OdriveData.SetVel[0].float_temp = -Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.00f;
-//			OdriveData.SetVel[1].float_temp = Motor_SpeedA_Goal.target / (M_PI * 0.07f) * 1.00f;
-			
-			Motor_SpeedB_Goal.target = 0;
+			//Motor_SpeedB_Goal.target = 0;
 			Angle_Goal.target = OdReceivedData.vel_estimate[0].float_temp;
 			//EW.mileage = 0;
 			Angle_Goal.finish = 0;
