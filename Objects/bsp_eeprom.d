@@ -4,7 +4,7 @@
 .\objects\bsp_eeprom.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h
 .\objects\bsp_eeprom.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\bsp_eeprom.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\bsp_eeprom.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\bsp_eeprom.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\bsp_eeprom.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\bsp_eeprom.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\bsp_eeprom.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -42,7 +42,7 @@
 .\objects\bsp_eeprom.o: .\Applications\app_Init.h
 .\objects\bsp_eeprom.o: .\Applications\FreeRTOS_board.h
 .\objects\bsp_eeprom.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\bsp_eeprom.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\bsp_eeprom.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\bsp_eeprom.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\bsp_eeprom.o: .\FreeRTOS\include\projdefs.h
 .\objects\bsp_eeprom.o: .\FreeRTOS\include\portable.h
@@ -60,8 +60,8 @@
 .\objects\bsp_eeprom.o: .\Applications\clockcount.h
 .\objects\bsp_eeprom.o: .\Driver\Driver_ClockCount.h
 .\objects\bsp_eeprom.o: .\BSP\bsp.h
-.\objects\bsp_eeprom.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\bsp_eeprom.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\bsp_eeprom.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\bsp_eeprom.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\bsp_eeprom.o: .\BSP\bsp_gpio.h
 .\objects\bsp_eeprom.o: .\BSP\bsp_timer.h
 .\objects\bsp_eeprom.o: .\BSP\bsp_pwm.h
@@ -93,7 +93,7 @@
 .\objects\bsp_eeprom.o: .\Driver\driver_flash.h
 .\objects\bsp_eeprom.o: .\Driver\driver_rgb.h
 .\objects\bsp_eeprom.o: .\Applications\control.h
-.\objects\bsp_eeprom.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\bsp_eeprom.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\bsp_eeprom.o: .\Utility\util.h
 .\objects\bsp_eeprom.o: .\Driver\driver_crc.h
 .\objects\bsp_eeprom.o: .\Driver\driver_key.h
@@ -105,11 +105,11 @@
 .\objects\bsp_eeprom.o: .\Applications\supervisor.h
 .\objects\bsp_eeprom.o: .\Applications\board.h
 .\objects\bsp_eeprom.o: .\Applications\std_lib.h
-.\objects\bsp_eeprom.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\bsp_eeprom.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\bsp_eeprom.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\bsp_eeprom.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\bsp_eeprom.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\bsp_eeprom.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\bsp_eeprom.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\bsp_eeprom.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\bsp_eeprom.o: .\Applications\application.h
 .\objects\bsp_eeprom.o: .\Math\nav_para.h
 .\objects\bsp_eeprom.o: .\Math\aq_math.h

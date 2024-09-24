@@ -2,12 +2,12 @@
 .\objects\rotations.o: Math\nav_para.h
 .\objects\rotations.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\rotations.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\rotations.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\rotations.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\rotations.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\rotations.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\rotations.o: .\Libraries\CMSIS\Include\core_cmSimd.h
-.\objects\rotations.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\rotations.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\rotations.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\rotations.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\rotations.o: Math\aq_math.h
 .\objects\rotations.o: Math\matrix.h
 .\objects\rotations.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
@@ -47,7 +47,7 @@
 .\objects\rotations.o: .\Utility\util.h
 .\objects\rotations.o: .\Applications\FreeRTOS_board.h
 .\objects\rotations.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\rotations.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\rotations.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\rotations.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\rotations.o: .\FreeRTOS\include\projdefs.h
 .\objects\rotations.o: .\FreeRTOS\include\portable.h
@@ -62,4 +62,4 @@
 .\objects\rotations.o: .\FreeRTOS\include\semphr.h
 .\objects\rotations.o: .\FreeRTOS\include\event_groups.h
 .\objects\rotations.o: .\FreeRTOS\include\timers.h
-.\objects\rotations.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\rotations.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h

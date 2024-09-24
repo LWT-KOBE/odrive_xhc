@@ -4,7 +4,7 @@
 .\objects\state.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h
 .\objects\state.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\state.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\state.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\state.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\state.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\state.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\state.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -42,7 +42,7 @@
 .\objects\state.o: .\Applications\app_Init.h
 .\objects\state.o: .\Applications\FreeRTOS_board.h
 .\objects\state.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\state.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\state.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\state.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\state.o: .\FreeRTOS\include\projdefs.h
 .\objects\state.o: .\FreeRTOS\include\portable.h
@@ -60,8 +60,8 @@
 .\objects\state.o: .\Applications\clockcount.h
 .\objects\state.o: .\Driver\Driver_ClockCount.h
 .\objects\state.o: .\BSP\bsp.h
-.\objects\state.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\state.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\state.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\state.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\state.o: .\BSP\bsp_gpio.h
 .\objects\state.o: .\BSP\bsp_timer.h
 .\objects\state.o: .\BSP\bsp_pwm.h
@@ -93,7 +93,7 @@
 .\objects\state.o: .\Driver\driver_flash.h
 .\objects\state.o: .\Driver\driver_rgb.h
 .\objects\state.o: .\Applications\control.h
-.\objects\state.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\state.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\state.o: .\Utility\util.h
 .\objects\state.o: .\Driver\driver_crc.h
 .\objects\state.o: .\Driver\driver_key.h
@@ -105,11 +105,11 @@
 .\objects\state.o: .\Applications\supervisor.h
 .\objects\state.o: .\Applications\board.h
 .\objects\state.o: .\Applications\std_lib.h
-.\objects\state.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\state.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\state.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\state.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\state.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\state.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\state.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\state.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\state.o: .\Applications\application.h
 .\objects\state.o: .\Math\nav_para.h
 .\objects\state.o: .\Math\aq_math.h

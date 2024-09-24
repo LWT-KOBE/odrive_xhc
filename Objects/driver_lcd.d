@@ -4,7 +4,7 @@
 .\objects\driver_lcd.o: .\BSP\bsp.h
 .\objects\driver_lcd.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\driver_lcd.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\driver_lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\driver_lcd.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\driver_lcd.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\driver_lcd.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\driver_lcd.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -39,8 +39,8 @@
 .\objects\driver_lcd.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\objects\driver_lcd.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\driver_lcd.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\objects\driver_lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\driver_lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\driver_lcd.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\driver_lcd.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\driver_lcd.o: .\BSP\bsp_gpio.h
 .\objects\driver_lcd.o: .\BSP\bsp_timer.h
 .\objects\driver_lcd.o: .\BSP\bsp_pwm.h
@@ -73,7 +73,7 @@
 .\objects\driver_lcd.o: .\Applications\control.h
 .\objects\driver_lcd.o: .\Applications\FreeRTOS_board.h
 .\objects\driver_lcd.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\driver_lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\driver_lcd.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\driver_lcd.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\driver_lcd.o: .\FreeRTOS\include\projdefs.h
 .\objects\driver_lcd.o: .\FreeRTOS\include\portable.h
@@ -88,7 +88,7 @@
 .\objects\driver_lcd.o: .\FreeRTOS\include\semphr.h
 .\objects\driver_lcd.o: .\FreeRTOS\include\event_groups.h
 .\objects\driver_lcd.o: .\FreeRTOS\include\timers.h
-.\objects\driver_lcd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\driver_lcd.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\driver_lcd.o: .\Utility\util.h
 .\objects\driver_lcd.o: Driver\driver_crc.h
 .\objects\driver_lcd.o: Driver\driver_key.h

@@ -2,7 +2,7 @@
 .\objects\util.o: Utility\util.h
 .\objects\util.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\util.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\util.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\util.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\util.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\util.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\util.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -39,7 +39,7 @@
 .\objects\util.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 .\objects\util.o: .\Applications\FreeRTOS_board.h
 .\objects\util.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\util.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\util.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\util.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\util.o: .\FreeRTOS\include\projdefs.h
 .\objects\util.o: .\FreeRTOS\include\portable.h
@@ -54,7 +54,7 @@
 .\objects\util.o: .\FreeRTOS\include\semphr.h
 .\objects\util.o: .\FreeRTOS\include\event_groups.h
 .\objects\util.o: .\FreeRTOS\include\timers.h
-.\objects\util.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\util.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-.\objects\util.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\util.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\util.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\util.o: D:\ARM\ARMCC\Bin\..\include\math.h
+.\objects\util.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\util.o: D:\ARM\ARMCC\Bin\..\include\string.h

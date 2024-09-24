@@ -2,7 +2,7 @@
 .\objects\matrix.o: Math\matrix.h
 .\objects\matrix.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\matrix.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\matrix.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\matrix.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\matrix.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\matrix.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\matrix.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -37,4 +37,4 @@
 .\objects\matrix.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\objects\matrix.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\matrix.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\objects\matrix.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\matrix.o: D:\ARM\ARMCC\Bin\..\include\math.h

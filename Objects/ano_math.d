@@ -2,7 +2,7 @@
 .\objects\ano_math.o: Math\Ano_Math.h
 .\objects\ano_math.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\ano_math.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\ano_math.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\ano_math.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\ano_math.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\ano_math.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\ano_math.o: .\Libraries\CMSIS\Include\core_cmSimd.h

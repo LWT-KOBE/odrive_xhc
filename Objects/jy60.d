@@ -1,11 +1,11 @@
 .\objects\jy60.o: BSP\JY60.c
 .\objects\jy60.o: BSP\JY60.h
-.\objects\jy60.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\jy60.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\jy60.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\jy60.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\jy60.o: BSP\usartx.h
 .\objects\jy60.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\jy60.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\jy60.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\jy60.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\jy60.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\jy60.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\jy60.o: .\Libraries\CMSIS\Include\core_cmSimd.h

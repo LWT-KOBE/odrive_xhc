@@ -3,12 +3,12 @@
 .\objects\srcdkf.o: Math\aq_math.h
 .\objects\srcdkf.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\srcdkf.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\srcdkf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\srcdkf.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\srcdkf.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\srcdkf.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\srcdkf.o: .\Libraries\CMSIS\Include\core_cmSimd.h
-.\objects\srcdkf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\srcdkf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\srcdkf.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\srcdkf.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\srcdkf.o: .\Utility\util.h
 .\objects\srcdkf.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\srcdkf.o: .\Libraries\CMSIS\Include\core_cm4.h
@@ -45,7 +45,7 @@
 .\objects\srcdkf.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 .\objects\srcdkf.o: .\Applications\FreeRTOS_board.h
 .\objects\srcdkf.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\srcdkf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\srcdkf.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\srcdkf.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\srcdkf.o: .\FreeRTOS\include\projdefs.h
 .\objects\srcdkf.o: .\FreeRTOS\include\portable.h
@@ -60,4 +60,4 @@
 .\objects\srcdkf.o: .\FreeRTOS\include\semphr.h
 .\objects\srcdkf.o: .\FreeRTOS\include\event_groups.h
 .\objects\srcdkf.o: .\FreeRTOS\include\timers.h
-.\objects\srcdkf.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\srcdkf.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h

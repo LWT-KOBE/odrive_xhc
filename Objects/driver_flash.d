@@ -2,7 +2,7 @@
 .\objects\driver_flash.o: Driver\driver_flash.h
 .\objects\driver_flash.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\driver_flash.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\driver_flash.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\driver_flash.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\driver_flash.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\driver_flash.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\driver_flash.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -38,5 +38,5 @@
 .\objects\driver_flash.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\driver_flash.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 .\objects\driver_flash.o: .\BSP\bsp_flash.h
-.\objects\driver_flash.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\driver_flash.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\driver_flash.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\driver_flash.o: D:\ARM\ARMCC\Bin\..\include\stdio.h

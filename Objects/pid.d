@@ -3,7 +3,7 @@
 .\objects\pid.o: .\BSP\bsp.h
 .\objects\pid.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\pid.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\pid.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\pid.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\pid.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\pid.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\pid.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -38,8 +38,8 @@
 .\objects\pid.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\objects\pid.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\pid.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\objects\pid.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\pid.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\pid.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\pid.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\pid.o: .\BSP\bsp_gpio.h
 .\objects\pid.o: .\BSP\bsp_timer.h
 .\objects\pid.o: .\BSP\bsp_pwm.h
@@ -56,7 +56,7 @@
 .\objects\pid.o: .\Utility\util.h
 .\objects\pid.o: .\Applications\FreeRTOS_board.h
 .\objects\pid.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\pid.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\pid.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\pid.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\pid.o: .\FreeRTOS\include\projdefs.h
 .\objects\pid.o: .\FreeRTOS\include\portable.h
@@ -74,12 +74,12 @@
 .\objects\pid.o: Applications\config.h
 .\objects\pid.o: Applications\board.h
 .\objects\pid.o: Applications\std_lib.h
-.\objects\pid.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\pid.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\pid.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\pid.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\pid.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\pid.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\pid.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\pid.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\pid.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\pid.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\pid.o: .\Driver\driver.h
 .\objects\pid.o: .\Driver\driver_clockCount.h
 .\objects\pid.o: .\Driver\driver.h

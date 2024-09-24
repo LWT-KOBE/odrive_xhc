@@ -3,7 +3,7 @@
 .\objects\balance.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h
 .\objects\balance.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\balance.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\balance.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\balance.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\balance.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\balance.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\balance.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -41,7 +41,7 @@
 .\objects\balance.o: Applications\app_Init.h
 .\objects\balance.o: Applications\FreeRTOS_board.h
 .\objects\balance.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\balance.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\balance.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\balance.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\balance.o: .\FreeRTOS\include\projdefs.h
 .\objects\balance.o: .\FreeRTOS\include\portable.h
@@ -59,8 +59,8 @@
 .\objects\balance.o: Applications\clockcount.h
 .\objects\balance.o: .\Driver\Driver_ClockCount.h
 .\objects\balance.o: .\BSP\bsp.h
-.\objects\balance.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\balance.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\balance.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\balance.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\balance.o: .\BSP\bsp_gpio.h
 .\objects\balance.o: .\BSP\bsp_timer.h
 .\objects\balance.o: .\BSP\bsp_pwm.h
@@ -92,7 +92,7 @@
 .\objects\balance.o: .\Driver\driver_flash.h
 .\objects\balance.o: .\Driver\driver_rgb.h
 .\objects\balance.o: .\Applications\control.h
-.\objects\balance.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\balance.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\balance.o: .\Utility\util.h
 .\objects\balance.o: .\Driver\driver_crc.h
 .\objects\balance.o: .\Driver\driver_key.h
@@ -104,11 +104,11 @@
 .\objects\balance.o: Applications\supervisor.h
 .\objects\balance.o: Applications\board.h
 .\objects\balance.o: Applications\std_lib.h
-.\objects\balance.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\balance.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\balance.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\balance.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\balance.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\balance.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\balance.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\balance.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\balance.o: Applications\application.h
 .\objects\balance.o: .\Math\nav_para.h
 .\objects\balance.o: .\Math\aq_math.h

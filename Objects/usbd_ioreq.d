@@ -5,7 +5,7 @@
 .\objects\usbd_ioreq.o: .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP\usb_conf.h
 .\objects\usbd_ioreq.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\usbd_ioreq.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\usbd_ioreq.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\usbd_ioreq.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\usbd_ioreq.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\usbd_ioreq.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\usbd_ioreq.o: .\Libraries\CMSIS\Include\core_cmSimd.h

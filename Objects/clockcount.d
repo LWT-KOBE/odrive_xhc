@@ -4,7 +4,7 @@
 .\objects\clockcount.o: .\BSP\bsp.h
 .\objects\clockcount.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\clockcount.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\clockcount.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\clockcount.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\clockcount.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\clockcount.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\clockcount.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -39,8 +39,8 @@
 .\objects\clockcount.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\objects\clockcount.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\clockcount.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\objects\clockcount.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\clockcount.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\clockcount.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\clockcount.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\clockcount.o: .\BSP\bsp_gpio.h
 .\objects\clockcount.o: .\BSP\bsp_timer.h
 .\objects\clockcount.o: .\BSP\bsp_pwm.h
@@ -74,7 +74,7 @@
 .\objects\clockcount.o: .\Applications\control.h
 .\objects\clockcount.o: .\Applications\FreeRTOS_board.h
 .\objects\clockcount.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\clockcount.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\clockcount.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\clockcount.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\clockcount.o: .\FreeRTOS\include\projdefs.h
 .\objects\clockcount.o: .\FreeRTOS\include\portable.h
@@ -89,7 +89,7 @@
 .\objects\clockcount.o: .\FreeRTOS\include\semphr.h
 .\objects\clockcount.o: .\FreeRTOS\include\event_groups.h
 .\objects\clockcount.o: .\FreeRTOS\include\timers.h
-.\objects\clockcount.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\clockcount.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\clockcount.o: .\Utility\util.h
 .\objects\clockcount.o: .\Driver\driver_crc.h
 .\objects\clockcount.o: .\Driver\driver_key.h

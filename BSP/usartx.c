@@ -509,8 +509,9 @@ void USART2_IRQHandler(void)
 //    USART_ClearITPendingBit(USART2, USART_IT_IDLE);
 		
 			// 清除IDLE标志位
-		(void)USART2->SR;
-		(void)USART2->DR;	
+		DMA_Cmd(DMA1_Stream5,DISABLE);
+		Uart1_Rx_length = USART2->SR;
+		Uart1_Rx_length = USART2->DR;	
 		Uart1_Rx_length = UART1_RX_LEN - DMA_GetCurrDataCounter(DMA1_Stream5); 
 		if(Uart1_Rx_length<UART1_RX_LEN)
 		{
@@ -883,8 +884,8 @@ void Serial1Data(uint8_t ucData){
 			
 			if(strncmp(g_usart1_recv_buf, "MOB=\n ", 4) == 0)//速度控制命令
 			{
-				balanceData.flag = 1;
-				sscanf(g_usart1_recv_buf, "MOB=%f\n", &Motor_SpeedB_Goal.target);//速度修改
+				
+				sscanf(g_usart1_recv_buf, "MOB=%f\n", &MBSpeed);//速度修改
 				//OdriveData.Vel_gain[0].float_temp += 5;
 				//printf("%f\r\n",OdriveData.SetVel[1].float_temp);
 				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", OdriveData.SetVel[0].float_temp);//修改后显示

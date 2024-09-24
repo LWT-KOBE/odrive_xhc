@@ -3,7 +3,7 @@
 .\objects\can2_task.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h
 .\objects\can2_task.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\can2_task.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\can2_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\can2_task.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\can2_task.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\can2_task.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\can2_task.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -41,7 +41,7 @@
 .\objects\can2_task.o: Applications\app_Init.h
 .\objects\can2_task.o: Applications\FreeRTOS_board.h
 .\objects\can2_task.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\can2_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\can2_task.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\can2_task.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\can2_task.o: .\FreeRTOS\include\projdefs.h
 .\objects\can2_task.o: .\FreeRTOS\include\portable.h
@@ -59,8 +59,8 @@
 .\objects\can2_task.o: Applications\clockcount.h
 .\objects\can2_task.o: .\Driver\Driver_ClockCount.h
 .\objects\can2_task.o: .\BSP\bsp.h
-.\objects\can2_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\can2_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\can2_task.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\can2_task.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\can2_task.o: .\BSP\bsp_gpio.h
 .\objects\can2_task.o: .\BSP\bsp_timer.h
 .\objects\can2_task.o: .\BSP\bsp_pwm.h
@@ -92,7 +92,7 @@
 .\objects\can2_task.o: .\Driver\driver_flash.h
 .\objects\can2_task.o: .\Driver\driver_rgb.h
 .\objects\can2_task.o: .\Applications\control.h
-.\objects\can2_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\can2_task.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\can2_task.o: .\Utility\util.h
 .\objects\can2_task.o: .\Driver\driver_crc.h
 .\objects\can2_task.o: .\Driver\driver_key.h
@@ -104,11 +104,11 @@
 .\objects\can2_task.o: Applications\supervisor.h
 .\objects\can2_task.o: Applications\board.h
 .\objects\can2_task.o: Applications\std_lib.h
-.\objects\can2_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\can2_task.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\can2_task.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\can2_task.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\can2_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\can2_task.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\can2_task.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\can2_task.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\can2_task.o: Applications\application.h
 .\objects\can2_task.o: .\Math\nav_para.h
 .\objects\can2_task.o: .\Math\aq_math.h

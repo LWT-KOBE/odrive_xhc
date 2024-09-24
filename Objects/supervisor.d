@@ -3,7 +3,7 @@
 .\objects\supervisor.o: .\BSP\bsp.h
 .\objects\supervisor.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\supervisor.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\supervisor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\supervisor.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\supervisor.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\supervisor.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\supervisor.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -38,8 +38,8 @@
 .\objects\supervisor.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\objects\supervisor.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\supervisor.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\objects\supervisor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\supervisor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\supervisor.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\supervisor.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\supervisor.o: .\BSP\bsp_gpio.h
 .\objects\supervisor.o: .\BSP\bsp_timer.h
 .\objects\supervisor.o: .\BSP\bsp_pwm.h
@@ -54,7 +54,7 @@
 .\objects\supervisor.o: .\BSP\bsp_watchDog.h
 .\objects\supervisor.o: Applications\FreeRTOS_board.h
 .\objects\supervisor.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\supervisor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\supervisor.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\supervisor.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\supervisor.o: .\FreeRTOS\include\projdefs.h
 .\objects\supervisor.o: .\FreeRTOS\include\portable.h
@@ -71,12 +71,12 @@
 .\objects\supervisor.o: .\FreeRTOS\include\timers.h
 .\objects\supervisor.o: Applications\board.h
 .\objects\supervisor.o: Applications\std_lib.h
-.\objects\supervisor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\supervisor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\supervisor.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\supervisor.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\supervisor.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\supervisor.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\supervisor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\supervisor.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\supervisor.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\supervisor.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\supervisor.o: .\Driver\driver.h
 .\objects\supervisor.o: .\Driver\driver_clockCount.h
 .\objects\supervisor.o: .\Driver\driver.h

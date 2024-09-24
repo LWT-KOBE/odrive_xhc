@@ -2,12 +2,12 @@
 .\objects\algebra.o: Math\aq_math.h
 .\objects\algebra.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\algebra.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\algebra.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\algebra.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\algebra.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\algebra.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\algebra.o: .\Libraries\CMSIS\Include\core_cmSimd.h
-.\objects\algebra.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\algebra.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\algebra.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\algebra.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\algebra.o: .\Utility\util.h
 .\objects\algebra.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\algebra.o: .\Libraries\CMSIS\Include\core_cm4.h
@@ -44,7 +44,7 @@
 .\objects\algebra.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 .\objects\algebra.o: .\Applications\FreeRTOS_board.h
 .\objects\algebra.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\algebra.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\algebra.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\algebra.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\algebra.o: .\FreeRTOS\include\projdefs.h
 .\objects\algebra.o: .\FreeRTOS\include\portable.h
@@ -59,4 +59,4 @@
 .\objects\algebra.o: .\FreeRTOS\include\semphr.h
 .\objects\algebra.o: .\FreeRTOS\include\event_groups.h
 .\objects\algebra.o: .\FreeRTOS\include\timers.h
-.\objects\algebra.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\algebra.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h

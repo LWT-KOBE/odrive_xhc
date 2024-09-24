@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp.sp
+--cpu=Cortex-M4.fp
 ".\objects\app_init.o"
 ".\objects\control.o"
 ".\objects\clockcount.o"

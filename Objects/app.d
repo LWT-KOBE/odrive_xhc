@@ -4,7 +4,7 @@
 .\objects\app.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h
 .\objects\app.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\app.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\app.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\app.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\app.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\app.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -42,7 +42,7 @@
 .\objects\app.o: .\Applications\app_Init.h
 .\objects\app.o: .\Applications\FreeRTOS_board.h
 .\objects\app.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\app.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\app.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\app.o: .\FreeRTOS\include\projdefs.h
 .\objects\app.o: .\FreeRTOS\include\portable.h
@@ -60,8 +60,8 @@
 .\objects\app.o: .\Applications\clockcount.h
 .\objects\app.o: .\Driver\Driver_ClockCount.h
 .\objects\app.o: .\BSP\bsp.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\app.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\app.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\app.o: .\BSP\bsp_gpio.h
 .\objects\app.o: .\BSP\bsp_timer.h
 .\objects\app.o: .\BSP\bsp_pwm.h
@@ -93,7 +93,7 @@
 .\objects\app.o: .\Driver\driver_flash.h
 .\objects\app.o: .\Driver\driver_rgb.h
 .\objects\app.o: .\Applications\control.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\app.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\app.o: .\Utility\util.h
 .\objects\app.o: .\Driver\driver_crc.h
 .\objects\app.o: .\Driver\driver_key.h
@@ -105,11 +105,11 @@
 .\objects\app.o: .\Applications\supervisor.h
 .\objects\app.o: .\Applications\board.h
 .\objects\app.o: .\Applications\std_lib.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\app.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\app.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\app.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\app.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\app.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\app.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\app.o: .\Applications\application.h
 .\objects\app.o: .\Math\nav_para.h
 .\objects\app.o: .\Math\aq_math.h

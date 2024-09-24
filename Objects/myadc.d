@@ -2,7 +2,7 @@
 .\objects\myadc.o: Applications\MyADC.h
 .\objects\myadc.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\myadc.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\myadc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\myadc.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\myadc.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\myadc.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\myadc.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -42,7 +42,7 @@
 .\objects\myadc.o: .\Applications\app_Init.h
 .\objects\myadc.o: .\Applications\FreeRTOS_board.h
 .\objects\myadc.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\myadc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\myadc.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\myadc.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\myadc.o: .\FreeRTOS\include\projdefs.h
 .\objects\myadc.o: .\FreeRTOS\include\portable.h
@@ -60,8 +60,8 @@
 .\objects\myadc.o: .\Applications\clockcount.h
 .\objects\myadc.o: .\Driver\Driver_ClockCount.h
 .\objects\myadc.o: .\BSP\bsp.h
-.\objects\myadc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\myadc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\myadc.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\myadc.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\myadc.o: .\BSP\bsp_gpio.h
 .\objects\myadc.o: .\BSP\bsp_timer.h
 .\objects\myadc.o: .\BSP\bsp_pwm.h
@@ -93,7 +93,7 @@
 .\objects\myadc.o: .\Driver\driver_flash.h
 .\objects\myadc.o: .\Driver\driver_rgb.h
 .\objects\myadc.o: .\Applications\control.h
-.\objects\myadc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\myadc.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\myadc.o: .\Utility\util.h
 .\objects\myadc.o: .\Driver\driver_crc.h
 .\objects\myadc.o: .\Driver\driver_key.h
@@ -105,11 +105,11 @@
 .\objects\myadc.o: .\Applications\supervisor.h
 .\objects\myadc.o: .\Applications\board.h
 .\objects\myadc.o: .\Applications\std_lib.h
-.\objects\myadc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\myadc.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\myadc.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\myadc.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\myadc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\myadc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\myadc.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\myadc.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\myadc.o: .\Applications\application.h
 .\objects\myadc.o: .\Math\nav_para.h
 .\objects\myadc.o: .\Math\aq_math.h

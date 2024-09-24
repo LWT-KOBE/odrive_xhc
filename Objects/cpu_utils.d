@@ -1,8 +1,8 @@
 .\objects\cpu_utils.o: Utility\cpu_utils.c
 .\objects\cpu_utils.o: Utility\cpu_utils.h
 .\objects\cpu_utils.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\cpu_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\cpu_utils.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\cpu_utils.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\cpu_utils.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\cpu_utils.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\cpu_utils.o: .\FreeRTOS\include\projdefs.h
 .\objects\cpu_utils.o: .\FreeRTOS\include\portable.h

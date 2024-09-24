@@ -2,7 +2,7 @@
 .\objects\vofa.o: BSP\vofa.h
 .\objects\vofa.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\vofa.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\vofa.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\vofa.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\vofa.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\vofa.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\vofa.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -38,6 +38,6 @@
 .\objects\vofa.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\vofa.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
 .\objects\vofa.o: BSP\usartx.h
-.\objects\vofa.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\vofa.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\vofa.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\vofa.o: D:\ARM\ARMCC\Bin\..\include\string.h
 .\objects\vofa.o: BSP\JY60.h

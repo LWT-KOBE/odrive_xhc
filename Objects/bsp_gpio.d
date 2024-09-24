@@ -2,7 +2,7 @@
 .\objects\bsp_gpio.o: BSP\bsp_gpio.h
 .\objects\bsp_gpio.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\bsp_gpio.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\bsp_gpio.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\bsp_gpio.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\bsp_gpio.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\bsp_gpio.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\bsp_gpio.o: .\Libraries\CMSIS\Include\core_cmSimd.h

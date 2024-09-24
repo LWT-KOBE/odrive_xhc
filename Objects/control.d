@@ -3,7 +3,7 @@
 .\objects\control.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_can.h
 .\objects\control.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\control.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\control.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\control.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\control.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\control.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -41,7 +41,7 @@
 .\objects\control.o: Applications\app_Init.h
 .\objects\control.o: Applications\FreeRTOS_board.h
 .\objects\control.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\control.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\control.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\control.o: .\FreeRTOS\include\projdefs.h
 .\objects\control.o: .\FreeRTOS\include\portable.h
@@ -59,8 +59,8 @@
 .\objects\control.o: Applications\clockcount.h
 .\objects\control.o: .\Driver\Driver_ClockCount.h
 .\objects\control.o: .\BSP\bsp.h
-.\objects\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\control.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\control.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\control.o: .\BSP\bsp_gpio.h
 .\objects\control.o: .\BSP\bsp_timer.h
 .\objects\control.o: .\BSP\bsp_pwm.h
@@ -92,7 +92,7 @@
 .\objects\control.o: .\Driver\driver_flash.h
 .\objects\control.o: .\Driver\driver_rgb.h
 .\objects\control.o: .\Applications\control.h
-.\objects\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\control.o: D:\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\control.o: .\Utility\util.h
 .\objects\control.o: .\Driver\driver_crc.h
 .\objects\control.o: .\Driver\driver_key.h
@@ -104,11 +104,11 @@
 .\objects\control.o: Applications\supervisor.h
 .\objects\control.o: Applications\board.h
 .\objects\control.o: Applications\std_lib.h
-.\objects\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\control.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
 .\objects\control.o: .\Libraries\CMSIS\Include\arm_math.h
 .\objects\control.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\control.o: D:\ARM\ARMCC\Bin\..\include\string.h
+.\objects\control.o: D:\ARM\ARMCC\Bin\..\include\math.h
 .\objects\control.o: Applications\application.h
 .\objects\control.o: .\Math\nav_para.h
 .\objects\control.o: .\Math\aq_math.h

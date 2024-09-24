@@ -2,7 +2,7 @@
 .\objects\bsp_exit.o: BSP\bsp_exit.h
 .\objects\bsp_exit.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\bsp_exit.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\bsp_exit.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\bsp_exit.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\bsp_exit.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\bsp_exit.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\bsp_exit.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -37,6 +37,6 @@
 .\objects\bsp_exit.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_dma2d.h
 .\objects\bsp_exit.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\objects\bsp_exit.o: .\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
-.\objects\bsp_exit.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\bsp_exit.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\bsp_exit.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\bsp_exit.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\bsp_exit.o: BSP\bsp_gpio.h

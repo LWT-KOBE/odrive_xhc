@@ -7,7 +7,7 @@
 .\objects\driver_usbvcp.o: .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP\usb_conf.h
 .\objects\driver_usbvcp.o: .\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 .\objects\driver_usbvcp.o: .\Libraries\CMSIS\Include\core_cm4.h
-.\objects\driver_usbvcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\driver_usbvcp.o: D:\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\driver_usbvcp.o: .\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\driver_usbvcp.o: .\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\driver_usbvcp.o: .\Libraries\CMSIS\Include\core_cmSimd.h
@@ -57,11 +57,11 @@
 .\objects\driver_usbvcp.o: .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP\usb_bsp.c
 .\objects\driver_usbvcp.o: .\Libraries\USB\STM32_USB_OTG_Driver\usb_bsp.h
 .\objects\driver_usbvcp.o: .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP\usbd_usr.c
-.\objects\driver_usbvcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\driver_usbvcp.o: D:\ARM\ARMCC\Bin\..\include\string.h
 .\objects\driver_usbvcp.o: .\Applications\wireless.h
 .\objects\driver_usbvcp.o: .\Applications\FreeRTOS_board.h
 .\objects\driver_usbvcp.o: .\FreeRTOS\include\FreeRTOS.h
-.\objects\driver_usbvcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\driver_usbvcp.o: D:\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\driver_usbvcp.o: .\FreeRTOS\include\FreeRTOSConfig.h
 .\objects\driver_usbvcp.o: .\FreeRTOS\include\projdefs.h
 .\objects\driver_usbvcp.o: .\FreeRTOS\include\portable.h
@@ -77,8 +77,8 @@
 .\objects\driver_usbvcp.o: .\FreeRTOS\include\event_groups.h
 .\objects\driver_usbvcp.o: .\FreeRTOS\include\timers.h
 .\objects\driver_usbvcp.o: .\BSP\bsp.h
-.\objects\driver_usbvcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\driver_usbvcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\driver_usbvcp.o: D:\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\driver_usbvcp.o: D:\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\driver_usbvcp.o: .\BSP\bsp_gpio.h
 .\objects\driver_usbvcp.o: .\BSP\bsp_timer.h
 .\objects\driver_usbvcp.o: .\BSP\bsp_pwm.h
@@ -91,4 +91,4 @@
 .\objects\driver_usbvcp.o: .\BSP\bsp_can.h
 .\objects\driver_usbvcp.o: .\BSP\bsp_flash.h
 .\objects\driver_usbvcp.o: .\BSP\bsp_watchDog.h
-.\objects\driver_usbvcp.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\driver_usbvcp.o: D:\ARM\ARMCC\Bin\..\include\stdarg.h
