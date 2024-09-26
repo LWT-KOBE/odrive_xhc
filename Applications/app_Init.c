@@ -25,8 +25,8 @@ void appInit(void *Parameters){
 	//小火车控制任务初始化
 	XHCDataInit();
 	
-	//CAN2控制任务初始化
-	//CAN2DataInit();
+	//CAN1控制任务初始化
+	CAN1DataInit();
 	
 	
 	//运动控制初始化

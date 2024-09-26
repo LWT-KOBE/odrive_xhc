@@ -44,12 +44,13 @@ typedef struct {
 /*Odrive 的CAN接收结构体*/
 typedef struct {   
 
-
+	formatTrans16Struct_t Iq_measured[4];//电流
+	
 	formatTrans32Struct_t shadow_count[4];//shadow	
 	formatTrans32Struct_t count_in_cpr[4];//CPR
 	formatTrans32Struct_t pos_estimate[4];//位置	
 	formatTrans32Struct_t vel_estimate[4];//速度
-	formatTrans32Struct_t Iq_measured[4];//电流	
+		
 
 	formatTrans32Struct_t vel_limit[4]; //速度限制——接收
 	formatTrans32Struct_t current_limit[4];//电流限制——接收

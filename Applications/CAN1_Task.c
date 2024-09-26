@@ -516,6 +516,14 @@ void ReadVel_Pos(CanRxMsg* CanRevData,Servo_MotorDataRecv_t* Spetsnaz,uint8_t ax
 }
 
 
+void ReadCur(CanRxMsg* CanRevData,Servo_MotorDataRecv_t* Spetsnaz,uint8_t axis) {
+		
+	
+	Spetsnaz->Iq_measured[axis].u8_temp[0] = CanRevData->Data[0];	
+	Spetsnaz->Iq_measured[axis].u8_temp[1] = CanRevData->Data[1];
+}
+
+
 CAN1_TaskStruct_t* getCAN1_Task(){
     return &CAN1Data;
 }
@@ -551,6 +559,10 @@ void CAN1_TaskUpdateTask(void *Parameters){
 				Set_PDO_Vel_Pos(CAN1,Servo_Motor_ID0,8,&can1data);
 				Set_PDO_Vel_Pos(CAN1,Servo_Motor_ID1,8,&can1data);
 				Set_PDO_Vel_Pos(CAN1,Servo_Motor_ID2,8,&can1data);
+				
+				Set_PDO_Cur(CAN1,Servo_Motor_ID0,8,&can1data);
+				Set_PDO_Cur(CAN1,Servo_Motor_ID1,8,&can1data);
+				Set_PDO_Cur(CAN1,Servo_Motor_ID2,8,&can1data);
 			}
 			if(i > 3 && i < 6){
 				//使能电机
@@ -623,7 +635,17 @@ void CAN1_RX0_IRQHandler(void){
 				ReadVel_Pos(&can1_rx_msg,&SM_Recv,2);
 			break;							
 				
-	
+			case 641:
+				ReadCur(&can1_rx_msg,&SM_Recv,0);
+			break;
+			
+			case 642:
+				ReadCur(&can1_rx_msg,&SM_Recv,1);
+			break;
+			
+			case 643:
+				ReadCur(&can1_rx_msg,&SM_Recv,2);
+			break;
 				
 			default:	break;
 		}
@@ -652,7 +674,7 @@ void CAN1_TX_IRQHandler(void){
 
 
 
-void CAN2DataInit(void){
+void CAN1DataInit(void){
 	getsupervisorData()->taskEvent[CAN1_Task] = xTaskCreate(CAN1_TaskUpdateTask,"CAN1_Task",CAN1_Task_STACK_SIZE,NULL,CAN1_Task_PRIORITY,&CAN1Data.xHandleTask);
     //usbVCP_Printf("ControlInit Successfully \r\n");
     
