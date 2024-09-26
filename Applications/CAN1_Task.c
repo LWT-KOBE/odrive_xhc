@@ -313,13 +313,63 @@ void Cur_Target_Torque(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendSt
 	vTaskDelay(5);
 }
 
-//CANOpen使能
+//CANOpenNMT使能
 void CIA301_Enable(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
 	
 	u8 cia301_enable[2] = {0x01,0x00};
-	//**** CIA301 状态机 预操作到操作状态****
+	//**** CIA301 状态机 进入操作状态****
 	for(int i = 0;i < 2;i++){
 		CanSendData->data[i] = cia301_enable[i];
+	}
+	CANSendData(CANx,000,2,CanSendData);
+	vTaskDelay(50);
+}
+
+
+//CANOpenNMT停止
+void CIA301_Stop(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+	
+	u8 cia301_stop[2] = {0x02,0x00};
+	//**** CIA301 状态机 停止远程节点****
+	for(int i = 0;i < 2;i++){
+		CanSendData->data[i] = cia301_stop[i];
+	}
+	CANSendData(CANx,000,2,CanSendData);
+	vTaskDelay(50);
+}
+
+//CANOpenNMT进入预操作
+void CIA301_yucaozuo(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+	
+	u8 cia301_yucaozuo[2] = {0x80,0x00};
+	//**** CIA301 状态机 进入预操作状态****
+	for(int i = 0;i < 2;i++){
+		CanSendData->data[i] = cia301_yucaozuo[i];
+	}
+	CANSendData(CANx,000,2,CanSendData);
+	vTaskDelay(50);
+}
+
+//CANOpenNMT重新设置节点
+void CIA301_Rebot(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+	
+	u8 cia301_rebot[2] = {0x81,0x00};
+	//**** CIA301 状态机 重新设置节点****
+	for(int i = 0;i < 2;i++){
+		CanSendData->data[i] = cia301_rebot[i];
+	}
+	CANSendData(CANx,000,2,CanSendData);
+	vTaskDelay(50);
+}
+
+
+//CANOpenNMT重新设置通信
+void CIA301_Rest(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+	
+	u8 cia301_rest[2] = {0x82,0x00};
+	//**** CIA301 状态机 重新设置通信****
+	for(int i = 0;i < 2;i++){
+		CanSendData->data[i] = cia301_rest[i];
 	}
 	CANSendData(CANx,000,2,CanSendData);
 	vTaskDelay(50);
