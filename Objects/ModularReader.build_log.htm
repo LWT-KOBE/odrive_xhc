@@ -27,12 +27,81 @@ Project File Date:  10/22/2024
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\ARM\ARMCC\Bin'
 Build target 'ModularReader'
-compiling supervisor.c...
-linking...
-Program Size: Code=45404 RO-data=560 RW-data=4204 ZI-data=79160  
-FromELF: creating hex file...
-After Build - User command #1: fromelf --bin -o ".\bin_file\ModularReader.bin" "C:\Users\13359\Desktop\odrive_xhc-55\Objects\ModularReader.axf"
-".\Objects\ModularReader.axf" - 0 Error(s), 0 Warning(s).
+compiling CAN1_Task.c...
+Applications\CAN1_Task.c(4): error:  #20: identifier "CAN1_TaskStruct_t" is undefined
+  CAN1_TaskStruct_t CAN1Data;
+Applications\CAN1_Task.c(5): error:  #20: identifier "Servo_MotorStruct_t" is undefined
+  Servo_MotorStruct_t SM;
+Applications\CAN1_Task.c(6): error:  #20: identifier "Servo_MotorDataRecv_t" is undefined
+  Servo_MotorDataRecv_t SM_Recv;
+Applications\CAN1_Task.c(7): error:  #20: identifier "CANSendStruct_t" is undefined
+  CANSendStruct_t can1data;
+Applications\CAN1_Task.c(24): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CANSendData(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(64): error:  #20: identifier "Servo_MotorStruct_t" is undefined
+  void CANSendInputVelData(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(64): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CANSendInputVelData(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(97): error:  #20: identifier "Servo_MotorStruct_t" is undefined
+  void CANSendAcceData(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(97): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CANSendAcceData(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(132): error:  #20: identifier "Servo_MotorStruct_t" is undefined
+  void CANSend_Torque(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(132): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CANSend_Torque(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(168): error:  #20: identifier "Servo_MotorStruct_t" is undefined
+  void CANSend_Slope(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(168): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CANSend_Slope(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(204): error:  #20: identifier "Servo_MotorStruct_t" is undefined
+  void CANSendDeceData(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(204): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CANSendDeceData(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,Servo_MotorStruct_t* Spetsnaz,uint8_t axis,CANSendStruct_t* CanSendData) {
+Applications\CAN1_Task.c(221): error:  #20: identifier "CANSendStruct_t" is undefined
+  void Set_Pos_mode(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(233): error:  #20: identifier "CANSendStruct_t" is undefined
+  void Set_Vel_mode(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(247): error:  #20: identifier "CANSendStruct_t" is undefined
+  void Set_Cur_mode(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(261): error:  #20: identifier "CANSendStruct_t" is undefined
+  void Enable(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(291): error:  #20: identifier "CANSendStruct_t" is undefined
+  void Stop(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(304): error:  #20: identifier "CANSendStruct_t" is undefined
+  void Cur_Target_Torque(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(317): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CIA301_Enable(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(330): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CIA301_Stop(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(342): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CIA301_yucaozuo(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(354): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CIA301_Rebot(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(367): error:  #20: identifier "CANSendStruct_t" is undefined
+  void CIA301_Rest(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(379): error:  #20: identifier "CANSendStruct_t" is undefined
+  void Set_PDO_Vel_Pos(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(461): error:  #20: identifier "CANSendStruct_t" is undefined
+  void Set_PDO_Cur(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendStruct_t* CanSendData){
+Applications\CAN1_Task.c(554): error:  #20: identifier "Servo_MotorDataRecv_t" is undefined
+  void ReadVel_Pos(CanRxMsg* CanRevData,Servo_MotorDataRecv_t* Spetsnaz,uint8_t axis) {
+Applications\CAN1_Task.c(569): error:  #20: identifier "Servo_MotorDataRecv_t" is undefined
+  void ReadCur(CanRxMsg* CanRevData,Servo_MotorDataRecv_t* Spetsnaz,uint8_t axis) {
+Applications\CAN1_Task.c: 0 warnings, 30 errors
+compiling pid.c...
+Applications\pid.c(286): warning:  #177-D: variable "last_dev"  was declared but never referenced
+  	 static float Bias,Pwm,Last_bias=0,Prev_bias=0,Incremental_KP,Incremental_KI,Incremental_KD,last_dev,this_dev,alpha;
+Applications\pid.c(286): warning:  #177-D: variable "this_dev"  was declared but never referenced
+  	 static float Bias,Pwm,Last_bias=0,Prev_bias=0,Incremental_KP,Incremental_KI,Incremental_KD,last_dev,this_dev,alpha;
+Applications\pid.c(286): warning:  #550-D: variable "alpha"  was set but never used
+  	 static float Bias,Pwm,Last_bias=0,Prev_bias=0,Incremental_KP,Incremental_KI,Incremental_KD,last_dev,this_dev,alpha;
+Applications\pid.c(369): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	if(Pwm>0.1) Pwm  =  0.1;
+Applications\pid.c(489): warning:  #550-D: variable "dInput"  was set but never used
+      static float Bias,Pwm,Last_Bias,Integral_bias=0,Position_KP,Position_KI,Position_KD,last_dev,this_dev,alpha,last_Input,dInput;
+Applications\pid.c: 5 warnings, 0 errors
+".\Objects\ModularReader.axf" - 30 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -46,7 +115,8 @@ Package Vendor: Keil
   D:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:02
+Target not created.
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

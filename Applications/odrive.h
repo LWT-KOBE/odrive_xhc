@@ -15,10 +15,7 @@
 #define ODRIVE_STACK_SIZE 1024
 #define ODRIVE_NORMAL_PERIOD 8
 
-//通过宏定义选择使用哪个CAN与odrive通信
-#define USE_CAN1 	0
 
-#define USE_CAN2	1
 
 //电机的ID 
 enum{	

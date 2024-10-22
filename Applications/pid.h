@@ -77,7 +77,7 @@ typedef struct {
     f32_t dataOut;
 } pidData_t;
 
-//pidStruct_t *pidInit(systemConfigPID_t *PIDConfigData);
+pidStruct_t *pidInit(systemConfigPID_t *PIDConfigData);
 f32_t differentialCal(differentialDataStruct_t *differential,f32_t currentData);
 
 float pidUpdate(pidStruct_t *pid, float setpoint, float position,float Dt);

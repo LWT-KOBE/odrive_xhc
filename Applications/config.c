@@ -243,18 +243,12 @@ uint8_t configFlashWrite(void) {
         usbVCP_Printf("Flash failed to apply for memory! \r\n");
     }
 	return ret;
+
+
+
+
 }
 
-//恢复出厂设置
-void configerase_configuration(void){
-	
-	configLoadDefault();
-	configFlashWrite();
-	
-}
-
-
-//配置初始化
 void configInit(void) {
 
 	float ver;	

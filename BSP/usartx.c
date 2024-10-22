@@ -864,31 +864,15 @@ void Serial1Data(uint8_t ucData){
 			
 			if(strncmp(g_usart1_recv_buf, "MOB=\n ", 4) == 0)//速度控制命令
 			{
-				//balanceData.flag = 1;
+				balanceData.flag = 1;
 				sscanf(g_usart1_recv_buf, "MOB=%f\n", &Motor_SpeedB_Goal.target);//速度修改
 				//OdriveData.Vel_gain[0].float_temp += 5;
 				//printf("%f\r\n",OdriveData.SetVel[1].float_temp);
 				//sprintf(g_usart1_send_buf, "修改后Angle=%f\r\n", OdriveData.SetVel[0].float_temp);//修改后显示
 			}
 			
-			if(strncmp(g_usart1_recv_buf, "SMV_1=\n ", 6) == 0)//传送带速度控制命令 电机1
-			{
-				sscanf(g_usart1_recv_buf, "SMV_1=%d\n", &SM.SetVel[0].s32_temp);//速度修改
-			}
-			
-			if(strncmp(g_usart1_recv_buf, "SMV_2=\n ", 6) == 0)//传送带速度控制命令 电机2
-			{
-				sscanf(g_usart1_recv_buf, "SMV_2=%d\n", &SM.SetVel[1].s32_temp);//速度修改
-			}
-			
-			if(strncmp(g_usart1_recv_buf, "SMV_2=\n ", 6) == 0)//传送带速度控制命令	电机3
-			{
-				sscanf(g_usart1_recv_buf, "SMV_2=%d\n", &SM.SetVel[2].s32_temp);//速度修改
-			}
-			
 			if(strncmp(g_usart1_recv_buf, "F=\n ", 2) == 0)//速度控制命令
 			{
-				supervisorData.flashSave = 1;
 				sscanf(g_usart1_recv_buf, "F=%d\n", &balanceData.flag);//速度修改
 			}
 			

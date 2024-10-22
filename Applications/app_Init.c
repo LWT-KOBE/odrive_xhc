@@ -14,7 +14,7 @@ void appInit(void *Parameters){
 	//usbVCP_Init(USB_USART_PreemptionPriority,USB_USART_SubPriority);        
 
     //监控机初始化
-	supervisorInit();	
+	//supervisorInit();	
 
 	OdriveInit();
 	//无线数传初始化
@@ -25,8 +25,8 @@ void appInit(void *Parameters){
 	//小火车控制任务初始化
 	XHCDataInit();
 	
-	//CAN1控制任务初始化
-	CAN1DataInit();
+	//CAN2控制任务初始化
+	CAN2DataInit();
 	
 	
 	//运动控制初始化

@@ -5,29 +5,6 @@ CAN1_TaskStruct_t CAN1Data;
 Servo_MotorStruct_t SM;
 Servo_MotorDataRecv_t SM_Recv;
 CANSendStruct_t can1data;
-MyStruct M1 = {1,5};
-
-
-
-
-void write_to_flash(MyStruct* data) {
-    FLASH_Unlock();
-
-    // 擦除 Flash 区域
-    FLASH_EraseSector(FLASH_ADDRESS, 0x02);
-
-    // 写入数据
-    for (size_t i = 0; i < sizeof(MyStruct); i += 4) {
-        FLASH_ProgramWord(FLASH_ADDRESS + i, *(uint32_t*)((uint8_t*)data + i));
-    }
-
-    FLASH_Lock();
-}
-
-void read_from_flash(MyStruct* data) {
-    memcpy(data, (void*)FLASH_ADDRESS, sizeof(MyStruct));
-}
-
 
 /*
 ***************************************************
@@ -338,7 +315,7 @@ void Cur_Target_Torque(CAN_TypeDef *CANx, uint32_t ID_CAN, uint8_t len,CANSendSt
 
 //CANOpenNMT使能
 void CIA301_Enable(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
-	//第一个字节表示进入什么状态，第二个字节表示发送给哪个节点(0表示为发送给全体)
+	
 	u8 cia301_enable[2] = {0x01,0x00};
 	//**** CIA301 状态机 进入操作状态****
 	for(int i = 0;i < 2;i++){
@@ -351,7 +328,7 @@ void CIA301_Enable(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
 
 //CANOpenNMT停止
 void CIA301_Stop(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
-	//第一个字节表示进入什么状态，第二个字节表示发送给哪个节点(0表示为发送给全体)
+	
 	u8 cia301_stop[2] = {0x02,0x00};
 	//**** CIA301 状态机 停止远程节点****
 	for(int i = 0;i < 2;i++){
@@ -363,7 +340,7 @@ void CIA301_Stop(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
 
 //CANOpenNMT进入预操作
 void CIA301_yucaozuo(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
-	//第一个字节表示进入什么状态，第二个字节表示发送给哪个节点(0表示为发送给全体)
+	
 	u8 cia301_yucaozuo[2] = {0x80,0x00};
 	//**** CIA301 状态机 进入预操作状态****
 	for(int i = 0;i < 2;i++){
@@ -375,7 +352,7 @@ void CIA301_yucaozuo(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
 
 //CANOpenNMT重新设置节点
 void CIA301_Rebot(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
-	//第一个字节表示进入什么状态，第二个字节表示发送给哪个节点(0表示为发送给全体)
+	
 	u8 cia301_rebot[2] = {0x81,0x00};
 	//**** CIA301 状态机 重新设置节点****
 	for(int i = 0;i < 2;i++){
@@ -388,7 +365,7 @@ void CIA301_Rebot(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
 
 //CANOpenNMT重新设置通信
 void CIA301_Rest(CAN_TypeDef *CANx,CANSendStruct_t* CanSendData){
-	//第一个字节表示进入什么状态，第二个字节表示发送给哪个节点(0表示为发送给全体)
+	
 	u8 cia301_rest[2] = {0x82,0x00};
 	//**** CIA301 状态机 重新设置通信****
 	for(int i = 0;i < 2;i++){
@@ -666,10 +643,9 @@ void CAN1_TaskUpdateTask(void *Parameters){
 		CANSendInputVelData(CAN1,Servo_Motor_ID0,8,&SM,0,&can1data);
 		CANSendInputVelData(CAN1,Servo_Motor_ID1,8,&SM,1,&can1data);
 		CANSendInputVelData(CAN1,Servo_Motor_ID2,8,&SM,2,&can1data);
-				
-		digitalIncreasing(&getCAN1_Task()->loops);        
 		
-		//STM32FLASH_Read();
+		digitalIncreasing(&getCAN1_Task()->loops);        
+
 	}
 }
 

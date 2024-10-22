@@ -99,22 +99,6 @@ void supervisorFlash(void){
 	} 	
 }
 
-
-//Flash储存
-void eraseFlash(void){		
-    //如果想要对flash进行操作，直接将supervisorData.flashSave拉高一次即可    
-	if(supervisorData.erase_configuration){                                              
-       //检测到需要存入Flash		参数保存提示音
-		//supervisorData.beepState = MUSIC_PARAMCALI;		        
-		//configFlashWrite();                                             	//写入flash
-		configerase_configuration();
-		digitalLo(&supervisorData.erase_configuration);         
-        
-	} 	
-}
-
-
-
 bool testImuCali = false,testAccCali = false;
 void supervisorUpdateTask(void *Parameters){
 	TickType_t xLastWakeTime = xTaskGetTickCount();
@@ -126,8 +110,6 @@ void supervisorUpdateTask(void *Parameters){
 		supervisorLedSwitch();
 		//检测是否需要更新flash        
 		supervisorFlash();
-		
-		eraseFlash();
         //蜂鸣器更新
         //LED闪动		主控板上3色LED闪动指示状态										
         appSightClass.led(supervisorData.rgbState);                           

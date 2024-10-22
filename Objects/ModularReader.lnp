@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp
+--cpu=Cortex-M4.fp.sp
 ".\objects\app_init.o"
 ".\objects\control.o"
 ".\objects\clockcount.o"
@@ -9,7 +9,7 @@
 ".\objects\pid.o"
 ".\objects\balance.o"
 ".\objects\xhc_task.o"
-".\objects\can1_task.o"
+".\objects\can2_task.o"
 ".\objects\driver_clockcount.o"
 ".\objects\driver_crc.o"
 ".\objects\driver_rgb.o"
@@ -79,8 +79,8 @@
 ".\objects\system_stm32f4xx.o"
 ".\objects\startup_stm32f40_41xxx.o"
 ".\objects\config.o"
-".\objects\bsp_flash.o"
 ".\objects\driver_flash.o"
+".\objects\bsp_flash.o"
 ".\objects\driver_laser.o"
 ".\objects\modbusprotocol.o"
 --library_type=microlib --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

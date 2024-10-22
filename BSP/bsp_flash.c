@@ -186,10 +186,4 @@ void BSP_FLASH_Read(u32 ReadAddr, u32 *pBuffer, u32 ByteToRead){
 		pBuffer[i]=BSP_FLASH_ReadByte(ReadAddr);//读取1个字节.
 		ReadAddr+=1;//偏移1个字节.	
 	}
-	
 }
-
-
-
-
-

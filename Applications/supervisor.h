@@ -27,7 +27,7 @@ enum {
 	LCD_TASK,
 	ODRIVE_TASK,
 	XHC_Task,
-	CAN1_Task,
+	CAN2_Task,
 	LIST_OF_TASK,
 	
 };
@@ -96,7 +96,6 @@ typedef struct {
 	bool imuTempState;
 	bool busyState;
 	uint8_t flashSave;
-	u8 erase_configuration;
 	volatile uint8_t imuTempFinish;
 	uint16_t rgbState;
     uint16_t beepState;
@@ -109,8 +108,6 @@ typedef struct {
 } supervisorStruct_t;
 
 supervisorStruct_t* getsupervisorData(void);
-
-extern supervisorStruct_t supervisorData;
 
 void supervisorInit(void);
 void shootCheckDevice(void);

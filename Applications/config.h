@@ -176,7 +176,6 @@ extern const char *configParameterStrings[] ;
 void configFlashRead(void);
 uint8_t configFlashWrite(void);
 void configLoadDefault(void);
-void configerase_configuration(void);
 unsigned int configParameterRead(void *data);
 unsigned int configParameterWrite(void *data);
 int8_t configReadFile(char *fname);
