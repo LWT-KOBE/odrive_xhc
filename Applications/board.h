@@ -33,6 +33,8 @@
 #include "balance.h"
 #include "pid.h"
 #include "encoder.h"
+#include "supervisor.h"
+
 #endif
 
 

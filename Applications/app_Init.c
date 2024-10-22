@@ -14,7 +14,7 @@ void appInit(void *Parameters){
 	//usbVCP_Init(USB_USART_PreemptionPriority,USB_USART_SubPriority);        
 
     //监控机初始化
-	//supervisorInit();	
+	supervisorInit();	
 
 	OdriveInit();
 	//无线数传初始化

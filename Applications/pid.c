@@ -287,10 +287,10 @@ float Incremental_PID(float reality,float target)
 //	 Incremental_KI = 0.00125f;
 //	 Incremental_KD = 0.00f;
 	 
-	 alpha = 0.02;
+	 alpha = 0.4;
 	 //5ms×´Ì¬ÏÂ
-	 Incremental_KP = 8.0f;
-	 Incremental_KI = 0.07f;
+	 Incremental_KP = 0.05f;
+	 Incremental_KI = 0.05f;
 	 Incremental_KD = 0.0f;
 	
 //	 Incremental_KP = 0.000125f;
