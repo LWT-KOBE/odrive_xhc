@@ -11,7 +11,7 @@
 
 #define CONTROL_PRIORITY 9
 #define CONTROL_STACK_SIZE 512
-#define CONTROL_NORMAL_PERIOD 5
+#define CONTROL_NORMAL_PERIOD 10
 
 // 加速度校准开关
 #define IMU_ACC_FLAG  PEin(11)

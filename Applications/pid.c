@@ -290,8 +290,8 @@ float Incremental_PID(float reality,float target)
 	 
 	 alpha = 0.02;
 	 //5ms状态下
-	 Incremental_KP = 3.0f;
-	 Incremental_KI = 0.03f;
+	 Incremental_KP = 0.05f;
+	 Incremental_KI = 0.05f;
 	 Incremental_KD = 0.0f;
 	
 //	 Incremental_KP = 0.000125f;
@@ -329,8 +329,8 @@ float Incremental_PID(float reality,float target)
 	//保存上一次滤波的值
 	last_dev = this_dev;
 	
-	if(this_dev >  3.5f) this_dev =  3.5f;
-	if(this_dev < -3.5f) this_dev = -3.5f;
+//	if(this_dev >  3.5f) this_dev =  3.5f;
+//	if(this_dev < -3.5f) this_dev = -3.5f;
 	return this_dev;                                            /* 输出结果 */
 }
 

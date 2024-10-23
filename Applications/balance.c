@@ -59,7 +59,7 @@ void balanceUpdateTask(void *Parameters){
 		
 		//正常发速度指令控制
 		if(balanceData.flag == 0){
-			Motor_SpeedA_Goal.target = Incremental_PID(OdReceivedData.vel_estimate[1].float_temp,Motor_SpeedB_Goal.target);
+			Motor_SpeedA_Goal.target = Incremental_PID((OdReceivedData.vel_estimate[1].float_temp * 0.2199f),Motor_SpeedB_Goal.target);
 			//分段控制速度 因为odrive端只有Kp,和设定的目标值有静态差距，故在发送时增大发送值来达到真正的期望值
 			
 			if(Motor_SpeedB_Goal.target == 0){

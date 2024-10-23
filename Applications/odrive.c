@@ -1934,7 +1934,7 @@ void odrivelUpdateTask(void *Parameters){
 		ODChangePos_gain();
 		
 	}
-        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,(OdReceivedData.vel_estimate[0].float_temp * 0.2199f),(OdReceivedData.vel_estimate[1].float_temp * 0.2199f),EW.Current_Mileage,OdReceivedData.ibus[0].float_temp,OdReceivedData.vbus_voltage[0].float_temp,OdReceivedData.Pos_gain[0].float_temp,OdReceivedData.Vel_gain[0].float_temp,OdReceivedData.Vel_integrator_gain[0].float_temp,OdReceivedData.Pos_gain[1].float_temp,OdReceivedData.Vel_gain[1].float_temp,OdReceivedData.Vel_integrator_gain[1].float_temp,Position_PID_G(EW.Current_Mileage,-Motor_SpeedB_Goal.target));
+        vofa_sendData(OdReceivedData.pos_estimate[0].float_temp,OdReceivedData.pos_estimate[1].float_temp,(OdReceivedData.vel_estimate[0].float_temp * 0.2199f),(OdReceivedData.vel_estimate[1].float_temp * 0.2199f),EW.Current_Mileage,OdReceivedData.ibus[0].float_temp,OdReceivedData.vbus_voltage[0].float_temp,OdReceivedData.Pos_gain[0].float_temp,OdReceivedData.Vel_gain[0].float_temp,OdReceivedData.Vel_integrator_gain[0].float_temp,OdReceivedData.Pos_gain[1].float_temp,OdReceivedData.Vel_gain[1].float_temp,OdReceivedData.Vel_integrator_gain[1].float_temp,Motor_SpeedB_Goal.target);
 		digitalIncreasing(&OdriveData.loops);        
 
 	}
