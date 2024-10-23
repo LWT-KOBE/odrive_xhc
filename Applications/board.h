@@ -33,6 +33,7 @@
 #include "balance.h"
 #include "pid.h"
 #include "encoder.h"
+#include "CAN1_Task.h"
 #endif
 
 

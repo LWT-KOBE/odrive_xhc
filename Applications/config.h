@@ -184,6 +184,7 @@ configToken_t *configTokenGet(uint32_t key);
 void configTokenStore(configToken_t *token);
 void configLoadDefault(void);
 void configInit(void);
+void erase_configuration(void);
 
 #endif
 

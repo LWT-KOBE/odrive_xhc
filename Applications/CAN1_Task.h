@@ -1,5 +1,5 @@
-#ifndef __CAN2_TASK_H
-#define __CAN2_TASK_H
+#ifndef __CAN1_TASK_H
+#define __CAN1_TASK_H
 
 #include "stm32f4xx.h"
 #include "FreeRTOS_board.h"

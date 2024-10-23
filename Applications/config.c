@@ -249,6 +249,12 @@ uint8_t configFlashWrite(void) {
 
 }
 
+//ª÷∏¥≥ˆ≥ß…Ë÷√
+void erase_configuration(void){
+	configLoadDefault();
+	configFlashWrite();	
+}
+
 void configInit(void) {
 
 	float ver;	

@@ -290,8 +290,8 @@ float Incremental_PID(float reality,float target)
 	 
 	 alpha = 0.02;
 	 //5ms状态下
-	 Incremental_KP = 8.0f;
-	 Incremental_KI = 0.07f;
+	 Incremental_KP = 3.0f;
+	 Incremental_KI = 0.03f;
 	 Incremental_KD = 0.0f;
 	
 //	 Incremental_KP = 0.000125f;
@@ -321,9 +321,17 @@ float Incremental_PID(float reality,float target)
 //	 }
     
 	//限幅
-	if(Pwm >  2.2f) Pwm =  2.2f;
-	if(Pwm < -2.2f) Pwm = -2.2f;
-	return Pwm;                                            /* 输出结果 */
+	if(Pwm >  3.5f) Pwm =  3.5f;
+	if(Pwm < -3.5f) Pwm = -3.5f;
+	
+	//一阶低通滤波
+	this_dev = Pwm * (1 - alpha) + alpha * last_dev;
+	//保存上一次滤波的值
+	last_dev = this_dev;
+	
+	if(this_dev >  3.5f) this_dev =  3.5f;
+	if(this_dev < -3.5f) this_dev = -3.5f;
+	return this_dev;                                            /* 输出结果 */
 }
 
 //位置式PID计算

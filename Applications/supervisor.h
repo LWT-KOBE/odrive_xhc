@@ -27,7 +27,7 @@ enum {
 	LCD_TASK,
 	ODRIVE_TASK,
 	XHC_Task,
-	CAN2_Task,
+	CAN1_Task,
 	LIST_OF_TASK,
 	
 };
@@ -96,6 +96,7 @@ typedef struct {
 	bool imuTempState;
 	bool busyState;
 	uint8_t flashSave;
+	u8 eraseflash;
 	volatile uint8_t imuTempFinish;
 	uint16_t rgbState;
     uint16_t beepState;
