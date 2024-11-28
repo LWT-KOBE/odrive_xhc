@@ -1,5 +1,9 @@
 Dependencies for Project 'ModularReader', Target 'ModularReader': (DO NOT MODIFY !)
+<<<<<<< HEAD
 F (.\Applications\app_Init.c)(0x6746CFE1)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\app_init.o --omf_browse .\objects\app_init.crf --depend .\objects\app_init.d)
+=======
+F (.\Applications\app_Init.c)(0x6746E703)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\app_init.o --omf_browse .\objects\app_init.crf --depend .\objects\app_init.d)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 I (Applications\board.h)(0x673FF94B)
 I (Applications\std_lib.h)(0x66B5E0BE)
 I (D:\ARM\ARMCC\include\stdarg.h)(0x5EC775FC)
@@ -121,7 +125,11 @@ I (Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Applications\control.c)(0x6729C17F)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\control.o --omf_browse .\objects\control.crf --depend .\objects\control.d)
 I (Applications\application.h)(0x6718DBDB)
 I (Applications\app_Init.h)(0x66B5E0BE)
@@ -242,7 +250,11 @@ I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\board.h)(0x673FF94B)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 I (Applications\lcd.h)(0x66B5E0BE)
 I (Applications\Odrive.h)(0x6746E091)
 I (.\Driver\driver_laser.h)(0x66B5E0BE)
@@ -460,7 +472,11 @@ I (Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Applications\main.c)(0x66B5E0BE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (Applications\board.h)(0x673FF94B)
 I (Applications\std_lib.h)(0x66B5E0BE)
@@ -583,7 +599,11 @@ I (Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Applications\supervisor.c)(0x673FFCE1)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\supervisor.o --omf_browse .\objects\supervisor.crf --depend .\objects\supervisor.d)
 I (Applications\supervisor.h)(0x6735A9C7)
 I (.\BSP\bsp.h)(0x66B5E0BE)
@@ -706,7 +726,11 @@ I (Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Applications\lcd.c)(0x66B5E0BE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
 F (.\Applications\pid.c)(0x673596D0)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\pid.o --omf_browse .\objects\pid.crf --depend .\objects\pid.d)
 I (Applications\parameter.h)(0x66B5E0BE)
@@ -831,7 +855,11 @@ I (Applications\balance.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Applications\balance.c)(0x6746CB6E)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\balance.o --omf_browse .\objects\balance.crf --depend .\objects\balance.d)
 I (Applications\application.h)(0x6718DBDB)
 I (Applications\app_Init.h)(0x66B5E0BE)
@@ -952,7 +980,11 @@ I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\board.h)(0x673FF94B)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 I (Applications\lcd.h)(0x66B5E0BE)
 I (Applications\Odrive.h)(0x6746E091)
 I (.\Driver\driver_laser.h)(0x66B5E0BE)
@@ -1076,7 +1108,11 @@ I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\board.h)(0x673FF94B)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 I (Applications\lcd.h)(0x66B5E0BE)
 I (Applications\Odrive.h)(0x6746E091)
 I (.\Driver\driver_laser.h)(0x66B5E0BE)
@@ -1200,7 +1236,11 @@ I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\board.h)(0x673FF94B)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 I (Applications\lcd.h)(0x66B5E0BE)
 I (Applications\Odrive.h)(0x6746E091)
 I (.\Driver\driver_laser.h)(0x66B5E0BE)
@@ -1640,7 +1680,11 @@ I (.\Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\CAN1_Task.h)(0x67298A54)
 I (.\Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (.\Applications\my_config.h)(0x673FF716)
+=======
+I (.\Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Driver\isp_spi.c)(0x66B5E0BE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\isp_spi.o --omf_browse .\objects\isp_spi.crf --depend .\objects\isp_spi.d)
 I (.\Applications\board.h)(0x673FF94B)
 I (.\Applications\std_lib.h)(0x66B5E0BE)
@@ -1763,7 +1807,11 @@ I (.\Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\CAN1_Task.h)(0x67298A54)
 I (.\Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (.\Applications\my_config.h)(0x673FF716)
+=======
+I (.\Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Driver\isp_tim.c)(0x66B5E0BE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\isp_tim.o --omf_browse .\objects\isp_tim.crf --depend .\objects\isp_tim.d)
 I (.\Applications\board.h)(0x673FF94B)
 I (.\Applications\std_lib.h)(0x66B5E0BE)
@@ -1886,7 +1934,11 @@ I (.\Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\CAN1_Task.h)(0x67298A54)
 I (.\Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (.\Applications\my_config.h)(0x673FF716)
+=======
+I (.\Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 I (.\Applications\imu.h)(0x66B5E0BE)
 I (.\Applications\nav_ukf.h)(0x66B5E0BE)
 I (.\Applications\d_imu.h)(0x66B5E0BE)
@@ -2609,7 +2661,11 @@ I (.\Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\CAN1_Task.h)(0x67298A54)
 I (.\Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (.\Applications\my_config.h)(0x673FF716)
+=======
+I (.\Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\BSP\vofa.c)(0x66B5E0BE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\vofa.o --omf_browse .\objects\vofa.crf --depend .\objects\vofa.d)
 I (BSP\vofa.h)(0x66B5E0BE)
 I (.\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x66B5E0BE)
@@ -2814,7 +2870,11 @@ I (.\Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (.\Applications\CAN1_Task.h)(0x67298A54)
 I (.\Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (.\Applications\my_config.h)(0x673FF716)
+=======
+I (.\Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Libraries\STM32F4xx_StdPeriph_Driver\src\misc.c)(0x66B5E0BE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\misc.o --omf_browse .\objects\misc.crf --depend .\objects\misc.d)
 I (.\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x66B5E0BE)
 I (.\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x66B5E0BE)
@@ -4404,7 +4464,11 @@ I (Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\BSP\bsp_flash.c)(0x671770C5)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\bsp_flash.o --omf_browse .\objects\bsp_flash.crf --depend .\objects\bsp_flash.d)
 I (BSP\bsp_flash.h)(0x6717591D)
 I (.\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x66B5E0BE)
@@ -4609,7 +4673,11 @@ I (Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (Applications\CAN1_Task.h)(0x67298A54)
 I (Applications\my_flash.h)(0x673FF3BC)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Applications\my_flash.c)(0x673FF822)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\my_flash.o --omf_browse .\objects\my_flash.crf --depend .\objects\my_flash.d)
 I (Applications\my_flash.h)(0x673FF3BC)
 I (Applications\board.h)(0x673FF94B)
@@ -4732,7 +4800,11 @@ I (Applications\balance.h)(0x6718DBDB)
 I (Applications\pid.h)(0x6718DBDB)
 I (.\BSP\encoder.h)(0x66B5E0BE)
 I (Applications\CAN1_Task.h)(0x67298A54)
+<<<<<<< HEAD
 I (Applications\my_config.h)(0x673FF716)
+=======
+I (Applications\my_config.h)(0x6746E9B8)
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
 F (.\Driver\driver_laser.c)(0x66B5E0BE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\driver_laser.o --omf_browse .\objects\driver_laser.crf --depend .\objects\driver_laser.d)
 F (.\Driver\MODBUSProtocol.c)(0x66B5E0BE)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork --split_sections -I .\Libraries\CMSIS\Include -I .\Libraries\CMSIS\ST\STM32F4xx\Include -I .\Libraries\STM32F4xx_StdPeriph_Driver\inc -I .\FreeRTOS\include -I .\FreeRTOS\portable\RVDS\ARM_CM4F -I .\FreeRTOS\portable\MemMang -I .\Applications -I .\Driver -I .\BSP -I .\Math -I .\Utility -I .\Libraries\USB\STM32_USB_APP\USB_Device_Examples\VCP -I .\Libraries\USB\STM32_USB_Device_Library\Core -I .\Libraries\USB\STM32_USB_Device_Library\Class\cdc -I .\Libraries\USB\STM32_USB_OTG_Driver -I .\Libraries\FATFS\src -I .\GUI -I .\Applications -I .\ODRIVE_CAN --c99-I.\RTE\_ModularReader-ID:\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="525" -DSTM32F405xx -DSTM32F427_437xx -DUSE_STDPERIPH_DRIVER -DUSE_USB_OTG_FS -D__FPU_PRESENT="1" -D__FPU_USED="1" -DARM_MATH_CM4 -D__CC_ARM -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING-o .\objects\modbusprotocol.o --omf_browse .\objects\modbusprotocol.crf --depend .\objects\modbusprotocol.d)
 F (.\DOC\readme.txt)(0x66B5E0BE)()

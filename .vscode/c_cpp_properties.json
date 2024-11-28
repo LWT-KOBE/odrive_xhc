@@ -3,6 +3,7 @@
         {
             "name": "ModularReader",
             "includePath": [
+<<<<<<< HEAD
                 "c:\\Users\\13359\\Desktop\\智火项目\\自动喷码\\Libraries\\CMSIS\\Include",
                 "c:\\Users\\13359\\Desktop\\智火项目\\自动喷码\\Libraries\\CMSIS\\ST\\STM32F4xx\\Include",
                 "c:\\Users\\13359\\Desktop\\智火项目\\自动喷码\\Libraries\\STM32F4xx_StdPeriph_Driver\\inc",
@@ -27,6 +28,32 @@
                 "c:\\Users\\13359\\Desktop\\智火项目\\自动喷码\\FreeRTOS",
                 "c:\\Users\\13359\\Desktop\\智火项目\\自动喷码\\Libraries\\CMSIS\\ST\\STM32F4xx\\Source\\Templates",
                 "c:\\Users\\13359\\Desktop\\智火项目\\自动喷码\\DOC"
+=======
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\CMSIS\\Include",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\CMSIS\\ST\\STM32F4xx\\Include",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\STM32F4xx_StdPeriph_Driver\\inc",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\FreeRTOS\\include",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\FreeRTOS\\portable\\RVDS\\ARM_CM4F",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\FreeRTOS\\portable\\MemMang",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Applications",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Driver",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\BSP",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Math",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Utility",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\USB\\STM32_USB_APP\\USB_Device_Examples\\VCP",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\USB\\STM32_USB_Device_Library\\Core",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\USB\\STM32_USB_Device_Library\\Class\\cdc",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\USB\\STM32_USB_OTG_Driver",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\FATFS\\src",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\GUI",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\ODRIVE_CAN",
+                "D:\\ARM\\ARMCC\\include",
+                "D:\\ARM\\ARMCC\\include\\rw",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\STM32F4xx_StdPeriph_Driver\\src",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\FreeRTOS",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\Libraries\\CMSIS\\ST\\STM32F4xx\\Source\\Templates",
+                "c:\\Users\\13359\\Desktop\\智火项目\\自动上料\\DOC"
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
             ],
             "defines": [
                 "STM32F427_437xx",

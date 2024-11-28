@@ -194,6 +194,19 @@
           <count>5</count>
           <WinNumber>1</WinNumber>
           <ItemText>OdReceivedData</ItemText>
+<<<<<<< HEAD
+=======
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>supervisorData</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>g_SYS_Config</ItemText>
+>>>>>>> 84dd9f3039f14b72ae0534f70e3692b31dda1830
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
